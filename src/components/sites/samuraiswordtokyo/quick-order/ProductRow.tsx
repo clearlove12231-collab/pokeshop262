@@ -1,7 +1,7 @@
 "use client";
 
 /* eslint-disable @next/next/no-img-element */
-import { CURRENCY_SYMBOL, formatAmount, toWon } from "../price";
+import { CURRENCY_SYMBOL, formatAmount, offerPrice, type OfferPrice as Price } from "../price";
 import { RsStars } from "../stars";
 import { useStore } from "../store";
 import type { Offer, Product } from "../types";
@@ -19,7 +19,7 @@ function PriceAmount({ won, bdi }: { won: number; bdi?: boolean }) {
   return <span className="woocommerce-Price-amount amount">{bdi ? <bdi>{inner}</bdi> : inner}</span>;
 }
 
-function Badges({ product }: { product: Product }) {
+function Badges({ product, onSale }: { product: Product; onSale: boolean }) {
   if (product.preorder) {
     return (
       <span className="sst-qo__badges">
@@ -30,7 +30,7 @@ function Badges({ product }: { product: Product }) {
   const inStock = product.offers.some((o) => o.stockState === "in");
   return (
     <span className="sst-qo__badges">
-      {product.sale && <span className="sst-qo__badge sst-qo__badge--sale">세일</span>}
+      {onSale && <span className="sst-qo__badge sst-qo__badge--sale">세일</span>}
       {product.hot && <span className="sst-qo__badge sst-qo__badge--hot">인기</span>}
       {inStock ? (
         <span className="sst-qo__badge sst-qo__badge--in">재고 있음</span>
@@ -41,26 +41,24 @@ function Badges({ product }: { product: Product }) {
   );
 }
 
-function OfferPrice({ offer }: { offer: Offer }) {
-  if (offer.priceState !== "priced") {
+/** Shop price (see price.ts); a struck regular price only when the rounded prices differ. */
+function OfferPrice({ price }: { price: Price | null }) {
+  if (!price) {
     return (
       <span className="sst-qo__offer-price sst-qo__offer-price--empty" aria-hidden="true">
         &nbsp;
       </span>
     );
   }
-  const won = toWon(offer.priceYen);
-  const regularWon = offer.saleRegularYen ? toWon(offer.saleRegularYen) : 0;
-  // Rounding can make the regular and sale price equal: then show one price, no fake discount.
-  if (regularWon && regularWon !== won) {
+  if (price.regular) {
     return (
       <span className="sst-qo__offer-price sst-qo__offer-price--sale">
         <span className="sst-qo__sale-prices">
           <del className="sst-qo__sale-regular">
-            <PriceAmount won={regularWon} bdi />
+            <PriceAmount won={price.regular} bdi />
           </del>
           <ins className="sst-qo__sale-current">
-            <PriceAmount won={won} bdi />
+            <PriceAmount won={price.pay} bdi />
           </ins>
         </span>
       </span>
@@ -68,7 +66,7 @@ function OfferPrice({ offer }: { offer: Offer }) {
   }
   return (
     <span className="sst-qo__offer-price">
-      <PriceAmount won={won} />
+      <PriceAmount won={price.pay} />
     </span>
   );
 }
@@ -77,17 +75,20 @@ function OfferCell({ product, offer }: { product: Product; offer: Offer }) {
   const { qtyFor, setQty } = useStore();
   const qty = qtyFor(offer.variantId);
   const name = offer.cartName ?? product.name;
+  const price = offerPrice(product, offer);
   const line = {
     variantId: offer.variantId,
     handle: product.handle,
     name,
     img: product.img.src,
-    priceWon: toWon(offer.priceYen),
+    priceWon: price?.pay ?? 0,
     max: offer.max,
   };
   const preorder = product.preorder;
-  const sale = offer.classes.includes("sst-qo__offer--sale");
-  const tdClass = ["sst-qo__offer", ...offer.classes, preorder ? "sst-qo__offer--preorder" : ""].filter(Boolean).join(" ");
+  // Sale styling only while a discount is actually shown (rounding can make both prices equal).
+  const sale = Boolean(price?.regular);
+  const classes = offer.classes.filter((c) => c !== "sst-qo__offer--sale" || sale);
+  const tdClass = ["sst-qo__offer", ...classes, preorder ? "sst-qo__offer--preorder" : ""].filter(Boolean).join(" ");
   const cardClass = [
     "sst-qo__offer-cell sst-qo__offer-card",
     `sst-qo__offer-cell--${offer.type}`,
@@ -154,7 +155,7 @@ function OfferCell({ product, offer }: { product: Product; offer: Offer }) {
             {offer.label}
           </span>
           <span className={`sst-qo__offer-stock sst-qo__stock--${offer.stockState}`}>{offer.stockText}</span>
-          <OfferPrice offer={offer} />
+          <OfferPrice price={price} />
         </div>
         <div className="sst-qo__offer-action">{action}</div>
       </div>
@@ -164,10 +165,17 @@ function OfferCell({ product, offer }: { product: Product; offer: Offer }) {
 
 export function ProductRow({ product }: { product: Product }) {
   const { img, rating } = product;
+  // The source marks sale rows; keep that only while a struck-through price is actually shown.
+  const onSale = product.sale && product.offers.some((o) => offerPrice(product, o)?.regular);
+  const rowClass =
+    (product.rowClass ?? "")
+      .split(" ")
+      .filter((c) => c && (onSale || (c !== "sst-qo__row--sale" && c !== "sst-qo__row--flash")))
+      .join(" ") || undefined;
 
   return (
     <tr
-      className={product.rowClass}
+      className={rowClass}
       data-handle={product.handle}
       data-group={product.group}
       data-qo-row-key={product.key}
@@ -181,8 +189,8 @@ export function ProductRow({ product }: { product: Product }) {
       data-qo-handle={product.handle}
       data-qo-media-variant={img.variant}
       data-qo-hot={product.hot ? 1 : 0}
-      data-qo-sale={product.sale ? 1 : 0}
-      data-qo-flash={product.flash ? 1 : undefined}
+      data-qo-sale={onSale ? 1 : 0}
+      data-qo-flash={onSale && product.flash ? 1 : undefined}
       data-qo-preorder={product.preorder ? 1 : 0}
       data-sst-rs={rating ? 1 : 0}
     >
@@ -201,7 +209,7 @@ export function ProductRow({ product }: { product: Product }) {
             decoding="async"
           />
           <span className="sst-qo__prod-copy">
-            <Badges product={product} />
+            <Badges product={product} onSale={onSale} />
             <span className="sst-qo__pname">{product.name}</span>
             {rating && (
               <span className="sst-rs sst-rs--qo sst-rs-qo">

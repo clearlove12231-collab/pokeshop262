@@ -29,9 +29,16 @@ so each page loads only its own stylesheet. Both render `SiteChrome` (header + c
   (product blocks, ratings and review products are not links), and every image/font is served locally.
 - **Reviews: Pokemon only.** Other categories (원피스, PSA 10, 기타 상품) and the all-reviews page are not cloned.
   All review numbers (home bar and reviews page) are counted from the cloned reviews.
-- **Prices**: 58% of the source price, converted to KRW and rounded to the nearest ₩5,000
-  (`price.ts`: `yen × JPY_TO_KRW (8.4888) × PRICE_FACTOR (0.58)`, `ROUND_STEP 5000`, minimum ₩5,000).
-  Data keeps the source JPY prices; the slider/filters work in JPY and display KRW.
+- **Prices** (`price.ts`): 58% of the source price, converted to KRW and rounded to the nearest ₩5,000, plus ₩50,000:
+  `round5000(yen × JPY_TO_KRW (8.4888) × PRICE_FACTOR (0.58)) + PRICE_MARKUP_WON (50,000)` — e.g. ¥10,000 → ₩100,000.
+  A "슈링크 없음" offer costs `NOSHRINK_DISCOUNT` (15%) less than the same product's sealed offer (its paid price),
+  rounded to ₩5,000 and always below it — e.g. 밀봉 ₩150,000 → 슈링크 없음 ₩130,000.
+  Sale prices get the same markup; when rounding makes the regular and sale price equal, no sale (badge, struck
+  price, sale styling) is shown. Data keeps the source JPY prices; the slider/filters work in JPY and display KRW.
+- **Sold out** (`shop.ts`): every product of "포켓몬 스페셜" (`pokemon-other`) and "포켓몬 벌크" (`pokemon-bulk`),
+  including their copies in "예약 주문 / HOT", is shown as 품절 (stock "품절", no quantity stepper, price kept), and
+  the stock filters/sort treat them as out of stock. Applied when the page loads the catalog, so re-extracting the
+  data keeps the rule. The cart storage key is bumped (`sst-clone-cart-v3`) whenever prices/stock rules change.
 
 ## Catalog
 

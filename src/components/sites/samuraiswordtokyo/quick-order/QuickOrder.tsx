@@ -3,10 +3,12 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import data from "../data/quick-order.json";
 import { formatPrice } from "../price";
+import { applyShopRules } from "../shop";
 import type { Product, ProductGroup } from "../types";
 import { ProductRow } from "./ProductRow";
 
-const GROUPS = (data as { groups: ProductGroup[] }).groups;
+/** Source catalog with the owner's rules (sold-out groups) applied; see shop.ts. */
+const GROUPS = applyShopRules((data as { groups: ProductGroup[] }).groups);
 
 /**
  * Sub-tabs of the Pokemon tab. PSA10 (individual graded cards) is not sold on

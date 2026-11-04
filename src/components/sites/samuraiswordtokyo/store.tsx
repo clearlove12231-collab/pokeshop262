@@ -11,7 +11,8 @@ import {
 } from "react";
 import type { CartLine } from "./types";
 
-const CART_KEY = "sst-clone-cart-v2";
+/** Bumped whenever shop prices or stock rules change, so carts saved with old prices start empty. */
+const CART_KEY = "sst-clone-cart-v3";
 
 interface StoreValue {
   cart: CartLine[];
