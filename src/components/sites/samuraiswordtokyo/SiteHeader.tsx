@@ -2,7 +2,6 @@
 
 /* eslint-disable @next/next/no-img-element */
 import { useStore } from "./store";
-import { src } from "./paths";
 
 /**
  * The source header, reduced to the store logo and the cart button. Navigation,
@@ -15,7 +14,7 @@ export function SiteHeader() {
     <header className="sst-header">
       <div className="sst-container sst-header__main">
         <a className="sst-brand" href="/ko?qo_tab=pokemon">
-          <img src={src("/themes/samurai-sword/assets/samurai_sword.webp")} alt="Samurai Sword Tokyo" width={480} height={201} />
+          <img src="/images/pokeshop-logo.webp" alt="PokeShop" width={256} height={256} />
         </a>
         <div className="sst-actions">
           {/* An <a> like the source, so the icon-link styles apply unchanged; it opens the drawer. */}
