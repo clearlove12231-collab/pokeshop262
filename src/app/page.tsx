@@ -1,9 +1,6 @@
+import { redirect } from "next/navigation";
+
+/** The cloned page lives at its source path, /ko (Pokemon tab). */
 export default function Home() {
-  return (
-    <main className="flex min-h-screen items-center justify-center">
-      <p className="text-muted-foreground">
-        Clone target not yet built. Run <code className="font-mono text-foreground">/clone-website</code> to start.
-      </p>
-    </main>
-  );
+  redirect("/ko?qo_tab=pokemon");
 }

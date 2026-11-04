@@ -1,0 +1,145 @@
+#!/usr/bin/env node
+/**
+ * Prunes src/components/sites/samuraiswordtokyo/samuraiswordtokyo.css to the
+ * rules the clone's components can match.
+ *
+ * A selector is dropped when it requires a class or id that never appears in
+ * the components/data (classes inside :not/:is/:where/:has are ignored, so
+ * those selectors are kept), or when it targets the dark theme
+ * (html[data-sst-theme="dark"]), which the clone no longer offers.
+ * Afterwards unused @keyframes and @font-face rules and empty at-rules go too.
+ *
+ * Usage: node scripts/samuraiswordtokyo/prune-css.mjs [--dry-run]
+ */
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import postcss from "postcss";
+import selectorParser from "postcss-selector-parser";
+
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
+const siteDir = path.join(root, "src/components/sites/samuraiswordtokyo");
+const cssFile = path.join(siteDir, "samuraiswordtokyo.css");
+const dryRun = process.argv.includes("--dry-run");
+
+function walk(dir) {
+  return fs.readdirSync(dir, { withFileTypes: true }).flatMap((e) => {
+    const p = path.join(dir, e.name);
+    return e.isDirectory() ? walk(p) : /\.(tsx?|json)$/.test(e.name) ? [p] : [];
+  });
+}
+
+// Every word-like token in the components, data and root layout counts as "used".
+const sources = [...walk(siteDir), path.join(root, "src/app/layout.tsx")];
+const tokens = new Set();
+const prefixes = new Set();
+for (const file of sources) {
+  const text = fs.readFileSync(file, "utf8");
+  for (const m of text.matchAll(/[A-Za-z_][\w-]*/g)) tokens.add(m[0]);
+  // Template-literal class names such as `sst-qo__offer-cell--${offer.type}`.
+  for (const m of text.matchAll(/([A-Za-z_][\w-]*[-_])\$\{/g)) prefixes.add(m[1]);
+}
+const used = (name) => tokens.has(name) || [...prefixes].some((p) => name.startsWith(p));
+
+/** Attributes whose exact values name a tab or group; a value the clone never renders can't match. */
+const KEYED_ATTRS = new Set([
+  "data-tab",
+  "data-active-tab",
+  "data-group",
+  "data-qo-group",
+  "data-qo-family",
+  "data-qo-family-tab",
+  "data-qo-subgroup",
+  "data-qo-subgroup-tab",
+  "data-qo-legacy-group",
+]);
+
+const OPTIONAL_PSEUDOS =new Set([":not", ":is", ":where", ":has", ":matches", ":-webkit-any", ":-moz-any"]);
+
+function selectorUsable(sel) {
+  let ok = true;
+  selectorParser((rootSel) => {
+    rootSel.walk((node) => {
+      if (!ok) return false;
+      if (node.type === "pseudo" && OPTIONAL_PSEUDOS.has(node.value.toLowerCase())) {
+        // Classes inside these are optional for a match; skip their contents.
+        return;
+      }
+      let parent = node.parent;
+      while (parent) {
+        if (parent.type === "pseudo" && OPTIONAL_PSEUDOS.has(parent.value.toLowerCase())) return;
+        parent = parent.parent;
+      }
+      if ((node.type === "class" || node.type === "id") && !used(node.value)) ok = false;
+      if (node.type === "attribute" && node.attribute === "data-sst-theme" && /dark/.test(node.value ?? "")) ok = false;
+      // Tab/group keys of the removed game tabs (onepiece, yugioh, psa10, ...).
+      if (node.type === "attribute" && KEYED_ATTRS.has(node.attribute) && node.operator === "=" && node.value && !used(node.value)) ok = false;
+    });
+  }).processSync(sel);
+  return ok;
+}
+
+const css = fs.readFileSync(cssFile, "utf8");
+const ast = postcss.parse(css);
+let droppedRules = 0;
+let droppedSelectors = 0;
+
+ast.walkRules((rule) => {
+  if (rule.parent?.type === "atrule" && /keyframes$/i.test(rule.parent.name)) return;
+  const keep = rule.selectors.filter((s) => {
+    try {
+      return selectorUsable(s);
+    } catch {
+      return true;
+    }
+  });
+  droppedSelectors += rule.selectors.length - keep.length;
+  if (keep.length === 0) {
+    rule.remove();
+    droppedRules++;
+  } else if (keep.length !== rule.selectors.length) {
+    rule.selectors = keep;
+  }
+});
+
+// Keyframes and font faces nobody references any more.
+const decls = [];
+ast.walkDecls((d) => {
+  if (d.parent?.type === "atrule" && d.parent.name === "font-face") return;
+  decls.push(d);
+});
+const animationText = decls.filter((d) => /^(-webkit-)?animation(-name)?$/i.test(d.prop)).map((d) => d.value).join(" ");
+const fontText = decls.filter((d) => /^font(-family)?$|^--/i.test(d.prop)).map((d) => d.value).join(" ");
+let droppedAtRules = 0;
+ast.walkAtRules((at) => {
+  if (/keyframes$/i.test(at.name) && !new RegExp(`(^|[\\s,])${at.params.trim().replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}($|[\\s,])`).test(animationText)) {
+    at.remove();
+    droppedAtRules++;
+  } else if (at.name === "font-face") {
+    let family = "";
+    at.walkDecls("font-family", (d) => (family = d.value.replace(/["']/g, "").trim()));
+    if (family && !fontText.includes(family)) {
+      at.remove();
+      droppedAtRules++;
+    }
+  }
+});
+
+// Empty containers (@media, @supports, ...).
+let changed = true;
+while (changed) {
+  changed = false;
+  ast.walkAtRules((at) => {
+    if (at.nodes && at.nodes.length === 0) {
+      at.remove();
+      changed = true;
+    }
+  });
+}
+
+const out = ast.toString().replace(/\n{3,}/g, "\n\n");
+console.log(
+  `rules dropped: ${droppedRules}, selectors dropped: ${droppedSelectors}, at-rules dropped: ${droppedAtRules}, ` +
+    `size ${(css.length / 1024).toFixed(0)} KB -> ${(out.length / 1024).toFixed(0)} KB`,
+);
+if (!dryRun) fs.writeFileSync(cssFile, out);
