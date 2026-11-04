@@ -3,7 +3,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { useState, type CSSProperties } from "react";
 import { sourceHref } from "../paths";
-import { CURRENCY_SYMBOL, formatAmount, toWon, yenFromText } from "../price";
+import { CURRENCY_SYMBOL, offerWon } from "../price";
 import { useStore } from "../store";
 import type { Offer, Product } from "../types";
 
@@ -16,13 +16,13 @@ function starFills(avg: number): string[] {
 }
 
 /** Price in the source's WooCommerce markup, shown in KRW (see price.ts). */
-function PriceAmount({ yen, bdi }: { yen: number; bdi?: boolean }) {
+function PriceAmount({ won, bdi }: { won: number; bdi?: boolean }) {
   const inner = (
     <>
       <span className="woocommerce-Price-currencySymbol" translate="no" dir="auto">
         {CURRENCY_SYMBOL}
       </span>
-      {formatAmount(yen)}
+      {won.toLocaleString("ko-KR")}
     </>
   );
   return <span className="woocommerce-Price-amount amount">{bdi ? <bdi>{inner}</bdi> : inner}</span>;
@@ -55,12 +55,15 @@ function OfferCell({ product, offer }: { product: Product; offer: Offer }) {
   const [notify, setNotify] = useState(false);
   const qty = qtyFor(offer.variantId);
   const name = offer.cartName ?? product.name;
+  const won = offerWon(offer, product.offers);
+  const hasPrice = Boolean(offer.price || offer.saleCurrent);
   const line = {
     variantId: offer.variantId,
     handle: product.handle,
     name,
     img: product.img.src,
     priceYen: offer.priceYen,
+    priceWon: won.pay,
     max: offer.max,
   };
   const preorder = product.preorder;
@@ -75,8 +78,6 @@ function OfferCell({ product, offer }: { product: Product; offer: Offer }) {
     .filter(Boolean)
     .join(" ");
   const noshrink = offer.type === "noshrink";
-  const saleRegularYen = sale && offer.saleRegular ? yenFromText(offer.saleRegular) : 0;
-  const saleCurrentYen = sale && offer.saleCurrent ? yenFromText(offer.saleCurrent) : 0;
 
   let action;
   if (offer.action === "quote") {
@@ -152,24 +153,19 @@ function OfferCell({ product, offer }: { product: Product; offer: Offer }) {
             <span className="sst-qo__offer-price sst-qo__offer-price--empty" aria-hidden="true">
               &nbsp;
             </span>
-          ) : saleRegularYen && saleCurrentYen && toWon(saleRegularYen) !== toWon(saleCurrentYen) ? (
+          ) : hasPrice && won.regular ? (
             <span className="sst-qo__offer-price sst-qo__offer-price--sale">
               <span className="sst-qo__sale-prices">
                 <del className="sst-qo__sale-regular">
-                  <PriceAmount yen={saleRegularYen} bdi />
+                  <PriceAmount won={won.regular} bdi />
                 </del>
                 <ins className="sst-qo__sale-current">
-                  <PriceAmount yen={saleCurrentYen} bdi />
+                  <PriceAmount won={won.pay} bdi />
                 </ins>
               </span>
             </span>
-          ) : saleCurrentYen ? (
-            // Rounding made the regular and sale price equal: show one price, no fake discount.
-            <span className="sst-qo__offer-price">
-              <PriceAmount yen={saleCurrentYen} />
-            </span>
           ) : (
-            <span className="sst-qo__offer-price">{offer.price && <PriceAmount yen={offer.priceYen} />}</span>
+            <span className="sst-qo__offer-price">{hasPrice && <PriceAmount won={won.pay} />}</span>
           )}
         </div>
         <div className="sst-qo__offer-action">{action}</div>

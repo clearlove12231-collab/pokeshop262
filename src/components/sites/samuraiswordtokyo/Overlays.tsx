@@ -5,11 +5,13 @@ import { useEffect, useState } from "react";
 import { formatWon, toWon } from "./price";
 import { useStore } from "./store";
 import { sourceHref, src } from "./paths";
+import type { CartLine } from "./types";
 
 export function CartDrawer() {
   const { cart, cartOpen, setCartOpen, setQty, removeLine } = useStore();
   // Totals add up the rounded unit prices shown on the cards, so the numbers agree.
-  const wonTotal = cart.reduce((sum, line) => sum + toWon(line.priceYen) * line.qty, 0);
+  const unitWon = (line: CartLine) => line.priceWon ?? toWon(line.priceYen);
+  const wonTotal = cart.reduce((sum, line) => sum + unitWon(line) * line.qty, 0);
 
   useEffect(() => {
     if (!cartOpen) return;
@@ -54,7 +56,7 @@ export function CartDrawer() {
                         +
                       </button>
                     </div>
-                    <span className="sst-cart-drawer__line-total">{formatWon(toWon(line.priceYen) * line.qty)}</span>
+                    <span className="sst-cart-drawer__line-total">{formatWon(unitWon(line) * line.qty)}</span>
                     <button type="button" className="sst-cart-drawer__remove" onClick={() => removeLine(line.variantId)}>
                       삭제
                     </button>

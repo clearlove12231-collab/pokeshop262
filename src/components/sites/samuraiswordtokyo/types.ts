@@ -69,7 +69,10 @@ export interface CartLine {
   handle: string;
   name: string;
   img: string;
+  /** Source price (JPY). */
   priceYen: number;
+  /** Unit price shown on the card (KRW); older saved carts may not have it. */
+  priceWon?: number;
   max: number;
   qty: number;
 }
