@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import type { CSSProperties } from "react";
 import { sourceHref, src } from "./paths";
+import { BASE_PATH } from "./reviews/constants";
 
 export function RankBand() {
   return (
@@ -23,10 +24,13 @@ const REVIEW_PHOTOS = [
 ];
 const STAR_FILLS = ["100%", "100%", "100%", "100%", "75%"];
 
+/** The reviews page is cloned, so links to it stay local. */
+const LOCAL_REVIEWS = BASE_PATH;
+
 export function ReviewBar() {
   return (
     <section className="sst-hrb sst-hrb--glyph" aria-label="고객 리뷰">
-      <a className="sst-hrb__link" href={sourceHref(`/ko/pages/reviews`)}>
+      <a className="sst-hrb__link" href={LOCAL_REVIEWS}>
         <span className="sst-hrb__label" aria-hidden="true">
           고객 리뷰
         </span>
@@ -93,7 +97,7 @@ export function SiteFooter() {
         <ul className="sst-footer__legal">
           {FOOTER_LINKS.map(([label, path]) => (
             <li key={path}>
-              <a href={sourceHref(`${path}`)}>{label}</a>
+              <a href={path === LOCAL_REVIEWS ? LOCAL_REVIEWS : sourceHref(path)}>{label}</a>
             </li>
           ))}
         </ul>

@@ -1,19 +1,12 @@
 "use client";
 
 /* eslint-disable @next/next/no-img-element */
-import { useState, type CSSProperties } from "react";
+import { useState } from "react";
 import { sourceHref } from "../paths";
 import { CURRENCY_SYMBOL, offerWon } from "../price";
+import { RsStars } from "../stars";
 import { useStore } from "../store";
 import type { Offer, Product } from "../types";
-
-/** Rating stars fill per star, floored to the nearest quarter like the source. */
-function starFills(avg: number): string[] {
-  return Array.from({ length: 5 }, (_, i) => {
-    const part = Math.max(0, Math.min(1, avg - i));
-    return `${Math.floor(part * 4) * 25}%`;
-  });
-}
 
 /** Price in the source's WooCommerce markup, shown in KRW (see price.ts). */
 function PriceAmount({ won, bdi }: { won: number; bdi?: boolean }) {
@@ -222,11 +215,7 @@ export function ProductRow({ product }: { product: Product }) {
             <span className="sst-qo__pname">{product.name}</span>
             {product.rating && (
               <span className="sst-rs sst-rs--qo sst-rs-qo">
-                <span className="sst-rs-stars" role="img" aria-label={`${product.rating.avg} / 5`}>
-                  {starFills(avg).map((f, i) => (
-                    <i key={i} className="sst-rs-star" style={{ "--f": f } as CSSProperties} />
-                  ))}
-                </span>
+                <RsStars avg={avg} label={`${product.rating.avg} / 5`} />
                 <span className="sst-rs__avg">{product.rating.avg}</span>
                 <span className="sst-rs__count">({product.rating.count})</span>
               </span>
