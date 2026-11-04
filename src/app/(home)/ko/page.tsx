@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import { SamuraiSwordHome } from "@/components/sites/samuraiswordtokyo/SamuraiSwordHome";
 
 export const metadata: Metadata = {
-  title: "일본 포켓몬 카드/TCG 스토어 - Samurai Sword Tokyo",
-  description: "도쿄에서 발송되는 미개봉 일본 포켓몬 카드와 TCG 상품.",
+  title: "Pokeshop - 포켓몬 카드 샵",
+  description: "포켓몬 카드 샵 Pokeshop. 상품 주문 문의는 TikTok DM(@pokeshopkr)으로 받습니다.",
 };
 
-/** Clone of https://samuraiswordtokyo.com/ko/?qo_tab=pokemon */
+/** Shop homepage (Pokemon catalog). */
 export default function KoreanHomePage() {
   return <SamuraiSwordHome />;
 }

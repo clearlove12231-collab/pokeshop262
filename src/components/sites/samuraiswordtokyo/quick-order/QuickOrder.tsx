@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState, type RefObject } from "react";
 import data from "../data/quick-order.json";
-import { LINK_TO_SOURCE, sourceHref, src } from "../paths";
+import { LINK_TO_SOURCE, sourceHref } from "../paths";
 import { formatPrice } from "../price";
 import type { Product, ProductGroup } from "../types";
 import { ProductRow } from "./ProductRow";
@@ -24,7 +24,6 @@ const SUB_TABS: { key: SubTab; label: string; group?: string }[] = [
 // `squeeze` is the horizontal scale the source applies to each tab label (same at every width).
 const FAMILY_TABS: { label: string; tab: string; squeeze?: number; className?: string; href?: string }[] = [
   { label: "TOP", tab: "top", squeeze: 0.9, className: "sst-qo__tab--top" },
-  { label: "쿠폰", tab: "coupon", squeeze: 0.737, className: "sst-qct-tab", href: sourceHref(`/ko/my-account/customer-coupons`) },
   { label: "Pokemon", tab: "pokemon" },
   { label: "원피스", tab: "onepiece", squeeze: 0.737 },
   { label: "Yu-Gi-Oh", tab: "yugioh" },
@@ -232,30 +231,6 @@ function Toolbar({
   );
 }
 
-function CouponTile() {
-  // The source injects this <button> straight into the card grid (tbody).
-  // A display:contents row keeps the table markup valid while the button stays the grid item.
-  return (
-    <tr className="sst-qcp-row">
-      <td className="sst-qcp-row__cell">
-        <a
-          className="sst-qcp-tile"
-          href={sourceHref(`/ko/my-account?register=1`)}
-          aria-label="쿠폰 받기. 무료 가입하고 2,000포인트 받기."
-        >
-          <picture className="sst-qcp-tile__pic">
-            <source className="sst-qcp-tile__src" media="(max-width: 749px)" srcSet={src("/mu-plugins/sst-qo-coupon-promo-tile/signup-2000pt-mobile.0a6a786bbde6.webp")} />
-            <img className="sst-qcp-tile__img" src={src("/mu-plugins/sst-qo-coupon-promo-tile/signup-2000pt-desktop.28dce3e79f17.webp")} alt="" width={900} height={600} />
-          </picture>
-          <span className="sst-qcp-tile__cta">
-            <span className="sst-qcp-tile__cta-text">쿠폰 받기</span>
-          </span>
-        </a>
-      </td>
-    </tr>
-  );
-}
-
 const LEGACY_GROUP: Record<string, string> = { psa10: "psa10", bulk: "bulk", other: "other", vintage: "vintage" };
 
 const PSA_NOTICE = "PSA 상품 이미지는 참고용입니다. 재고가 빠르게 업데이트되기 때문에 각 실제 상품의 개별 사진은 제공되지 않습니다.";
@@ -401,7 +376,6 @@ export function QuickOrder() {
                         </tr>
                       </thead>
                       <tbody>
-                        {g.id === "pokemon-preorder" && sub === "all" && view === "grid" && <CouponTile />}
                         {rows.map((p) => (
                           <ProductRow key={p.key} product={p} />
                         ))}

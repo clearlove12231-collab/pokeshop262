@@ -4,11 +4,12 @@ import { SiteDocument, THEME_SCRIPT } from "@/components/sites/samuraiswordtokyo
 import "../globals.css";
 
 export const metadata: Metadata = {
-  title: "Samurai Sword Tokyo (clone)",
-  description: "Local clone of the Samurai Sword Tokyo homepage",
+  title: "Pokeshop - 포켓몬 카드 샵",
+  description: "포켓몬 카드 샵 Pokeshop",
+  icons: { icon: "/shop/logo.webp" },
 };
 
-/** Root layout for the homepage (source body classes of /ko/). */
+/** Root layout (body classes the base site styles key on). */
 export default function HomeLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <SiteDocument

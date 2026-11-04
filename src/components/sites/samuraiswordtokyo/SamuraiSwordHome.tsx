@@ -1,14 +1,12 @@
-import { HomeSlider } from "./HomeSlider";
 import { QuickOrder } from "./quick-order/QuickOrder";
+import { ShopHero } from "./ShopHero";
 import { SiteChrome } from "./SiteChrome";
-import { ReviewBar } from "./SiteSections";
 
-/** Samurai Sword Tokyo homepage (ko locale, Pokemon quick-order tab). */
+/** Shop homepage: hero + Pokemon quick-order catalog. */
 export function SamuraiSwordHome() {
   return (
     <SiteChrome>
-      <HomeSlider />
-      <ReviewBar />
+      <ShopHero />
       <QuickOrder />
     </SiteChrome>
   );

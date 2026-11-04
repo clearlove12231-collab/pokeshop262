@@ -2,23 +2,125 @@
 
 /* eslint-disable @next/next/no-img-element */
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
+import { LOGO, SHOP_NAME, TIKTOK_HANDLE, TIKTOK_URL } from "./brand";
 import { formatWon, toWon } from "./price";
 import { useStore } from "./store";
-import { sourceHref, src } from "./paths";
 import type { CartLine } from "./types";
+
+// Totals add up the rounded unit prices shown on the cards, so the numbers agree.
+const unitWon = (line: CartLine) => line.priceWon ?? toWon(line.priceYen);
+
+function TikTokIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
+      <path
+        fill="currentColor"
+        d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"
+      />
+    </svg>
+  );
+}
+
+/** Text the customer can paste into a TikTok DM. */
+function orderSummary(cart: CartLine[], total: number): string {
+  return [
+    `[${SHOP_NAME} 주문 문의]`,
+    ...cart.map((l) => `- ${l.name} × ${l.qty} = ${formatWon(unitWon(l) * l.qty)}`),
+    `합계: ${formatWon(total)}`,
+  ].join("\n");
+}
+
+async function copyText(text: string): Promise<boolean> {
+  try {
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch {
+    // Fallback for browsers without clipboard permission.
+    const area = document.createElement("textarea");
+    area.value = text;
+    area.style.position = "fixed";
+    area.style.opacity = "0";
+    document.body.appendChild(area);
+    area.select();
+    const ok = document.execCommand("copy");
+    area.remove();
+    return ok;
+  }
+}
+
+/** Checkout step: orders are taken over TikTok DM. */
+function OrderNotice({ cart, total, onClose }: { cart: CartLine[]; total: number; onClose: () => void }) {
+  const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [onClose]);
+
+  return createPortal(
+    <div className="shop-order" role="dialog" aria-modal="true" aria-labelledby="shop-order-title" onClick={(e) => e.target === e.currentTarget && onClose()}>
+      <div className="shop-order__panel">
+        <button type="button" className="shop-order__close" aria-label="닫기" onClick={onClose}>
+          ×
+        </button>
+        <img className="shop-order__logo" src={LOGO} alt="" width={72} height={72} />
+        <h2 className="shop-order__title" id="shop-order-title">
+          주문 안내
+        </h2>
+        <p className="shop-order__lead">
+          상품 주문 문의는 <b>TikTok DM</b>으로 부탁드립니다.
+        </p>
+        <p className="shop-order__sub">아래 주문 내용을 복사해서 DM으로 보내 주세요.</p>
+        <ul className="shop-order__lines">
+          {cart.map((l) => (
+            <li key={l.variantId}>
+              <span className="shop-order__name">
+                {l.name} <span className="shop-order__qty">× {l.qty}</span>
+              </span>
+              <span className="shop-order__price">{formatWon(unitWon(l) * l.qty)}</span>
+            </li>
+          ))}
+        </ul>
+        <div className="shop-order__total">
+          <span>합계</span>
+          <strong>{formatWon(total)}</strong>
+        </div>
+        <div className="shop-order__actions">
+          <button
+            type="button"
+            className="shop-order__copy"
+            onClick={async () => {
+              setCopied(await copyText(orderSummary(cart, total)));
+              window.setTimeout(() => setCopied(false), 2500);
+            }}
+          >
+            {copied ? "복사됨 ✓" : "주문 내용 복사"}
+          </button>
+          <a className="shop-order__dm" href={TIKTOK_URL} target="_blank" rel="noopener">
+            <TikTokIcon />
+            TikTok DM으로 문의하기
+          </a>
+        </div>
+        <p className="shop-order__handle">TikTok {TIKTOK_HANDLE}</p>
+      </div>
+    </div>,
+    document.body,
+  );
+}
 
 export function CartDrawer() {
   const { cart, cartOpen, setCartOpen, setQty, removeLine } = useStore();
-  // Totals add up the rounded unit prices shown on the cards, so the numbers agree.
-  const unitWon = (line: CartLine) => line.priceWon ?? toWon(line.priceYen);
+  const [ordering, setOrdering] = useState(false);
   const wonTotal = cart.reduce((sum, line) => sum + unitWon(line) * line.qty, 0);
 
   useEffect(() => {
-    if (!cartOpen) return;
+    if (!cartOpen || ordering) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setCartOpen(false);
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [cartOpen, setCartOpen]);
+  }, [cartOpen, ordering, setCartOpen]);
 
   return (
     <>
@@ -73,144 +175,65 @@ export function CartDrawer() {
               <strong>{formatWon(wonTotal)}</strong>
             </div>
           )}
-          {/* Checkout lives on the source store; this local cart is not transferred. */}
-          <a className="button" href={sourceHref(`/ko/cart`)}>
-            장바구니 보기
-          </a>
+          {cart.length > 0 ? (
+            <button type="button" className="button shop-checkout" onClick={() => setOrdering(true)}>
+              주문하기
+            </button>
+          ) : (
+            <button type="button" className="button shop-checkout" onClick={() => setCartOpen(false)}>
+              쇼핑 계속하기
+            </button>
+          )}
         </div>
       </div>
       <div className="sst-cart-drawer-overlay" onClick={() => setCartOpen(false)} />
+      {ordering && cart.length > 0 && <OrderNotice cart={cart} total={wonTotal} onClose={() => setOrdering(false)} />}
     </>
   );
 }
 
-const PROMO_KEY = "sst-clone-promo-closed";
-
-export function PromoPop() {
-  const [visible, setVisible] = useState(false);
-  const [confirming, setConfirming] = useState(false);
-
-  useEffect(() => {
-    let closed = false;
-    try {
-      closed = window.sessionStorage.getItem(PROMO_KEY) === "1";
-    } catch {
-      // ignore
-    }
-    // Shown after mount, like the source script that un-hides it.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    if (!closed) setVisible(true);
-  }, []);
-
-  const close = () => {
-    setVisible(false);
-    try {
-      window.sessionStorage.setItem(PROMO_KEY, "1");
-    } catch {
-      // ignore
-    }
-  };
-
-  return (
-    <aside className="sstsm-promo-pop" id="sstsm-promo-pop" aria-label="Samurai Month daily free gacha" hidden={!visible}>
-      <button
-        className="sstsm-promo-close"
-        type="button"
-        aria-label="Close Samurai Month promotion"
-        aria-haspopup="dialog"
-        aria-controls="sstsm-promo-confirm"
-        aria-expanded={confirming}
-        onClick={() => setConfirming(true)}
-      >
-        ×
-      </button>
-      <div className="sstsm-promo-confirm" id="sstsm-promo-confirm" role="dialog" aria-modal="false" aria-labelledby="sstsm-promo-confirm-title" hidden={!confirming}>
-        <p id="sstsm-promo-confirm-title">Close this popup?</p>
-        <div className="sstsm-promo-confirm-actions">
-          <button type="button" onClick={() => setConfirming(false)}>
-            취소
-          </button>
-          <button type="button" onClick={close}>
-            닫기
-          </button>
-        </div>
-      </div>
-      <a href={sourceHref(`/ko/blogs/news/samurai-month-2026#gacha`)} aria-label="Open Samurai Gacha — one free spin per day after login">
-        <small>DAILY FREE GACHA</small>
-        <span className="sstsm-promo-machine" aria-hidden="true">
-          <img src={src("/plugins/sst-samurai-month/assets/gacha_machine_sp.webp")} alt="" width={768} height={768} />
-          <span className="sstsm-promo-capsule" />
-        </span>
-        <span className="sstsm-promo-pop-cta">
-          Open gacha <span aria-hidden="true">→</span>
-        </span>
-      </a>
-    </aside>
-  );
-}
-
-const HELP_TOPICS: [string, string][] = [
-  ["Check my order status", "/ko/orders"],
-  ["Was my order placed? / When will it arrive?", "/ko/faq"],
-  ["Payment / cards / Wise", "/ko/pages/payment-methods"],
-  ["Cancel my order", "/ko/faq"],
-  ["Stock / sold out / ASK price", "/ko/faq"],
-  ["Bulk / case orders", "/ko/faq"],
-  ["Shipping / address / tracking", "/ko/policies/shipping-policy"],
-  ["Shipping within Japan / pickup", "/ko/policies/shipping-policy"],
-  ["Customs / import taxes", "/ko/pages/customs-duties-and-import-taxes"],
-  ["Confirmation email", "/ko/faq"],
-  ["Damaged / missing / wrong item", "/ko/pages/return-and-refund-policy"],
-  ["Policies / terms", "/ko/policies/terms-of-service"],
-];
-
+/** Floating "주문 문의" button: points customers to TikTok DM. */
 export function OrderHelpChat() {
   const [open, setOpen] = useState(false);
   return (
     <div className="sst-order-help-chat" id="sst-order-help-chat" data-open={open ? "1" : "0"} data-position="bottom-right">
-      <button className="sst-ohc-launcher" type="button" aria-label="Order help" aria-expanded={open} aria-controls="sst-ohc-panel" onClick={() => setOpen((o) => !o)}>
+      <button className="sst-ohc-launcher" type="button" aria-label="주문 문의" aria-expanded={open} aria-controls="sst-ohc-panel" onClick={() => setOpen((o) => !o)}>
         <span className="sst-ohc-launcher__icon" aria-hidden="true" />
-        <span className="sst-ohc-launcher__label">Order help</span>
+        <span className="sst-ohc-launcher__label">주문 문의</span>
       </button>
       <section className="sst-ohc-panel" id="sst-ohc-panel" role="dialog" aria-modal="false" aria-labelledby="sst-ohc-title" aria-hidden={!open} hidden={!open}>
         <div className="sst-ohc-header">
           <div className="sst-ohc-heading">
-            <span className="sst-ohc-avatar" aria-hidden="true">
-              S
-            </span>
+            <img className="sst-ohc-avatar shop-ohc-avatar" src={LOGO} alt="" width={36} height={36} />
             <div className="sst-ohc-heading__copy">
               <h2 className="sst-ohc-title" id="sst-ohc-title">
-                Order Help
+                주문 문의
               </h2>
               <p className="sst-ohc-subtitle">
                 <span className="sst-ohc-status-dot" aria-hidden="true" />
-                SAMURAI SWORD TOKYO Support
+                {SHOP_NAME}
               </p>
             </div>
           </div>
-          <button className="sst-ohc-close" type="button" aria-label="Close" onClick={() => setOpen(false)}>
+          <button className="sst-ohc-close" type="button" aria-label="닫기" onClick={() => setOpen(false)}>
             ×
           </button>
         </div>
         <div className="sst-ohc-body">
           <div className="sst-ohc-row sst-ohc-row--bot">
-            <span className="sst-ohc-avatar" aria-hidden="true">
-              S
-            </span>
+            <img className="sst-ohc-avatar shop-ohc-avatar" src={LOGO} alt="" width={28} height={28} />
             <div className="sst-ohc-message sst-ohc-message--intro">
-              <h3 className="sst-ohc-message__title">Hi there! How can we help?</h3>
-              <p className="sst-ohc-message__text">Pick the topic closest to your question and we&apos;ll take you straight to the right place.</p>
+              <h3 className="sst-ohc-message__title">안녕하세요!</h3>
+              <p className="sst-ohc-message__text">상품 주문 문의는 TikTok DM으로 부탁드립니다.</p>
             </div>
           </div>
           <div className="sst-ohc-choices">
-            {HELP_TOPICS.map(([label, path], i) => (
-              <a key={label} className={`sst-ohc-choice${i === 0 ? " sst-ohc-choice--lookup" : ""}`} href={sourceHref(`${path}`)}>
-                <span className="sst-ohc-choice__label">{label}</span>
-                <span className="sst-ohc-choice__arrow" aria-hidden="true">
-                  ›
-                </span>
-              </a>
-            ))}
+            <a className="sst-ohc-choice sst-ohc-choice--lookup" href={TIKTOK_URL} target="_blank" rel="noopener">
+              <span className="sst-ohc-choice__label">TikTok DM으로 문의하기 ({TIKTOK_HANDLE})</span>
+              <span className="sst-ohc-choice__arrow" aria-hidden="true">
+                ›
+              </span>
+            </a>
           </div>
         </div>
       </section>

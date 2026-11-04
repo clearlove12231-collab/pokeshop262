@@ -1,0 +1,294 @@
+/*
+ * Shop-specific styles (Pokeshop): logo, hero banner and the TikTok DM order notice.
+ * Loaded after samuraiswordtokyo.css (the base site styles).
+ */
+
+:root {
+  --shop-yellow: #ffcb05;
+  --shop-blue: #1d3f8f;
+  --shop-ink: #121212;
+  --shop-muted: #5b5b5b;
+  --shop-line: #e6e3dc;
+  --shop-panel: #ffffff;
+  --shop-tiktok: #121212;
+}
+html[data-sst-theme="dark"] {
+  --shop-ink: #f2f2f2;
+  --shop-muted: #b3b3b3;
+  --shop-line: #2c2c2e;
+  --shop-panel: #1b1b1d;
+  --shop-tiktok: #fe2c55;
+}
+
+/* ---- Logo (round) ---- */
+html body .sst-header .sst-brand.shop-brand img {
+  width: 48px !important;
+  height: 48px !important;
+  max-width: none !important;
+  border-radius: 50%;
+  object-fit: cover !important;
+}
+@media (max-width: 749px) {
+  html body .sst-header .sst-brand.shop-brand img {
+    width: 38px !important;
+    height: 38px !important;
+  }
+}
+html[data-sst-theme="dark"] .sst-brand.shop-brand img,
+html[data-sst-theme="dark"] .shop-hero__logo,
+html[data-sst-theme="dark"] .shop-footer-mark {
+  filter: none;
+}
+footer.sst-footer .sst-footer__bottom-inner .sst-footer__mark.shop-footer-mark {
+  border-radius: 50%;
+  object-fit: cover;
+}
+.shop-ohc-avatar {
+  border-radius: 50%;
+  object-fit: cover;
+  padding: 0;
+}
+
+/* ---- Hero ---- */
+.shop-hero {
+  background:
+    radial-gradient(circle at 18% 50%, rgba(255, 203, 5, 0.28), transparent 46%),
+    linear-gradient(120deg, #0f1730 0%, #1d3f8f 58%, #24206b 100%);
+  color: #fff;
+}
+.shop-hero__inner {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 36px 24px;
+}
+.shop-hero__logo {
+  flex: 0 0 auto;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow:
+    0 0 0 4px rgba(255, 203, 5, 0.85),
+    0 18px 40px rgba(0, 0, 0, 0.45);
+}
+.shop-hero__copy {
+  min-width: 0;
+}
+.shop-hero__tagline {
+  margin: 0 0 6px;
+  color: var(--shop-yellow);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+}
+.shop-hero__title {
+  margin: 0 0 12px;
+  font-size: 52px;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+.shop-hero__text {
+  max-width: 34em;
+  margin: 0 0 22px;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 17px;
+  line-height: 1.55;
+}
+.shop-hero__text b {
+  color: #fff;
+}
+.shop-hero__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 22px;
+  border-radius: 999px;
+  background: var(--shop-yellow);
+  color: #121212;
+  font-size: 16px;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+  transition: transform 0.15s ease;
+}
+.shop-hero__cta:hover {
+  transform: translateY(-1px);
+}
+.shop-hero__cta:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+.shop-hero__handle {
+  margin: 10px 0 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 13px;
+}
+@media (max-width: 749px) {
+  .shop-hero__inner {
+    flex-direction: column;
+    gap: 18px;
+    padding: 24px 16px 28px;
+    text-align: center;
+  }
+  .shop-hero__logo {
+    width: 150px;
+    height: 150px;
+  }
+  .shop-hero__title {
+    font-size: 36px;
+  }
+  .shop-hero__text {
+    font-size: 15px;
+  }
+}
+
+/* ---- Cart button ---- */
+.sst-cart-drawer__foot .button.shop-checkout {
+  width: 100%;
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 800;
+}
+
+/* ---- Order notice (checkout → TikTok DM) ---- */
+.shop-order {
+  position: fixed;
+  inset: 0;
+  /* Above the cart drawer (also max z-index; the portal is appended last, so it wins). */
+  z-index: 2147483647;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: rgba(10, 12, 20, 0.62);
+}
+.shop-order__panel {
+  position: relative;
+  width: min(100%, 440px);
+  max-height: calc(100vh - 32px);
+  overflow: auto;
+  padding: 28px 24px 22px;
+  border-radius: 16px;
+  background: var(--shop-panel);
+  color: var(--shop-ink);
+  text-align: center;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+}
+.shop-order__close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--shop-muted);
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+}
+.shop-order__close:hover {
+  background: rgba(127, 127, 127, 0.14);
+}
+.shop-order__logo {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 10px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.shop-order__title {
+  margin: 0 0 8px;
+  font-size: 22px;
+  font-weight: 800;
+}
+.shop-order__lead {
+  margin: 0 0 4px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+.shop-order__lead b {
+  color: var(--shop-tiktok);
+}
+.shop-order__sub {
+  margin: 0 0 16px;
+  color: var(--shop-muted);
+  font-size: 13px;
+}
+.shop-order__lines {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--shop-line);
+  text-align: left;
+}
+.shop-order__lines li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--shop-line);
+  font-size: 13px;
+  line-height: 1.4;
+}
+.shop-order__qty {
+  color: var(--shop-muted);
+  white-space: nowrap;
+}
+.shop-order__price {
+  flex: 0 0 auto;
+  font-weight: 700;
+}
+.shop-order__total {
+  display: flex;
+  justify-content: space-between;
+  margin: 12px 0 18px;
+  font-size: 16px;
+}
+.shop-order__total strong {
+  font-size: 18px;
+}
+.shop-order__actions {
+  display: grid;
+  gap: 8px;
+}
+.shop-order__copy,
+.shop-order__dm {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 46px;
+  border-radius: 10px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 800;
+  text-decoration: none;
+  cursor: pointer;
+}
+.shop-order__copy {
+  border: 1px solid var(--shop-line);
+  background: transparent;
+  color: var(--shop-ink);
+}
+.shop-order__dm {
+  border: 0;
+  background: #121212;
+  color: #fff;
+}
+html[data-sst-theme="dark"] .shop-order__dm {
+  background: #fe2c55;
+}
+.shop-order__dm:hover {
+  filter: brightness(1.12);
+}
+.shop-order__handle {
+  margin: 12px 0 0;
+  color: var(--shop-muted);
+  font-size: 12px;
+}

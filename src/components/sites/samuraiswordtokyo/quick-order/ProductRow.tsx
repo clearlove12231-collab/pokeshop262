@@ -2,9 +2,7 @@
 
 /* eslint-disable @next/next/no-img-element */
 import { useState } from "react";
-import { sourceHref } from "../paths";
 import { CURRENCY_SYMBOL, offerWon } from "../price";
-import { RsStars } from "../stars";
 import { useStore } from "../store";
 import type { Offer, Product } from "../types";
 
@@ -172,7 +170,6 @@ export function ProductRow({ product }: { product: Product }) {
   const fav = favorites.includes(product.handle);
   const [pop, setPop] = useState(false);
   const { img } = product;
-  const avg = product.rating ? Number(product.rating.avg) : 0;
 
   return (
     <tr
@@ -195,10 +192,9 @@ export function ProductRow({ product }: { product: Product }) {
       data-qo-preorder={product.preorder ? 1 : 0}
       data-sst-rarity={product.rarity}
       data-sst-psa-pin={product.pinned ? 1 : undefined}
-      data-sst-rs={product.rating ? 1 : undefined}
     >
       <td className="sst-qof-cell">
-        <a className="sst-qo__prod" href={sourceHref(product.url)}>
+        <a className="sst-qo__prod" href="#">
           <img
             src={img.src}
             srcSet={img.srcSet}
@@ -213,13 +209,6 @@ export function ProductRow({ product }: { product: Product }) {
           <span className="sst-qo__prod-copy">
             <Badges product={product} />
             <span className="sst-qo__pname">{product.name}</span>
-            {product.rating && (
-              <span className="sst-rs sst-rs--qo sst-rs-qo">
-                <RsStars avg={avg} label={`${product.rating.avg} / 5`} />
-                <span className="sst-rs__avg">{product.rating.avg}</span>
-                <span className="sst-rs__count">({product.rating.count})</span>
-              </span>
-            )}
             {product.jan && <span className="sst-qo__jan">{product.jan}</span>}
           </span>
         </a>

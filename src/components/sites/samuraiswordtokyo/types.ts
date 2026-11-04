@@ -37,7 +37,6 @@ export interface Product {
   subgroup: string;
   name: string;
   search: string;
-  url: string;
   img: ProductImage;
   jan?: string;
   priceYen: number;
@@ -50,7 +49,6 @@ export interface Product {
   rarity?: string;
   pinned?: boolean;
   dupOfFeatured?: boolean;
-  rating?: { avg: string; count: number };
   offers: Offer[];
 }
 

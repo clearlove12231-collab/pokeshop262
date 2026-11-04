@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 454" width="320" height="454" role="img" aria-label="이미지 준비 중">
+  <rect width="320" height="454" fill="#f3f1ec"/>
+  <rect x="58" y="70" width="204" height="300" rx="14" fill="none" stroke="#b9b4aa" stroke-width="5"/>
+  <rect x="82" y="96" width="156" height="34" rx="6" fill="#e2ded6"/>
+  <rect x="82" y="148" width="156" height="120" rx="8" fill="none" stroke="#b9b4aa" stroke-width="4"/>
+  <text x="160" y="410" text-anchor="middle" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="22" font-weight="700" fill="#8f897d">이미지 준비 중</text>
+</svg>

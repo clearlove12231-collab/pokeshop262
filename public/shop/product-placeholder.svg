@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="160" height="160" role="img" aria-label="이미지 준비 중">
+  <rect width="160" height="160" fill="#f3f1ec"/>
+  <g fill="none" stroke="#b9b4aa" stroke-width="3" stroke-linejoin="round">
+    <path d="M44 62 80 46l36 16v40l-36 16-36-16Z"/>
+    <path d="M44 62l36 16 36-16M80 78v40"/>
+  </g>
+  <text x="80" y="140" text-anchor="middle" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="12" font-weight="700" fill="#8f897d">이미지 준비 중</text>
+</svg>

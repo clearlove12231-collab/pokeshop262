@@ -9,7 +9,8 @@
  *   /sites/samuraiswordtokyo/wp-includes/<p>   <- https://samuraiswordtokyo.com/wp-includes/<p>
  *   /sites/samuraiswordtokyo/ext/<host>/<path> <- https://<host>/<path>
  *
- * Usage: node --use-system-ca scripts/samuraiswordtokyo/download-assets.mjs [--force]
+ * Usage: node --use-system-ca scripts/samuraiswordtokyo/download-assets.mjs [--force] [--prune]
+ * (--prune deletes mirrored files that are no longer referenced.)
  * (--use-system-ca lets Node trust the Windows certificate store for fonts.gstatic.com.)
  */
 import fs from "node:fs";
@@ -80,9 +81,30 @@ async function worker() {
 }
 await Promise.all(Array.from({ length: 8 }, worker));
 
+// --prune: delete mirrored files that nothing references any more.
+let pruned = 0;
+if (process.argv.includes("--prune")) {
+  const keep = new Set([...localPaths].map((p) => path.join(publicDir, PREFIX, decodeURI(p))));
+  const mirrorRoot = path.join(publicDir, PREFIX);
+  const sweep = (dir) => {
+    if (!fs.existsSync(dir)) return;
+    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+      const p = path.join(dir, e.name);
+      if (e.isDirectory()) {
+        sweep(p);
+        if (fs.readdirSync(p).length === 0) fs.rmdirSync(p);
+      } else if (!keep.has(p)) {
+        fs.unlinkSync(p);
+        pruned++;
+      }
+    }
+  };
+  sweep(mirrorRoot);
+}
+
 fs.mkdirSync(path.dirname(mapFile), { recursive: true });
 fs.writeFileSync(mapFile, JSON.stringify(Object.fromEntries(Object.entries(map).sort()), null, 2) + "\n");
-console.log(`assets: ${localPaths.size}, downloaded: ${downloaded}, already present: ${skipped}, failed: ${failures.length}`);
+console.log(`assets: ${localPaths.size}, downloaded: ${downloaded}, already present: ${skipped}, failed: ${failures.length}, pruned: ${pruned}`);
 if (failures.length) {
   console.log(failures.join("\n"));
   process.exitCode = 1;

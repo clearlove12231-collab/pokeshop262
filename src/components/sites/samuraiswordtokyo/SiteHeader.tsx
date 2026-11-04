@@ -1,37 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { formatPrice } from "./price";
+import { LOGO, SHOP_NAME, TIKTOK_URL } from "./brand";
 import { useStore } from "./store";
-import { sourceHref, src } from "./paths";
 
-const NAV = [
+const NAV: { label: string; href: string; external?: boolean }[] = [
   { label: "쇼핑", href: "/ko?qo_tab=pokemon" },
-  { label: "뉴스", href: sourceHref(`/ko/blogs/news`) },
-  { label: "TCG Index", href: sourceHref(`/ko/tcg-index`) },
-  { label: "카드 리스트", href: sourceHref(`/ko/pages/card-list`) },
-  { label: "소개", href: sourceHref(`/ko/pages/about`) },
-  { label: "문의", href: sourceHref(`/ko/pages/contact`) },
-  { label: "FAQ", href: sourceHref(`/ko/faq`), className: "sst-faq-link" },
+  { label: "주문 문의", href: TIKTOK_URL, external: true },
 ];
 
-const LANGUAGES = [
-  { label: "English", href: sourceHref(`/`), lang: "en-US", hrefLang: "en" },
-  { label: "Español", href: sourceHref(`/es`), lang: "es", hrefLang: "es" },
-  { label: "Deutsch", href: sourceHref(`/de`), lang: "de", hrefLang: "de" },
-  { label: "Français", href: sourceHref(`/fr`), lang: "fr", hrefLang: "fr" },
-  { label: "简体中文", href: sourceHref(`/zh-hans`), lang: "zh-Hans", hrefLang: "zh-Hans" },
-  { label: "繁體中文", href: sourceHref(`/zh-hant`), lang: "zh-Hant", hrefLang: "zh-Hant" },
-  { label: "Italiano", href: sourceHref(`/it`), lang: "it", hrefLang: "it" },
-  { label: "Nederlands", href: sourceHref(`/nl`), lang: "nl", hrefLang: "nl" },
-  { label: "Bahasa Indonesia", href: sourceHref(`/id`), lang: "id", hrefLang: "id" },
-  { label: "한국어", href: "/ko?qo_tab=pokemon", lang: "ko", hrefLang: "ko", active: true },
-];
-
-const COUPON_GOAL = 30000;
-
-/** The only social link kept in the header (Instagram and X were removed). */
-const TIKTOK_URL = "https://www.tiktok.com/@pokeshopkr";
+const externalProps = (external?: boolean) => (external ? { target: "_blank", rel: "noopener" } : {});
 
 function SearchIcon() {
   return (
@@ -87,7 +65,7 @@ function openSearch() {
 }
 
 export function SiteHeader() {
-  const { cartCount, cartTotal, setCartOpen, favorites } = useStore();
+  const { cartCount, setCartOpen } = useStore();
   const [dark, toggleTheme] = useTheme();
   const [navOpen, setNavOpen] = useState(false);
 
@@ -96,7 +74,6 @@ export function SiteHeader() {
   }, [navOpen]);
 
   const themeLabel = dark ? "라이트 모드로 전환" : "다크 모드로 전환";
-  const progress = Math.min(100, (cartTotal / COUPON_GOAL) * 100);
 
   return (
     <header className="sst-header">
@@ -121,14 +98,9 @@ export function SiteHeader() {
             </svg>
           </span>
         </button>
-        <a className="sst-brand" href="/ko?qo_tab=pokemon">
+        <a className="sst-brand shop-brand" href="/ko?qo_tab=pokemon">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={dark ? src("/themes/samurai-sword/assets/samurai_sword-dark.webp") : src("/themes/samurai-sword/assets/samurai_sword.webp")}
-            alt="Samurai Sword Tokyo"
-            width={480}
-            height={201}
-          />
+          <img src={LOGO} alt={SHOP_NAME} width={1080} height={1080} />
         </a>
         <nav className="sst-header-links" aria-label="헤더 내비게이션">
           <ul className="sst-header-links__list">
@@ -138,8 +110,10 @@ export function SiteHeader() {
               </button>
             </li>
             {NAV.map((item) => (
-              <li key={item.label} className={`menu-item ${item.className ?? ""}`.trim()}>
-                <a href={item.href}>{item.label}</a>
+              <li key={item.label} className="menu-item">
+                <a href={item.href} {...externalProps(item.external)}>
+                  {item.label}
+                </a>
               </li>
             ))}
             <li className="sst-theme-toggle-item">
@@ -158,80 +132,12 @@ export function SiteHeader() {
               </svg>
             </a>
           </div>
-          <div className="sst-header__language">
-            <details className="sst-language-switcher">
-              <summary className="sst-language-switcher__summary">
-                <span>한국어</span>
-              </summary>
-              <div className="sst-language-switcher__menu">
-                {LANGUAGES.map((l) => (
-                  <a
-                    key={l.label}
-                    className={`sst-language-switcher__item${l.active ? " is-active" : ""}`}
-                    href={l.href}
-                    hrefLang={l.hrefLang}
-                    lang={l.lang}
-                  >
-                    {l.label}
-                  </a>
-                ))}
-              </div>
-            </details>
-          </div>
-          <div className="sst-coupon-popover-wrap">
-            <a className="sst-icon-link sst-icon-link--coupons" href={sourceHref(`/ko/my-account/customer-coupons`)} aria-label="쿠폰">
-              <svg focusable="false" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M4 8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2a2 2 0 0 0 0-4V8Z" />
-                <path d="M9 9h6" />
-                <path d="M9 15h6" />
-              </svg>
-              <span>쿠폰</span>
-              <span className="sst-coupon-count" />
-            </a>
-          </div>
-          <a className="sst-icon-link sst-icon-link--calendar" href={sourceHref(`/ko/?qo_tab=pokemon#sst-calendar`)} aria-label="캘린더">
-            <svg focusable="false" viewBox="0 0 24 24" aria-hidden="true">
-              <rect x="3.5" y="5" width="17" height="15.5" rx="2" />
-              <path d="M3.5 10h17" />
-              <path d="M8 3v4" />
-              <path d="M16 3v4" />
-              <path d="M8 14h2" />
-              <path d="M14 14h2" />
-              <path d="M8 17.5h2" />
-            </svg>
-            <span>캘린더</span>
-          </a>
-          <a className="sst-icon-link sst-icon-link--orders" href={sourceHref(`/ko/orders`)} aria-label="주문">
-            <svg focusable="false" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M7 3h10a2 2 0 0 1 2 2v16l-3-2-2 2-2-2-2 2-2-2-3 2V5a2 2 0 0 1 2-2Z" />
-              <path d="M9 8h6" />
-              <path d="M9 12h6" />
-              <path d="M9 16h4" />
-            </svg>
-            <span>주문</span>
-          </a>
-          <a className="sst-icon-link sst-icon-link--watchlist" href={sourceHref(`/ko/watchlist`)} aria-label="관심 목록">
-            <svg focusable="false" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M12 3.2l2.6 5.5 6 .7-4.5 4.1 1.2 6L12 16.6l-5.3 2.9 1.2-6-4.5-4.1 6-.7z" />
-            </svg>
-            <span>관심 목록</span>
-            <em className="sst-wl-badge" hidden={favorites.length === 0}>
-              {favorites.length}
-            </em>
-          </a>
-          <a className="sst-icon-link sst-icon-link--account" href={sourceHref(`/ko/my-account`)} aria-label="계정">
-            <svg focusable="false" viewBox="0 0 24 24" aria-hidden="true">
-              <circle cx="12" cy="8" r="4" />
-              <path d="M4 21a8 8 0 0 1 16 0" />
-            </svg>
-            <span>계정</span>
-          </a>
           <button className="sst-ss-toggle sst-ss-toggle--mobile" type="button" aria-label="검색" title="검색" onClick={openSearch}>
             <SearchIcon />
           </button>
           <a
             className="sst-icon-link sst-cart-toggle"
-            href={sourceHref(`/ko/cart`)}
+            href="#"
             aria-label="장바구니"
             onClick={(e) => {
               e.preventDefault();
@@ -245,60 +151,24 @@ export function SiteHeader() {
             <span>장바구니</span>
             <span className="sst-cart-count">{cartCount > 0 ? cartCount : ""}</span>
           </a>
-          <div className="sst-cb sst-cb--header">
-            <div className="sst-cb__txt">
-              <span className="sst-cb-long">
-                Spend <b>{formatPrice(30000)}</b> to unlock a <b>{formatPrice(2000)} off</b> coupon
-              </span>
-              <span className="sst-cb-short">
-                <b>{formatPrice(2000)} off</b> from {formatPrice(30000)}
-              </span>
-            </div>
-            <div className="sst-cb__track">
-              <i style={{ width: `${progress}%` }} />
-            </div>
-          </div>
         </div>
       </div>
       <div className="sst-nav-wrap" id="sst-primary-nav">
         <nav className="sst-container sst-nav" aria-label="기본 내비게이션">
           <ul className="sst-nav__list">
             {NAV.map((item) => (
-              <li key={item.label} className={`menu-item ${item.className ?? ""}`.trim()}>
-                <a href={item.href} onClick={() => setNavOpen(false)}>
+              <li key={item.label} className="menu-item">
+                <a href={item.href} {...externalProps(item.external)} onClick={() => setNavOpen(false)}>
                   {item.label}
                 </a>
               </li>
             ))}
           </ul>
         </nav>
-        <ul className="sst-nav__qo-help">
-          <li>
-            <a className="sst-nav__qo-help-item" href={sourceHref(`/ko/faq`)}>
-              주문 방법
-            </a>
-          </li>
-          <li>
-            <a className="sst-nav__qo-help-item" href={sourceHref(`/ko/faq`)}>
-              NO SHRINK란?
-            </a>
-          </li>
-        </ul>
-        <div className="sst-nav__language">
-          <p className="sst-nav__language-title">한국어</p>
-          <ul className="sst-nav__language-list">
-            {LANGUAGES.filter((l) => !l.active).map((l) => (
-              <li key={l.label}>
-                <a className="sst-nav__language-item" href={l.href} hrefLang={l.hrefLang} lang={l.lang}>
-                  {l.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
         <div className="sst-nav__utility" aria-label="소셜 링크">
-          <a href="https://pinterest.com/SamuraiSwordTokyo/" target="_blank" rel="noopener">Pinterest</a>
-          <a href={TIKTOK_URL} target="_blank" rel="noopener">TikTok</a>
+          <a href={TIKTOK_URL} target="_blank" rel="noopener">
+            TikTok
+          </a>
         </div>
         <div className="sst-nav__theme">
           <button type="button" className="sst-theme-toggle sst-theme-toggle--drawer" aria-pressed={dark} aria-label={themeLabel} onClick={toggleTheme}>
