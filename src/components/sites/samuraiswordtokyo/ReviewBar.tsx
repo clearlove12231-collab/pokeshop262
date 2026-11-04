@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import type { CSSProperties } from "react";
-import { SOURCE_ORIGIN, src } from "./paths";
+import { src } from "./paths";
 
 const REVIEW_PHOTOS = [
   src("/uploads/2026/11/sst-review-rSFhMfZtngo2-150x150.webp"),
@@ -11,13 +11,14 @@ const REVIEW_PHOTOS = [
 const STAR_FILLS = ["100%", "100%", "100%", "100%", "75%"];
 
 /**
- * Store-wide review summary (source values captured 2026-11-04). The reviews
- * page is not part of the clone, so the link opens the live page in a new tab.
+ * Store-wide review summary (source values captured 2026-11-04). On the source
+ * the whole bar links to its reviews page; here nothing leads to the source
+ * site, so the bar is plain content and the "전체 고객 리뷰 보기" link is removed.
  */
 export function ReviewBar() {
   return (
     <section className="sst-hrb sst-hrb--glyph" aria-label="고객 리뷰">
-      <a className="sst-hrb__link" href={`${SOURCE_ORIGIN}/ko/pages/reviews`} target="_blank" rel="noopener">
+      <div className="sst-hrb__link">
         <span className="sst-hrb__label" aria-hidden="true">
           고객 리뷰
         </span>
@@ -49,13 +50,7 @@ export function ReviewBar() {
           </span>
         </span>
         <span className="sst-hrb__share">93%가 별 5개 평가</span>
-        <span className="sst-hrb__cta">
-          전체 고객 리뷰 보기
-          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <path fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M13 6l6 6-6 6" />
-          </svg>
-        </span>
-      </a>
+      </div>
     </section>
   );
 }

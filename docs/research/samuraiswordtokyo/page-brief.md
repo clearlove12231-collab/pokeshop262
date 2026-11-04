@@ -19,6 +19,8 @@ Source: https://samuraiswordtokyo.com/ko/?qo_tab=pokemon (WordPress + WooCommerc
   Removed: rank band, header nav/search/socials/language/account/coupon/dark mode, campaign slider,
   B2B intro, coupon tile, "sets" section, footer, gacha promo, order-help chat, watchlist stars,
   restock "Notify" buttons.
+- **Nothing leads to the source site**: no links, new tabs or click handlers point at samuraiswordtokyo.com
+  (product blocks, ratings and the review bar are not links), and every image/font is served locally.
 - **Prices**: 58% of the source price, converted to KRW and rounded to the nearest ₩5,000
   (`price.ts`: `yen × JPY_TO_KRW (8.4888) × PRICE_FACTOR (0.58)`, `ROUND_STEP 5000`, minimum ₩5,000).
   Data keeps the source JPY prices; the slider/filters work in JPY and display KRW.
@@ -43,7 +45,8 @@ ones; the extractor uses the Korean labels everywhere.
 ## Sections (top → bottom)
 
 1. Sticky header (59px desktop, 53px mobile): logo, cart toggle with item count.
-2. Review bar: 4.9/5, 1,504 verified, 469 photo reviews; link opens the live reviews page in a new tab.
+2. Review bar: 4.9/5, 1,504 verified, 469 photo reviews. Plain content: the source's link to its reviews
+   page and the "전체 고객 리뷰 보기" CTA are removed.
 3. Quick order: Pokemon tab; sub-tabs 전체/박스/벌크/스페셜/빈티지; toolbar (search incl. JAN, In/Out of stock,
    price slider, sort, Popular Pokemon chips); card grid. "전체" shows every group with one toolbar and hides rows
    already in Preorder/HOT. Each group shows 24 rows and loads 24 more when its status line comes within 480px of
