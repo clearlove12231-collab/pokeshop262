@@ -8,7 +8,7 @@
 export const JPY_TO_KRW = 8.49;
 
 /** Shown price relative to the source price (1 = source price, 0.5 = half price). */
-export const PRICE_FACTOR = 0.62;
+export const PRICE_FACTOR = 0.75;
 
 export const CURRENCY_SYMBOL = "₩";
 
