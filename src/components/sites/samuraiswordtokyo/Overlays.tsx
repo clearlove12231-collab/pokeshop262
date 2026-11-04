@@ -2,12 +2,14 @@
 
 /* eslint-disable @next/next/no-img-element */
 import { useEffect, useState } from "react";
-import { formatPrice } from "./price";
+import { formatWon, toWon } from "./price";
 import { useStore } from "./store";
 import { sourceHref, src } from "./paths";
 
 export function CartDrawer() {
-  const { cart, cartOpen, setCartOpen, setQty, removeLine, cartTotal } = useStore();
+  const { cart, cartOpen, setCartOpen, setQty, removeLine } = useStore();
+  // Totals add up the rounded unit prices shown on the cards, so the numbers agree.
+  const wonTotal = cart.reduce((sum, line) => sum + toWon(line.priceYen) * line.qty, 0);
 
   useEffect(() => {
     if (!cartOpen) return;
@@ -52,7 +54,7 @@ export function CartDrawer() {
                         +
                       </button>
                     </div>
-                    <span className="sst-cart-drawer__line-total">{formatPrice(line.qty * line.priceYen)}</span>
+                    <span className="sst-cart-drawer__line-total">{formatWon(toWon(line.priceYen) * line.qty)}</span>
                     <button type="button" className="sst-cart-drawer__remove" onClick={() => removeLine(line.variantId)}>
                       삭제
                     </button>
@@ -66,7 +68,7 @@ export function CartDrawer() {
           {cart.length > 0 && (
             <div className="sst-cart-drawer__estimate-line">
               <span>상품 소계</span>
-              <strong>{formatPrice(cartTotal)}</strong>
+              <strong>{formatWon(wonTotal)}</strong>
             </div>
           )}
           {/* Checkout lives on the source store; this local cart is not transferred. */}
