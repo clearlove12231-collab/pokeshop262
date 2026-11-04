@@ -1,11 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 import type { CSSProperties } from "react";
-import { SOURCE, src } from "./paths";
+import { sourceHref, src } from "./paths";
 
 export function RankBand() {
   return (
     <div id="sst-rank-band" className="sst-rb" data-state="guest" data-lang="ko">
-      <a className="sst-rb__link sst-rb__link--guest" href={`${SOURCE}/ko/my-account?register=1`}>
+      <a className="sst-rb__link sst-rb__link--guest" href={sourceHref(`/ko/my-account?register=1`)}>
         <span className="sst-rb__text">
           <span className="sst-rb__t1">무료 회원가입으로 포인트 적립과 등급을 시작하세요</span>
         </span>
@@ -26,7 +26,7 @@ const STAR_FILLS = ["100%", "100%", "100%", "100%", "75%"];
 export function ReviewBar() {
   return (
     <section className="sst-hrb sst-hrb--glyph" aria-label="고객 리뷰">
-      <a className="sst-hrb__link" href={`${SOURCE}/ko/pages/reviews`}>
+      <a className="sst-hrb__link" href={sourceHref(`/ko/pages/reviews`)}>
         <span className="sst-hrb__label" aria-hidden="true">
           고객 리뷰
         </span>
@@ -93,7 +93,7 @@ export function SiteFooter() {
         <ul className="sst-footer__legal">
           {FOOTER_LINKS.map(([label, path]) => (
             <li key={path}>
-              <a href={`${SOURCE}${path}`}>{label}</a>
+              <a href={sourceHref(`${path}`)}>{label}</a>
             </li>
           ))}
         </ul>

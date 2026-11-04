@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState, type RefObject } from "react";
 import data from "../data/quick-order.json";
-import { SOURCE, src } from "../paths";
+import { LINK_TO_SOURCE, sourceHref, src } from "../paths";
 import { yen } from "../store";
 import type { Product, ProductGroup } from "../types";
 import { ProductRow } from "./ProductRow";
@@ -24,7 +24,7 @@ const SUB_TABS: { key: SubTab; label: string; group?: string }[] = [
 // `squeeze` is the horizontal scale the source applies to each tab label (same at every width).
 const FAMILY_TABS: { label: string; tab: string; squeeze?: number; className?: string; href?: string }[] = [
   { label: "TOP", tab: "top", squeeze: 0.9, className: "sst-qo__tab--top" },
-  { label: "쿠폰", tab: "coupon", squeeze: 0.737, className: "sst-qct-tab", href: `${SOURCE}/ko/my-account/customer-coupons` },
+  { label: "쿠폰", tab: "coupon", squeeze: 0.737, className: "sst-qct-tab", href: sourceHref(`/ko/my-account/customer-coupons`) },
   { label: "Pokemon", tab: "pokemon" },
   { label: "원피스", tab: "onepiece", squeeze: 0.737 },
   { label: "Yu-Gi-Oh", tab: "yugioh" },
@@ -240,7 +240,7 @@ function CouponTile() {
       <td className="sst-qcp-row__cell">
         <a
           className="sst-qcp-tile"
-          href={`${SOURCE}/ko/my-account?register=1`}
+          href={sourceHref(`/ko/my-account?register=1`)}
           aria-label="쿠폰 받기. 무료 가입하고 2,000포인트 받기."
         >
           <picture className="sst-qcp-tile__pic">
@@ -318,8 +318,13 @@ export function QuickOrder() {
                       : { "data-tab": t.tab, "data-qo-family-tab": t.tab })}
                     aria-pressed={active}
                     onClick={() => {
-                      if (active) switchSub("all");
-                      else window.location.href = t.href ?? `${SOURCE}/ko/?qo_tab=${t.tab}#quick-order`;
+                      if (active) {
+                        switchSub("all");
+                        return;
+                      }
+                      // Other game tabs are not cloned; they only open the live store when allowed.
+                      const href = t.href ?? sourceHref(`/ko/?qo_tab=${t.tab}#quick-order`);
+                      if (LINK_TO_SOURCE) window.location.href = href;
                     }}
                   >
                     {t.squeeze ? (

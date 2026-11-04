@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
-import { SOURCE, src } from "./paths";
+import { sourceHref, src } from "./paths";
 
 interface Slide {
   className: string;
@@ -35,7 +35,7 @@ const SLIDES: Slide[] = [
     label: "Samurai Month",
     dot: "Show Samurai Month banner",
     content: (
-      <a className="sst-home-slide__link" href={`${SOURCE}/ko/blogs/news/samurai-month-2026`}>
+      <a className="sst-home-slide__link" href={sourceHref(`/ko/blogs/news/samurai-month-2026`)}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={src("/plugins/sst-samurai-month/assets/m5_poster_pc.webp")} alt="" width={1536} height={1024} />
         <span className="sstsm-promo-copy">
@@ -58,7 +58,7 @@ const SLIDES: Slide[] = [
     content: (
       <a
         className="sst-home-slide__link"
-        href={`${SOURCE}/ko/products/special-deck-set-mega-feraligatr-dragonite-gengar-japanese`}
+        href={sourceHref(`/ko/products/special-deck-set-mega-feraligatr-dragonite-gengar-japanese`)}
         aria-label="Special Deck Set MEGA: Mega Feraligatr, Dragonite and Gengar ex, pre-order available now. View product page."
       >
         <BannerPicture
@@ -76,7 +76,7 @@ const SLIDES: Slide[] = [
     content: (
       <a
         className="sst-home-slide__link"
-        href={`${SOURCE}/ko/products/m6a-30th-celebration-booster-box-japanese`}
+        href={sourceHref(`/ko/products/m6a-30th-celebration-booster-box-japanese`)}
         aria-label="포켓몬 30th Celebration 박스, 밀봉 및 슈링크 없음, 지금 구매 가능. 상품 페이지 보기."
       >
         <BannerPicture
@@ -94,7 +94,7 @@ const SLIDES: Slide[] = [
     content: (
       <a
         className="sst-home-slide__link"
-        href={`${SOURCE}/ko/pages/referral-campaign-preview`}
+        href={sourceHref(`/ko/pages/referral-campaign-preview`)}
         aria-label="친구 추천: 회원님은 2,000포인트, 친구는 1,000포인트를 받습니다. 자세히 보기."
       >
         <BannerPicture
@@ -112,7 +112,7 @@ const SLIDES: Slide[] = [
     content: (
       <a
         className="sst-home-slide__link sst-opmag2-link"
-        href={`${SOURCE}/ko/products/one-piece-magazine-vol21-luffy-st29-001-yellow-promo-sealed`}
+        href={sourceHref(`/ko/products/one-piece-magazine-vol21-luffy-st29-001-yellow-promo-sealed`)}
         aria-label="자세히 보기: ONE PIECE Magazine Vol.21 Luffy ST29-001"
       >
         <BannerPicture
@@ -134,7 +134,7 @@ const SLIDES: Slide[] = [
     content: (
       <a
         className="sst-home-slide__link"
-        href={`${SOURCE}/ko/blogs/news/psa-10-back-orders`}
+        href={sourceHref(`/ko/blogs/news/psa-10-back-orders`)}
         aria-label="PSA 10 백오더: 아직 재고가 없는 카드 — 저희가 대신 확보해 드립니다"
       >
         <div className="sst-home-slide__inner">
@@ -157,7 +157,7 @@ const SLIDES: Slide[] = [
     content: (
       <a
         className="sst-home-slide__link"
-        href={`${SOURCE}/ko/blogs/news/credit-card-payments-and-paypal-pay-later`}
+        href={sourceHref(`/ko/blogs/news/credit-card-payments-and-paypal-pay-later`)}
         aria-label="카드 결제 또는 PayPal 나중에 결제. Visa, Mastercard, AMEX, JCB 사용 가능."
       />
     ),
@@ -169,7 +169,7 @@ const SLIDES: Slide[] = [
     content: (
       <a
         className="sst-home-slide__link"
-        href={`${SOURCE}/ko?qo_tab=discounted#quick-order`}
+        href={sourceHref(`/ko?qo_tab=discounted#quick-order`)}
         aria-label="손상 박스 아울렛. 외관 손상이 있는 미개봉 박스를 할인가로 판매합니다."
       >
         <div className="sst-home-slide__inner">

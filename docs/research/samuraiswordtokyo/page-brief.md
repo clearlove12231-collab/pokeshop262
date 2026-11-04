@@ -9,7 +9,9 @@ Source: https://samuraiswordtokyo.com/ko/?qo_tab=pokemon (WordPress + WooCommerc
 | `/ko/?qo_tab=pokemon` | `/ko?qo_tab=pokemon` | `src/app/ko/page.tsx` → `src/components/sites/samuraiswordtokyo/SamuraiSwordHome.tsx` |
 | `/` (template home) | redirects to `/ko?qo_tab=pokemon` | `src/app/page.tsx` |
 
-Everything else (product pages, account, cart/checkout, other locales, other game tabs) links to the live site.
+Everything else (product pages, account, cart/checkout, other locales, other game tabs) is not cloned. Those links are
+blocked so visitors stay on the clone: `sourceHref()` renders them as `#` and `LinkGuard` cancels the click.
+Set `LINK_TO_SOURCE = true` in `paths.ts` to send them to the live site again. Social links (Instagram, TikTok, X, Pinterest) are unchanged.
 
 ## Scope
 

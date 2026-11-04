@@ -2,6 +2,7 @@
 
 /* eslint-disable @next/next/no-img-element */
 import { useState, type CSSProperties } from "react";
+import { sourceHref } from "../paths";
 import { useStore } from "../store";
 import type { Offer, Product } from "../types";
 
@@ -200,7 +201,7 @@ export function ProductRow({ product }: { product: Product }) {
       data-sst-rs={product.rating ? 1 : undefined}
     >
       <td className="sst-qof-cell">
-        <a className="sst-qo__prod" href={product.url}>
+        <a className="sst-qo__prod" href={sourceHref(product.url)}>
           <img
             src={img.src}
             srcSet={img.srcSet}

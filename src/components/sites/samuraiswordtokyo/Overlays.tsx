@@ -3,7 +3,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { useEffect, useState } from "react";
 import { useStore, yen } from "./store";
-import { SOURCE, src } from "./paths";
+import { sourceHref, src } from "./paths";
 
 export function CartDrawer() {
   const { cart, cartOpen, setCartOpen, setQty, removeLine, cartTotal } = useStore();
@@ -69,7 +69,7 @@ export function CartDrawer() {
             </div>
           )}
           {/* Checkout lives on the source store; this local cart is not transferred. */}
-          <a className="button" href={`${SOURCE}/ko/cart`}>
+          <a className="button" href={sourceHref(`/ko/cart`)}>
             장바구니 보기
           </a>
         </div>
@@ -130,7 +130,7 @@ export function PromoPop() {
           </button>
         </div>
       </div>
-      <a href={`${SOURCE}/ko/blogs/news/samurai-month-2026#gacha`} aria-label="Open Samurai Gacha — one free spin per day after login">
+      <a href={sourceHref(`/ko/blogs/news/samurai-month-2026#gacha`)} aria-label="Open Samurai Gacha — one free spin per day after login">
         <small>DAILY FREE GACHA</small>
         <span className="sstsm-promo-machine" aria-hidden="true">
           <img src={src("/plugins/sst-samurai-month/assets/gacha_machine_sp.webp")} alt="" width={768} height={768} />
@@ -199,7 +199,7 @@ export function OrderHelpChat() {
           </div>
           <div className="sst-ohc-choices">
             {HELP_TOPICS.map(([label, path], i) => (
-              <a key={label} className={`sst-ohc-choice${i === 0 ? " sst-ohc-choice--lookup" : ""}`} href={`${SOURCE}${path}`}>
+              <a key={label} className={`sst-ohc-choice${i === 0 ? " sst-ohc-choice--lookup" : ""}`} href={sourceHref(`${path}`)}>
                 <span className="sst-ohc-choice__label">{label}</span>
                 <span className="sst-ohc-choice__arrow" aria-hidden="true">
                   ›

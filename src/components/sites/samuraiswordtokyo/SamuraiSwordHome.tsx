@@ -1,5 +1,6 @@
 import "./samuraiswordtokyo.css";
 import { HomeSlider } from "./HomeSlider";
+import { LinkGuard } from "./LinkGuard";
 import { CartDrawer, OrderHelpChat, PromoPop } from "./Overlays";
 import { QuickOrder } from "./quick-order/QuickOrder";
 import { SiteHeader } from "./SiteHeader";
@@ -10,6 +11,7 @@ import { StoreProvider } from "./store";
 export function SamuraiSwordHome() {
   return (
     <StoreProvider>
+      <LinkGuard />
       <RankBand />
       <SiteHeader />
       <HomeSlider />

@@ -2,28 +2,28 @@
 
 import { useEffect, useState } from "react";
 import { useStore } from "./store";
-import { SOURCE, src } from "./paths";
+import { sourceHref, src } from "./paths";
 
 const NAV = [
   { label: "쇼핑", href: "/ko?qo_tab=pokemon" },
-  { label: "뉴스", href: `${SOURCE}/ko/blogs/news` },
-  { label: "TCG Index", href: `${SOURCE}/ko/tcg-index` },
-  { label: "카드 리스트", href: `${SOURCE}/ko/pages/card-list` },
-  { label: "소개", href: `${SOURCE}/ko/pages/about` },
-  { label: "문의", href: `${SOURCE}/ko/pages/contact` },
-  { label: "FAQ", href: `${SOURCE}/ko/faq`, className: "sst-faq-link" },
+  { label: "뉴스", href: sourceHref(`/ko/blogs/news`) },
+  { label: "TCG Index", href: sourceHref(`/ko/tcg-index`) },
+  { label: "카드 리스트", href: sourceHref(`/ko/pages/card-list`) },
+  { label: "소개", href: sourceHref(`/ko/pages/about`) },
+  { label: "문의", href: sourceHref(`/ko/pages/contact`) },
+  { label: "FAQ", href: sourceHref(`/ko/faq`), className: "sst-faq-link" },
 ];
 
 const LANGUAGES = [
-  { label: "English", href: `${SOURCE}/`, lang: "en-US", hrefLang: "en" },
-  { label: "Español", href: `${SOURCE}/es`, lang: "es", hrefLang: "es" },
-  { label: "Deutsch", href: `${SOURCE}/de`, lang: "de", hrefLang: "de" },
-  { label: "Français", href: `${SOURCE}/fr`, lang: "fr", hrefLang: "fr" },
-  { label: "简体中文", href: `${SOURCE}/zh-hans`, lang: "zh-Hans", hrefLang: "zh-Hans" },
-  { label: "繁體中文", href: `${SOURCE}/zh-hant`, lang: "zh-Hant", hrefLang: "zh-Hant" },
-  { label: "Italiano", href: `${SOURCE}/it`, lang: "it", hrefLang: "it" },
-  { label: "Nederlands", href: `${SOURCE}/nl`, lang: "nl", hrefLang: "nl" },
-  { label: "Bahasa Indonesia", href: `${SOURCE}/id`, lang: "id", hrefLang: "id" },
+  { label: "English", href: sourceHref(`/`), lang: "en-US", hrefLang: "en" },
+  { label: "Español", href: sourceHref(`/es`), lang: "es", hrefLang: "es" },
+  { label: "Deutsch", href: sourceHref(`/de`), lang: "de", hrefLang: "de" },
+  { label: "Français", href: sourceHref(`/fr`), lang: "fr", hrefLang: "fr" },
+  { label: "简体中文", href: sourceHref(`/zh-hans`), lang: "zh-Hans", hrefLang: "zh-Hans" },
+  { label: "繁體中文", href: sourceHref(`/zh-hant`), lang: "zh-Hant", hrefLang: "zh-Hant" },
+  { label: "Italiano", href: sourceHref(`/it`), lang: "it", hrefLang: "it" },
+  { label: "Nederlands", href: sourceHref(`/nl`), lang: "nl", hrefLang: "nl" },
+  { label: "Bahasa Indonesia", href: sourceHref(`/id`), lang: "id", hrefLang: "id" },
   { label: "한국어", href: "/ko?qo_tab=pokemon", lang: "ko", hrefLang: "ko", active: true },
 ];
 
@@ -185,7 +185,7 @@ export function SiteHeader() {
             </details>
           </div>
           <div className="sst-coupon-popover-wrap">
-            <a className="sst-icon-link sst-icon-link--coupons" href={`${SOURCE}/ko/my-account/customer-coupons`} aria-label="쿠폰">
+            <a className="sst-icon-link sst-icon-link--coupons" href={sourceHref(`/ko/my-account/customer-coupons`)} aria-label="쿠폰">
               <svg focusable="false" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M4 8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2a2 2 0 0 0 0-4V8Z" />
                 <path d="M9 9h6" />
@@ -195,7 +195,7 @@ export function SiteHeader() {
               <span className="sst-coupon-count" />
             </a>
           </div>
-          <a className="sst-icon-link sst-icon-link--calendar" href={`${SOURCE}/ko/?qo_tab=pokemon#sst-calendar`} aria-label="캘린더">
+          <a className="sst-icon-link sst-icon-link--calendar" href={sourceHref(`/ko/?qo_tab=pokemon#sst-calendar`)} aria-label="캘린더">
             <svg focusable="false" viewBox="0 0 24 24" aria-hidden="true">
               <rect x="3.5" y="5" width="17" height="15.5" rx="2" />
               <path d="M3.5 10h17" />
@@ -207,7 +207,7 @@ export function SiteHeader() {
             </svg>
             <span>캘린더</span>
           </a>
-          <a className="sst-icon-link sst-icon-link--orders" href={`${SOURCE}/ko/orders`} aria-label="주문">
+          <a className="sst-icon-link sst-icon-link--orders" href={sourceHref(`/ko/orders`)} aria-label="주문">
             <svg focusable="false" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M7 3h10a2 2 0 0 1 2 2v16l-3-2-2 2-2-2-2 2-2-2-3 2V5a2 2 0 0 1 2-2Z" />
               <path d="M9 8h6" />
@@ -216,7 +216,7 @@ export function SiteHeader() {
             </svg>
             <span>주문</span>
           </a>
-          <a className="sst-icon-link sst-icon-link--watchlist" href={`${SOURCE}/ko/watchlist`} aria-label="관심 목록">
+          <a className="sst-icon-link sst-icon-link--watchlist" href={sourceHref(`/ko/watchlist`)} aria-label="관심 목록">
             <svg focusable="false" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M12 3.2l2.6 5.5 6 .7-4.5 4.1 1.2 6L12 16.6l-5.3 2.9 1.2-6-4.5-4.1 6-.7z" />
             </svg>
@@ -225,7 +225,7 @@ export function SiteHeader() {
               {favorites.length}
             </em>
           </a>
-          <a className="sst-icon-link sst-icon-link--account" href={`${SOURCE}/ko/my-account`} aria-label="계정">
+          <a className="sst-icon-link sst-icon-link--account" href={sourceHref(`/ko/my-account`)} aria-label="계정">
             <svg focusable="false" viewBox="0 0 24 24" aria-hidden="true">
               <circle cx="12" cy="8" r="4" />
               <path d="M4 21a8 8 0 0 1 16 0" />
@@ -237,7 +237,7 @@ export function SiteHeader() {
           </button>
           <a
             className="sst-icon-link sst-cart-toggle"
-            href={`${SOURCE}/ko/cart`}
+            href={sourceHref(`/ko/cart`)}
             aria-label="장바구니"
             onClick={(e) => {
               e.preventDefault();
@@ -280,12 +280,12 @@ export function SiteHeader() {
         </nav>
         <ul className="sst-nav__qo-help">
           <li>
-            <a className="sst-nav__qo-help-item" href={`${SOURCE}/ko/faq`}>
+            <a className="sst-nav__qo-help-item" href={sourceHref(`/ko/faq`)}>
               주문 방법
             </a>
           </li>
           <li>
-            <a className="sst-nav__qo-help-item" href={`${SOURCE}/ko/faq`}>
+            <a className="sst-nav__qo-help-item" href={sourceHref(`/ko/faq`)}>
               NO SHRINK란?
             </a>
           </li>
