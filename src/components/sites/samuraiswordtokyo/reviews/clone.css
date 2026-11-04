@@ -1,0 +1,16 @@
+/*
+ * Clone-only adjustments, loaded after reviews.css (which is generated from the
+ * source by build-page-css.mjs + prune-css.mjs and should not be hand-edited).
+ *
+ * On the source the review's product block and the "리뷰가 많은 상품" cards are
+ * links to product pages. Here they are plain <div>s, so:
+ * - keep the colour the link had (`.sst-rvp a { color: inherit }` on the source)
+ * - drop the hover border that signalled a link
+ */
+div.sst-rvp-product {
+  color: inherit;
+}
+
+div.sst-rvp-product-card:hover {
+  border-color: var(--rvp-line);
+}

@@ -1,23 +1,10 @@
 "use client";
 
 /* eslint-disable @next/next/no-img-element */
-import type { CSSProperties } from "react";
 import { CURRENCY_SYMBOL, formatAmount, toWon } from "../price";
+import { RsStars } from "../stars";
 import { useStore } from "../store";
 import type { Offer, Product } from "../types";
-
-/** Same rule as the source's review-stars script: whole stars, then one 25/50/75% star. */
-function starFills(avg: number): string[] {
-  const r = Math.max(0, Math.min(5, avg));
-  let full = Math.floor(r + 1e-9);
-  let frac = r - full;
-  if (frac >= 0.995) {
-    full += 1;
-    frac = 0;
-  }
-  const partial = frac > 0.005 ? Math.max(25, Math.min(75, Math.round(frac * 4) * 25)) : 0;
-  return Array.from({ length: 5 }, (_, i) => `${i < full ? 100 : i === full ? partial : 0}%`);
-}
 
 /** Price in the source's WooCommerce markup, shown in KRW (see price.ts). */
 function PriceAmount({ won, bdi }: { won: number; bdi?: boolean }) {
@@ -218,11 +205,7 @@ export function ProductRow({ product }: { product: Product }) {
             <span className="sst-qo__pname">{product.name}</span>
             {rating && (
               <span className="sst-rs sst-rs--qo sst-rs-qo">
-                <span className="sst-rs-stars" role="img" aria-label={`${rating.avg.toFixed(1)} / 5`}>
-                  {starFills(rating.avg).map((f, i) => (
-                    <i key={i} className="sst-rs-star" style={{ "--f": f } as CSSProperties} />
-                  ))}
-                </span>
+                <RsStars avg={rating.avg} label={`${rating.avg.toFixed(1)} / 5`} />
                 <span className="sst-rs__avg">{rating.avg.toFixed(1)}</span>
                 <span className="sst-rs__count">({rating.count})</span>
               </span>

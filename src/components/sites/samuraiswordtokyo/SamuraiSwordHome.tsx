@@ -1,9 +1,7 @@
 import "./samuraiswordtokyo.css";
-import { CartDrawer } from "./CartDrawer";
 import { QuickOrder } from "./quick-order/QuickOrder";
 import { ReviewBar } from "./ReviewBar";
-import { SiteHeader } from "./SiteHeader";
-import { StoreProvider } from "./store";
+import { SiteChrome } from "./SiteChrome";
 
 /**
  * Samurai Sword Tokyo homepage (ko locale), reduced to the Pokemon quick-order
@@ -13,11 +11,9 @@ import { StoreProvider } from "./store";
  */
 export function SamuraiSwordHome() {
   return (
-    <StoreProvider>
-      <SiteHeader />
+    <SiteChrome>
       <ReviewBar />
       <QuickOrder />
-      <CartDrawer />
-    </StoreProvider>
+    </SiteChrome>
   );
 }

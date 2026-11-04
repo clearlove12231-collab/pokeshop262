@@ -56,6 +56,18 @@ let downloaded = 0;
 let skipped = 0;
 const failures = [];
 
+/** The store's TLS handshake fails intermittently (CERT_SIGNATURE_FAILURE); retry with backoff. */
+async function fetchWithRetry(url, tries = 5) {
+  for (let i = 1; ; i++) {
+    try {
+      return await fetch(url, { headers: { "User-Agent": UA, Referer: "https://samuraiswordtokyo.com/" } });
+    } catch (e) {
+      if (i >= tries) throw e;
+      await new Promise((r) => setTimeout(r, 500 * i));
+    }
+  }
+}
+
 const queue = [...localPaths].sort();
 async function worker() {
   while (queue.length) {
@@ -68,7 +80,7 @@ async function worker() {
       continue;
     }
     try {
-      const res = await fetch(url, { headers: { "User-Agent": UA, Referer: "https://samuraiswordtokyo.com/" } });
+      const res = await fetchWithRetry(url);
       const type = res.headers.get("content-type") || "";
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       if (!EXPECTED.test(type)) throw new Error(`unexpected content-type ${type}`);

@@ -1,15 +1,17 @@
 #!/usr/bin/env node
 /**
- * Prunes src/components/sites/samuraiswordtokyo/samuraiswordtokyo.css to the
- * rules the clone's components can match.
+ * Prunes a page stylesheet of the clone to the rules that page's components
+ * can match. Each page has its own stylesheet and scope:
+ *   home    -> samuraiswordtokyo.css (header, review bar, quick order, cart)
+ *   reviews -> reviews/reviews.css   (header, reviews page, cart)
  *
  * A selector is dropped when it requires a class or id that never appears in
- * the components/data (classes inside :not/:is/:where/:has are ignored, so
- * those selectors are kept), or when it targets the dark theme
+ * the page's components/data (classes inside :not/:is/:where/:has are ignored,
+ * so those selectors are kept), or when it targets the dark theme
  * (html[data-sst-theme="dark"]), which the clone no longer offers.
  * Afterwards unused @keyframes and @font-face rules and empty at-rules go too.
  *
- * Usage: node scripts/samuraiswordtokyo/prune-css.mjs [--dry-run]
+ * Usage: node scripts/samuraiswordtokyo/prune-css.mjs <home|reviews> [--dry-run]
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -19,18 +21,39 @@ import selectorParser from "postcss-selector-parser";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const siteDir = path.join(root, "src/components/sites/samuraiswordtokyo");
-const cssFile = path.join(siteDir, "samuraiswordtokyo.css");
 const dryRun = process.argv.includes("--dry-run");
 
-function walk(dir) {
-  return fs.readdirSync(dir, { withFileTypes: true }).flatMap((e) => {
-    const p = path.join(dir, e.name);
-    return e.isDirectory() ? walk(p) : /\.(tsx?|json)$/.test(e.name) ? [p] : [];
+/** Files shared by both pages: header, cart and helpers. */
+const SHARED = ["SiteChrome.tsx", "SiteHeader.tsx", "CartDrawer.tsx", "store.tsx", "stars.tsx", "price.ts", "paths.ts"];
+const PAGES = {
+  home: {
+    css: "samuraiswordtokyo.css",
+    sources: [...SHARED, "SamuraiSwordHome.tsx", "ReviewBar.tsx", "quick-order", "data/quick-order.json", "../../../app/(home)/layout.tsx"],
+  },
+  reviews: {
+    // Review texts (data/reviews.json) hold no class names, so they are not scanned.
+    css: "reviews/reviews.css",
+    sources: [...SHARED, "reviews", "../../../app/(reviews)/layout.tsx"],
+  },
+};
+const pageName = process.argv.slice(2).find((a) => !a.startsWith("--"));
+const page = PAGES[pageName];
+if (!page) {
+  console.error(`usage: prune-css.mjs <${Object.keys(PAGES).join("|")}> [--dry-run]`);
+  process.exit(1);
+}
+const cssFile = path.join(siteDir, page.css);
+
+function walk(p) {
+  if (!fs.statSync(p).isDirectory()) return [p];
+  return fs.readdirSync(p, { withFileTypes: true }).flatMap((e) => {
+    const child = path.join(p, e.name);
+    return e.isDirectory() ? walk(child) : /\.(tsx?|json)$/.test(e.name) ? [child] : [];
   });
 }
 
-// Every word-like token in the components, data and root layout counts as "used".
-const sources = [...walk(siteDir), path.join(root, "src/app/layout.tsx")];
+// Every word-like token in the page's components, data and root layout counts as "used".
+const sources = page.sources.flatMap((s) => walk(path.join(siteDir, s)));
 const tokens = new Set();
 const prefixes = new Set();
 for (const file of sources) {

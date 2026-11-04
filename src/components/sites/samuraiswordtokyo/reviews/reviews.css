@@ -1,0 +1,1478 @@
+/* \3c style id="sst-carton-sales-pause"> */
+
+/* \3c style id="wp-img-auto-sizes-contain-inline-css"> */
+
+img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
+/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
+
+/* \3c style id="wp-block-library-inline-css"> */
+
+:root{--wp-block-synced-color:#7a00df;--wp-block-synced-color--rgb:122,0,223;--wp-bound-block-color:var(--wp-block-synced-color);--wp-editor-canvas-background:#ddd;--wp-admin-theme-color:#007cba;--wp-admin-theme-color--rgb:0,124,186;--wp-admin-theme-color-darker-10:#006ba1;--wp-admin-theme-color-darker-10--rgb:0,107,160.5;--wp-admin-theme-color-darker-20:#005a87;--wp-admin-theme-color-darker-20--rgb:0,90,135;--wp-admin-border-width-focus:2px}@media (min-resolution:192dpi){:root{--wp-admin-border-width-focus:1.5px}}:root{--wp--preset--font-size--normal:16px;--wp--preset--font-size--huge:42px}html :where(.has-border-color){border-style:solid}html :where([style^=border-color],[style*=";border-color"],[style*="; border-color"]){border-style:solid}html :where([style^=border-top-color],[style*=";border-top-color"],[style*="; border-top-color"]){border-top-style:solid}html :where([style^=border-right-color],[style*=";border-right-color"],[style*="; border-right-color"]){border-right-style:solid}html :where([style^=border-bottom-color],[style*=";border-bottom-color"],[style*="; border-bottom-color"]){border-bottom-style:solid}html :where([style^=border-left-color],[style*=";border-left-color"],[style*="; border-left-color"]){border-left-style:solid}html :where([style^=border-width],[style*=";border-width"],[style*="; border-width"]){border-style:solid}html :where([style^=border-top-width],[style*=";border-top-width"],[style*="; border-top-width"]){border-top-style:solid}html :where([style^=border-right-width],[style*=";border-right-width"],[style*="; border-right-width"]){border-right-style:solid}html :where([style^=border-bottom-width],[style*=";border-bottom-width"],[style*="; border-bottom-width"]){border-bottom-style:solid}html :where([style^=border-left-width],[style*=";border-left-width"],[style*="; border-left-width"]){border-left-style:solid}html :where(img[class*=wp-image-]){height:auto;max-width:100%}:where(figure){margin:0 0 1em}html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:var(--wp-admin--admin-bar--height,0px)}@media screen and (max-width:600px){html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:0px}}
+
+/*# sourceURL=/wp-includes/css/dist/block-library/common.min.css */
+
+/* \3c style id="classic-theme-styles-inline-css"> */
+
+/*! This file is auto-generated */
+/*# sourceURL=/wp-includes/css/classic-themes.min.css */
+
+/* https://samuraiswordtokyo.com/wp-content/plugins/woocommerce-paypal-payments/assets/ppcp-blocks-css-mini-cart-buttons.css */
+
+/* \3c style id="global-styles-inline-css"> */
+
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgb(6,147,227) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgb(252,185,0) 0%,rgb(255,105,0) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgb(255,105,0) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgb(255, 255, 255), 6px 6px rgb(0, 0, 0);--wp--preset--shadow--crisp: 6px 6px 0px rgb(0, 0, 0);}:where(body) { margin: 0; }:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body{padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;}:root :where(.wp-element-button, .wp-block-button__link){background-color: #32373c;border-width: 0;color: #fff;font-family: inherit;font-size: inherit;font-style: inherit;font-weight: inherit;letter-spacing: inherit;line-height: inherit;padding-top: calc(0.667em + 2px);padding-right: calc(1.333em + 2px);padding-bottom: calc(0.667em + 2px);padding-left: calc(1.333em + 2px);text-decoration: none;text-transform: inherit;}
+/*# sourceURL=global-styles-inline-css */
+
+/* \3c style id="sst-nm-sale-display-inline-css"> */
+/*# sourceURL=sst-nm-sale-display-inline-css */
+
+/* \3c style id="woocommerce-inline-inline-css"> */
+/*# sourceURL=woocommerce-inline-inline-css */
+
+/* https://fonts.googleapis.com/css2 */
+/* latin-ext */
+@font-face {
+  font-family: 'Figtree';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/sites/samuraiswordtokyo/ext/fonts.gstatic.com/s/figtree/v9/_Xms-HUzqDCFdgfMm4q9DbZs.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Figtree';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/sites/samuraiswordtokyo/ext/fonts.gstatic.com/s/figtree/v9/_Xms-HUzqDCFdgfMm4S9DQ.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Figtree';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/sites/samuraiswordtokyo/ext/fonts.gstatic.com/s/figtree/v9/_Xms-HUzqDCFdgfMm4q9DbZs.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Figtree';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/sites/samuraiswordtokyo/ext/fonts.gstatic.com/s/figtree/v9/_Xms-HUzqDCFdgfMm4S9DQ.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Figtree';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/sites/samuraiswordtokyo/ext/fonts.gstatic.com/s/figtree/v9/_Xms-HUzqDCFdgfMm4q9DbZs.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Figtree';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/sites/samuraiswordtokyo/ext/fonts.gstatic.com/s/figtree/v9/_Xms-HUzqDCFdgfMm4S9DQ.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Figtree';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/sites/samuraiswordtokyo/ext/fonts.gstatic.com/s/figtree/v9/_Xms-HUzqDCFdgfMm4q9DbZs.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Figtree';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/sites/samuraiswordtokyo/ext/fonts.gstatic.com/s/figtree/v9/_Xms-HUzqDCFdgfMm4S9DQ.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+/* latin */
+/* latin-ext */
+/* latin */
+/* latin-ext */
+/* latin */
+/* latin-ext */
+/* latin */
+/* latin-ext */
+/* latin */
+
+/* https://samuraiswordtokyo.com/wp-content/themes/samurai-sword/style.min.css */
+:root{--sst-ink: #121212;--sst-muted: #5f5f5f;--sst-line: #ececec;--sst-paper: #ffffff;--sst-surface: #ffffff;--sst-accent: #9e2c5f;--sst-accent-dark: #7a2149;--sst-soft: #faf3f7;--sst-gray: #f7f7f7;--sst-focus: #1f6feb;--sst-sale: #ef4444;--sst-compare: #94a3b8;--sst-stars: #fbbf24;--sst-btn-label: #ffffff;--sst-radius: 6px;--sst-card-radius: 12px;--sst-font: "Figtree", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;--sst-max: 1600px}*{box-sizing:border-box}body{margin:0;color:var(--sst-ink);background:var(--sst-paper);font-family:var(--sst-font);font-size:16px;line-height:1.55}a{color:inherit;text-decoration:none}a:hover{color:var(--sst-accent)}img{height:auto;max-width:100%}.sst-container{width:min(100% - 32px,var(--sst-max));margin:0 auto}.sst-header{position:sticky;top:0;z-index:20;border-bottom:1px solid var(--sst-line);background:#fffffffa;backdrop-filter:blur(8px)}.sst-header__main{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:22px;align-items:center;min-height:58px;padding:6px 0}.sst-brand{display:inline-flex;align-items:center}.sst-brand img{display:block;width:auto;height:38px}.sst-icon-link svg{display:block;width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.sst-actions{display:flex;gap:10px;align-items:center;justify-content:end}.sst-icon-link{display:inline-flex;gap:6px;align-items:center;justify-content:center;min-height:32px;padding:4px;color:var(--sst-ink);font-size:13px;font-weight:500;letter-spacing:.3px}.sst-icon-link:hover{color:var(--sst-accent)}.sst-icon-link svg{width:24px;height:24px}.sst-cart-toggle{position:relative}.sst-cart-count{position:absolute;top:1px;right:auto;left:18px;display:inline-flex;align-items:center;justify-content:center;min-width:16px;height:16px;border-radius:999px;padding:0 4px;color:#fff;background:var(--sst-accent);font-size:10px;font-weight:800;line-height:1}.sst-cart-count:empty{display:none}.sst-button,.button,button,input[type=submit]{display:inline-flex;min-height:40px;align-items:center;justify-content:center;border:1px solid var(--sst-accent);border-radius:var(--sst-radius);padding:9px 14px;color:#fff;background:var(--sst-accent);font-weight:700;line-height:1.2;cursor:pointer}.sst-button:hover,.button:hover,button:hover,input[type=submit]:hover{color:#fff;background:var(--sst-accent-dark)}.sst-button--ghost{color:var(--sst-ink);background:transparent;border-color:var(--sst-line)}.sst-button--ghost:hover{color:var(--sst-accent);background:#fff}.products{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin:0;padding:0;list-style:none}.products:before,.products:after{content:none!important}.products .product{position:relative;display:flex;flex-direction:column;border:1px solid var(--sst-line);border-radius:var(--sst-card-radius);background:var(--sst-surface);overflow:hidden;transition:box-shadow .18s ease,transform .18s ease,border-color .18s ease}.products .product:hover{border-color:#e0d3da;box-shadow:0 8px 24px #15151514;transform:translateY(-2px)}.price{color:var(--sst-accent);font-weight:700;font-size:16px}.price del{color:var(--sst-compare);font-weight:400;margin-right:6px}.price ins{text-decoration:none}.woocommerce-pagination{margin-top:28px}.woocommerce-pagination ul{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:0;padding:0;list-style:none;border:0}.woocommerce-pagination ul li{margin:0;border:0}.woocommerce-pagination ul li a,.woocommerce-pagination ul li span{display:inline-flex;align-items:center;justify-content:center;min-width:38px;height:38px;padding:0 10px;border:1px solid var(--sst-line);border-radius:var(--sst-radius);color:var(--sst-ink);text-decoration:none;font-size:14px}.woocommerce-pagination ul li span.current{background:var(--sst-accent);color:#fff;border-color:var(--sst-accent)}.woocommerce-pagination ul li a:hover{border-color:var(--sst-accent);color:var(--sst-accent)}.sst-main{min-height:60vh;padding:34px 0 58px}.sst-static-main{background:#fff}.sst-page{max-width:1080px;margin:0 auto;background:transparent}.sst-page-breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:0 0 18px;color:var(--sst-muted);font-size:13px}.sst-page-breadcrumb a{color:inherit;text-decoration:none}.sst-page-breadcrumb a:hover{color:var(--sst-accent)}.sst-page-header{margin-bottom:28px;padding-bottom:22px;border-bottom:1px solid var(--sst-line)}.sst-page h1{margin:0;font-size:clamp(32px,4vw,52px);line-height:1.04}.sst-page-content{max-width:900px}.sst-page-content>:first-child{margin-top:0}.sst-page-content a{color:var(--sst-accent);text-decoration:underline;text-underline-offset:.18em}.sst-page-content table{width:100%;border-collapse:collapse}.sst-page-content th,.sst-page-content td{border:1px solid var(--sst-line);padding:10px 12px;text-align:left}.woocommerce-result-count{margin:0;color:var(--sst-muted);font-size:13px}.sst-tag-btn{display:inline-block;min-height:0;border:2px solid #ac004d;border-radius:20px;padding:7px 18px;color:#ac004d;background:transparent;font:inherit;font-size:13px;font-weight:600;line-height:1.15;cursor:pointer;transition:color .2s ease,background .2s ease}.sst-tag-btn.active,.sst-tag-btn:hover{color:#fff;background:#ac004d}@media (max-width: 900px){.sst-header{backdrop-filter:none;-webkit-backdrop-filter:none}.sst-header__main{grid-template-columns:auto minmax(0,1fr) auto;grid-template-areas:"toggle brand actions" "links links links";gap:8px;min-height:66px;padding:8px 0}.sst-brand{grid-area:brand;justify-content:flex-start;min-width:0;padding-left:4px}.sst-brand img{height:35px}.sst-actions{grid-area:actions;justify-content:end}.sst-actions{gap:4px}.sst-icon-link{width:36px;min-height:40px;padding:0}.sst-icon-link span:not(.sst-cart-count):not(.sst-coupon-count){display:none}.products{grid-template-columns:repeat(2,minmax(0,1fr))}}.sst-cart-drawer{position:fixed;top:0;right:0;bottom:0;z-index:80;width:min(92vw,380px);display:flex;flex-direction:column;background:var(--sst-paper);color:var(--sst-ink);box-shadow:-2px 0 24px #0000002e;transform:translate(100%);transition:transform .25s ease}body.sst-cart-open .sst-cart-drawer{transform:translate(0)}.sst-cart-drawer__head{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid var(--sst-line)}.sst-cart-drawer__head strong{font-size:16px}.sst-cart-drawer__close{border:0;background:transparent;color:var(--sst-ink);font-size:26px;line-height:1;cursor:pointer}.sst-cart-drawer__body{flex:1;overflow-y:auto;padding:8px 20px}.sst-cart-drawer__empty{padding:28px 0;text-align:center;color:var(--sst-muted)}.sst-cart-drawer__items{margin:0;padding:0;list-style:none}.sst-cart-drawer__item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--sst-line)}.sst-cart-drawer__thumb img{width:54px;height:54px;object-fit:contain;background:var(--sst-gray);border-radius:6px}.sst-cart-drawer__meta{display:flex;flex-direction:column;gap:4px;font-size:14px}.sst-cart-drawer__foot{display:grid;gap:10px;padding:16px 20px;border-top:1px solid var(--sst-line)}.sst-cart-drawer__foot .button{width:100%;text-align:center}.sst-cart-drawer__foot a.button:not(.alt){background:#fff;color:var(--sst-accent);border:1px solid var(--sst-accent)}.sst-cart-drawer-overlay{position:fixed;inset:0;z-index:79;background:#00000073;opacity:0;visibility:hidden;transition:opacity .25s ease,visibility .25s ease}body.sst-cart-open .sst-cart-drawer-overlay{opacity:1;visibility:visible}@media (max-width: 520px){.sst-container{width:min(100% - 24px,var(--sst-max))}.products{grid-template-columns:1fr}.sst-page-header{margin-bottom:22px;padding-bottom:18px}.sst-page h1{font-size:34px}}@media (max-width: 900px){.sst-header__main{grid-template-columns:40px minmax(0,1fr) auto!important;grid-template-areas:"toggle brand actions"!important;gap:6px!important;min-height:52px!important;padding:5px 0!important}.sst-brand{padding-left:0!important}.sst-brand img{height:29px!important;max-width:132px!important;object-fit:contain!important}.sst-actions{gap:2px!important}.sst-icon-link{width:34px!important;min-height:38px!important}}@media (max-width: 360px){.sst-brand img{max-width:118px!important}}.sst-cart-drawer__item{display:grid;grid-template-columns:62px minmax(0,1fr);gap:12px;align-items:start}.sst-cart-drawer__thumb{display:block}.sst-cart-drawer__thumb img{width:62px;height:62px}.sst-cart-drawer__meta{min-width:0;gap:6px}.sst-cart-drawer__name{color:var(--sst-ink);font-weight:750;line-height:1.3;text-decoration:none}.sst-cart-drawer__name:hover,.sst-cart-drawer__name:focus{color:var(--sst-accent);text-decoration:underline;text-underline-offset:.16em}.sst-cart-drawer__line-total{color:#202428;font-weight:750}.sst-cart-drawer__qty-control{display:inline-grid;grid-template-columns:34px 50px 34px;width:max-content;overflow:hidden;border:1px solid var(--sst-line);border-radius:6px;background:#fff}.sst-cart-drawer__qty-step,.sst-cart-drawer__qty-input{width:100%;height:34px;border:0;border-radius:0;background:#fff;color:var(--sst-ink);font:inherit;font-size:14px;line-height:1;text-align:center}.sst-cart-drawer__qty-step{cursor:pointer}.sst-cart-drawer__qty-step:hover,.sst-cart-drawer__qty-step:focus{background:#f2f3f5}.sst-cart-drawer__qty-step:disabled,.sst-cart-drawer__qty-input:disabled{cursor:not-allowed;opacity:.5}.sst-cart-drawer__qty-input{border-right:1px solid var(--sst-line);border-left:1px solid var(--sst-line);appearance:textfield;-moz-appearance:textfield}.sst-cart-drawer__qty-input::-webkit-outer-spin-button,.sst-cart-drawer__qty-input::-webkit-inner-spin-button{margin:0;appearance:none}.sst-cart-drawer__remove{justify-self:start;border:0;border-radius:0;padding:0;background:transparent;color:#8b2b2b;font-size:12px;font-weight:750;text-decoration:underline;text-underline-offset:.16em;cursor:pointer}
+/* SST blog CTA instagram 20260729 start *//* SST blog CTA instagram 20260729 end *//* SST header social links 20260729 start *//* SST header social links 20260729 end */
+
+/* https://samuraiswordtokyo.com/wp-content/themes/samurai-sword/assets/sale-pricing.css */
+
+/* https://samuraiswordtokyo.com/wp-content/mu-plugins/sst-preorder-separate-cart/popup.css */
+
+/* https://samuraiswordtokyo.com/wp-content/mu-plugins/sst-rank-band/assets/rank-band.40d8562d1b6c.css *//* ---------------- dark (html[data-sst-theme="dark"]) ---------------- */
+
+/* https://samuraiswordtokyo.com/wp-content/plugins/sst-product-reviews/assets/reviews-pdp-r2.css */
+/*
+ * SST Product Reviews — PDP stylesheet
+ *
+ * The theme sets woocommerce_enqueue_styles to an empty array, so no
+ * WooCommerce core CSS reaches the page: every rule the review UI needs lives
+ * here. class-sst-reviews-core.php enqueues this file when it exists and falls
+ * back to an inline copy of section 1 when it does not, so section 1 is kept
+ * byte-for-byte equivalent to that fallback.
+ *
+ * Cloudflare Enterprise ignores ?ver= in the cache key for static assets, so
+ * any change to this stylesheet must ship under a NEW filename (-r3, -r4, …).
+ * The retired reviews-pdp.css stays on disk: its URL is cached and must never
+ * be reused.
+ *
+ * Colours follow the theme tokens (--sst-accent #9e2c5f, --sst-ink #121212,
+ * --sst-muted #5f5f5f, --sst-line #ececec) with literal fallbacks, because the
+ * tokens only exist once the theme stylesheet has loaded.
+ *
+ * Tabs: the theme already styles .woocommerce-tabs. The rules below are the
+ * same underlined-tab design at the same specificity, so they act as a
+ * baseline when the theme rule is missing and never fight it when it is not.
+ */
+
+/* ------------------------------------------------------------------ *
+ * 1. Base — carried over from SST_Reviews_Core::fallback_css()
+ * ------------------------------------------------------------------ */
+
+.star-rating{position:relative;display:inline-block;line-height:1;font-size:16px;letter-spacing:2px}
+.star-rating::before{content:"\2605\2605\2605\2605\2605";color:#d8d8d8}
+.star-rating>span{position:absolute;left:0;top:0;overflow:hidden;white-space:nowrap;font-size:0}
+.star-rating>span::before{content:"\2605\2605\2605\2605\2605";color:#f0a500;font-size:16px;letter-spacing:2px}
+.woocommerce-Reviews{max-width:760px}
+.woocommerce-Reviews .commentlist{list-style:none;margin:0;padding:0}
+.woocommerce-Reviews .commentlist li{border-bottom:1px solid #eee;padding:16px 0;margin:0}
+.woocommerce-Reviews .commentlist .comment_container{display:flex;gap:12px}
+.woocommerce-Reviews .comment-text{flex:1}
+.woocommerce-Reviews .comment-text .meta{color:#767676;font-size:13px;margin:4px 0 8px}
+.woocommerce-Reviews .comment-text .woocommerce-review__verified{color:#1a8917;font-size:12px}
+.woocommerce-Reviews .comment-form-rating{margin:8px 0}
+.woocommerce-Reviews .comment-form-rating label{display:block;margin-bottom:4px;font-weight:600}
+.woocommerce-Reviews p.stars{display:inline-block;font-size:22px;line-height:1;margin:0 0 8px}
+.woocommerce-Reviews p.stars a{display:inline-block;text-decoration:none;color:#d8d8d8;width:1em;overflow:hidden;white-space:nowrap}
+.woocommerce-Reviews p.stars a::before{content:"\2605"}
+.woocommerce-Reviews p.stars:hover a{color:#f0a500}
+.woocommerce-Reviews p.stars a:hover~a{color:#d8d8d8}
+.woocommerce-Reviews .comment-form label{font-weight:600}
+.woocommerce-Reviews .comment-form textarea,.woocommerce-Reviews .comment-form input[type=text],.woocommerce-Reviews .comment-form input[type=email]{width:100%;border:1px solid #ccc;border-radius:6px;padding:10px;margin:4px 0 12px;font:inherit}
+
+/* ------------------------------------------------------------------ *
+ * 2. Product tabs — underlined tab bar (Description / Additional
+ *    information / Reviews). Deliberately generic and quiet: these rules
+ *    also apply to the two tabs that already ship.
+ * ------------------------------------------------------------------ */
+
+/* ------------------------------------------------------------------ *
+ * 3. Summary star rating (above the price) and the "N reviews" link
+ * ------------------------------------------------------------------ */
+
+/* ------------------------------------------------------------------ *
+ * 4. Review list
+ * ------------------------------------------------------------------ */
+
+.woocommerce-Reviews {
+  color: var(--sst-ink, #121212);
+}
+
+.woocommerce-Reviews .commentlist > li {
+  border-bottom: 1px solid var(--sst-line, #ececec);
+  padding: 18px 0;
+  margin: 0;
+  list-style: none;
+}
+
+.woocommerce-Reviews .commentlist > li:first-child {
+  padding-top: 0;
+}
+
+.woocommerce-Reviews .commentlist > li:last-child {
+  border-bottom: 0;
+}
+
+.woocommerce-Reviews .commentlist .comment-text .star-rating {
+  /* Must be a shrink-to-fit box: WooCommerce clips the gold stars with an
+   * inline width:N% on the inner span, relative to this container. A full-
+   * width block made 20% wider than the whole 5-star strip, so every rating
+   * rendered as 5 gold stars. display:table keeps the own-line layout while
+   * shrinking to the ::before star strip. */
+  display: table;
+  margin: 0 0 6px;
+}
+
+.woocommerce-Reviews .comment-text .meta {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px;
+  color: var(--sst-muted, #5f5f5f);
+}
+
+.woocommerce-Reviews .comment-text .woocommerce-review__author {
+  color: var(--sst-ink, #121212);
+  font-weight: 600;
+}
+
+.woocommerce-Reviews .comment-text .woocommerce-review__dash {
+  color: #c9c9c9;
+}
+
+.woocommerce-Reviews .comment-text .description {
+  font-size: 15px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.woocommerce-Reviews .comment-text .description > :first-child {
+  margin-top: 0;
+}
+
+.woocommerce-Reviews .comment-text .description > :last-child {
+  margin-bottom: 0;
+}
+
+/* Verified purchase badge (WooCommerce prints this from the `verified` meta) */
+.woocommerce-Reviews .comment-text .woocommerce-review__verified {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid #b7e0bd;
+  background: #f1faf2;
+  color: #1a8917;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: .02em;
+  white-space: nowrap;
+}
+
+/* Pagination, when reviews outgrow one page */
+.woocommerce-Reviews .woocommerce-pagination ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  list-style: none;
+  margin: 18px 0 0;
+  padding: 0;
+}
+
+.woocommerce-Reviews .woocommerce-pagination a,
+.woocommerce-Reviews .woocommerce-pagination span {
+  display: inline-block;
+  min-width: 32px;
+  padding: 6px 10px;
+  border: 1px solid var(--sst-line, #ececec);
+  border-radius: 6px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 13px;
+  color: var(--sst-muted, #5f5f5f);
+}
+
+.woocommerce-Reviews .woocommerce-pagination .current {
+  border-color: var(--sst-accent, #9e2c5f);
+  color: var(--sst-accent, #9e2c5f);
+  font-weight: 700;
+}
+
+/* ------------------------------------------------------------------ *
+ * 5. Store response card
+ * ------------------------------------------------------------------ */
+
+.woocommerce-Reviews .commentlist ul.children {
+  list-style: none;
+  margin: 14px 0 0;
+  padding: 0;
+}
+
+.woocommerce-Reviews .commentlist ul.children > li {
+  list-style: none;
+  border: 0;
+  border-bottom: 0;
+  margin: 10px 0 0;
+  padding: 0;
+}
+
+/* ------------------------------------------------------------------ *
+ * 6. Review media — thumbnail grid, video, lightbox
+ * ------------------------------------------------------------------ */
+
+.sst-review-media {
+  margin: 12px 0 0;
+}
+
+.sst-review-media__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(86px, 1fr));
+  gap: 8px;
+  max-width: 470px;
+}
+
+.sst-review-media__thumb {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--sst-line, #ececec);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--sst-gray, #f7f7f7);
+  cursor: zoom-in;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.sst-review-media__thumb:hover {
+  border-color: var(--sst-accent, #9e2c5f);
+}
+
+.sst-review-media__thumb:focus-visible {
+  outline: 2px solid var(--sst-focus, #1f6feb);
+  outline-offset: 2px;
+}
+
+.sst-review-media__thumb img,
+.sst-review-media__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* wp-admin comment column */
+
+/* Lightbox (built by the inline script in class-sst-reviews-display.php) */
+body.sst-review-lightbox-open {
+  overflow: hidden;
+}
+
+.sst-review-lightbox {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 20px;
+  background: rgba(0, 0, 0, .84);
+}
+
+.sst-review-lightbox img {
+  max-width: 94vw;
+  max-height: 88vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 6px;
+  background: #000;
+}
+
+.sst-review-lightbox__close {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .14);
+  color: #fff;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.sst-review-lightbox__close:hover {
+  background: rgba(255, 255, 255, .28);
+}
+
+.sst-review-lightbox__close:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* ------------------------------------------------------------------ *
+ * 7. Incentive disclosure (regulatory — must stay legible, never hidden
+ *    behind a tooltip or a link)
+ * ------------------------------------------------------------------ */
+
+.sst-review-disclosure {
+  margin: 0 0 16px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: var(--sst-gray, #f7f7f7);
+  color: var(--sst-muted, #5f5f5f);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.sst-review-disclosure p {
+  margin: 0;
+}
+
+.sst-review-disclosure__note {
+  margin-top: 4px;
+}
+
+/* ------------------------------------------------------------------ *
+ * 8. WooCommerce's own review form (still reachable for logged-in buyers)
+ * ------------------------------------------------------------------ */
+
+.woocommerce-Reviews .comment-form {
+  max-width: 560px;
+}
+
+.woocommerce-Reviews .comment-form textarea:focus,
+.woocommerce-Reviews .comment-form input[type=text]:focus,
+.woocommerce-Reviews .comment-form input[type=email]:focus {
+  border-color: var(--sst-accent, #9e2c5f);
+  outline: none;
+}
+
+.woocommerce-Reviews .comment-form .comment-notes,
+.woocommerce-Reviews .comment-form .comment-form-cookies-consent label {
+  color: var(--sst-muted, #5f5f5f);
+  font-size: 12px;
+  font-weight: 400;
+}
+
+/* ------------------------------------------------------------------ *
+ * 9. Responsive — single column below 600px
+ * ------------------------------------------------------------------ */
+
+@media (max-width: 600px) {
+  .woocommerce-Reviews {
+    max-width: 100%;
+  }
+
+  .woocommerce-Reviews .commentlist .comment_container {
+    gap: 10px;
+  }
+
+  .woocommerce-Reviews .comment-text .description {
+    font-size: 14px;
+  }
+
+  .sst-review-media__grid {
+    max-width: 100%;
+  }
+
+  .sst-review-media__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .woocommerce-Reviews .comment-form {
+    max-width: 100%;
+  }
+
+  .sst-review-lightbox {
+    padding: 16px 10px;
+  }
+}
+
+/* https://samuraiswordtokyo.com/wp-content/mu-plugins/sst-webview-escape/sst-webview-escape-r2.css */
+/* sst-webview-escape r2 — in-flow top bar (in-app browsers only; injected by JS at the top of <body>) */
+/* order-received / order-pay CTA box (server-rendered on uncached pages, shown only for in-app UAs) */
+
+/* https://samuraiswordtokyo.com/wp-content/plugins/sst-order-help-chat/assets/order-help-chat.css */
+/* Hallmark - component: chat widget - genre: modern-minimal - theme: SST support
+ * states: default - hover - focus - active - disabled - loading - error - success
+ * contrast: pass
+ * pre-emit critique: P4 H4 E4 S4 R5 V4
+ */
+
+@media (max-width: 32.5rem) {
+  /* While the sheet is open the page behind is frozen: no background text
+   * movement while the customer is choosing a topic. */
+
+  /* Bottom sheet: fixed to the viewport so the panel always fits, no matter
+   * where the launcher has been dragged. The launcher hides while open.
+   * No slide/zoom animation on phones: text must not move while the customer
+   * is about to tap a choice — fade only. */
+
+  /* Press feedback must not displace text on touch screens. */
+
+  /* Vertical panning only inside the sheet: no sideways gestures. */
+}
+
+/* https://samuraiswordtokyo.com/wp-content/themes/samurai-sword/assets/cart-drawer-summary.20261028.css */
+.sst-cart-drawer__estimate-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+.sst-cart-drawer__estimate-line > span:last-child {
+  max-width: 62%;
+  text-align: right;
+  overflow-wrap: anywhere;
+  font-weight: 700;
+}
+.sst-cart-drawer__estimate-line a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* https://samuraiswordtokyo.com/wp-content/mu-plugins/sst-site-calendar/assets/site-calendar.93326fdbfd3e.css */
+/* sst-site-calendar 2026-10-06 — header Calendar button + popover.
+   z-index 65: above the sticky header (20) and Coupons/Points popovers (60),
+   below the SP nav drawer (70), cart drawer (80), language menu (90) and the
+   SP purchase bar (1000). Not modal: no backdrop, page stays usable. */
+:root {
+  --sst-cal-bg: var(--sst-paper, #ffffff);
+  --sst-cal-ink: var(--sst-ink, #121212);
+  --sst-cal-muted: var(--sst-muted, #5f5f5f);
+  --sst-cal-line: var(--sst-line, #e3e3e3);
+  --sst-cal-hover: #f3f3f4;
+  --sst-cal-sel-bg: #121212;
+  --sst-cal-sel-ink: #ffffff;
+  --sst-cal-today: var(--sst-accent, #9e2c5f);
+  --sst-cal-dot-new: #d0342c;
+  --sst-cal-ended: #8a8a8f;
+  --sst-cal-shadow: 0 14px 40px rgba(0, 0, 0, .16), 0 2px 8px rgba(0, 0, 0, .08);
+  --sst-cal-sale: #c62828;
+  --sst-cal-coupon: #b45309;
+  --sst-cal-campaign: #9e2c5f;
+  --sst-cal-preorder: #6d28d9;
+  --sst-cal-release: #1d4ed8;
+  --sst-cal-ship_start: #15803d;
+  --sst-cal-no_shipping: #0e7490;
+  --sst-cal-notice: #475569;
+}
+
+/* ---- header button (a <button>, so undo UA button chrome) ----
+   Only the family and line height are inherited. Size / weight / letter-spacing / padding
+   stay with the theme's .sst-icon-link (13px / 500 / .3px), exactly as on the <a> icons;
+   a `font: inherit` here would replace them and widen the PC header. */
+
+/* ---- panel ---- */
+
+/* https://samuraiswordtokyo.com/wp-content/mu-plugins/sst-qo-extras/calendar-colors.52de62bbd4.css */
+/* sst-cal-colors-20261019: day numbers coloured by event — red = Sale, green = new box release, half/half when both.
+   Only for events that have not ended. Works on the existing sst-site-calendar markup (.sst-cal__day + .sst-cal__mark[data-type]). */
+/* the selected day keeps its own dark tile; the colour stays as a ring so it is still readable */
+
+/* legend under the grid (added by calendar-legend.js) */
+/* round day badge (same size for every coloured day, a bit larger than the "today" ring) */
+/* dark mode: the selected day keeps the panel's grey background (no white tile), with a thin outline so it still stands out */
+/* light mode: the selected day is a white tile with a thin grey outline (not black) */
+
+/* a selected Sale / release day keeps its light red / light green circle (only the tile around it shows the selection) */
+
+/* https://samuraiswordtokyo.com/wp-content/mu-plugins/sst-qo-extras/site-buttons.a329f22406.css */
+/* sst-pdp-qocta-theme-20261019: product page "View All Products" / "Quick Order — instant add to cart" buttons in the
+   site's colours (maroon #9e2c5f, dark mode #bd3d76) with the same 6px rounded corners as the other site buttons. */
+/* sst-cart-drawer-layout-20261020: header cart drawer item
+     [photo] | name (full width, wraps under the trash) [trash]
+             | 1 x ¥unit
+             | ¥line total ........................ [- 1 +]
+   The "Remove" button keeps its text for screen readers but shows a trash icon; same button, same handler. */
+.sst-cart-drawer .sst-cart-drawer__meta{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"name name" "unit unit" "total qty" "status status";column-gap:10px;row-gap:4px;align-items:center}
+.sst-cart-drawer .sst-cart-drawer__name{grid-area:name;align-self:start;padding-right:34px}
+.sst-cart-drawer .sst-cart-drawer__line-total{grid-area:total;font-size:15px;line-height:22px}
+.sst-cart-drawer .sst-cart-drawer__qty-control{grid-area:qty;justify-self:end;grid-template-columns:24px 30px 24px;border-radius:4px}
+.sst-cart-drawer .sst-cart-drawer__qty-step,.sst-cart-drawer .sst-cart-drawer__qty-input{height:22px;min-height:0;padding:0;font-size:12px;line-height:22px}
+.sst-cart-drawer .sst-cart-drawer__remove{position:absolute;top:-6px;right:-6px;width:32px;height:32px;margin:0;padding:0!important;border:0!important;border-radius:6px!important;background:transparent!important;color:#8a8a8a!important;font-size:0!important;line-height:0;text-decoration:none!important;cursor:pointer;transition:color .15s,background-color .15s}
+.sst-cart-drawer .sst-cart-drawer__remove::before{content:"";position:absolute;inset:7px;background:currentColor;
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 11v6M14 11v6'/%3E%3C/svg%3E") center/contain no-repeat;
+          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 11v6M14 11v6'/%3E%3C/svg%3E") center/contain no-repeat}
+.sst-cart-drawer .sst-cart-drawer__remove:hover,.sst-cart-drawer .sst-cart-drawer__remove:focus-visible{color:#9e2c5f!important;background:#faf3f7!important}
+/* sst-qo-ci-stepper-20261021: Quick Order "Your order" panel line items (.sst-qo__cart-list .sst-qo__ci, built by
+   quick-order.js renderStaged; preview-merge.js back order rows reuse the classes). The theme drew − and + as two
+   30x34px rounded pills (quick-order-critical: html body .sst-qo .sst-qo__ci .sst-qo__ci-btn, + the global
+   button{border-radius}) beside a plain 12px number, so the keys looked stretched tall next to the digit.
+   Now ONE box [ − | 1 | + ] with the same values as the PSA10 card / back order card stepper
+   (sst-qo-psa-stepper-unify-20261020 in sst-qo-psa-sidebar.css): 32px tall, 36px keys, the number is the middle
+   cell at the same height, Figtree 500 18px glyphs dead-centre (native "-" hyphen replaced by U+2212), bold 14px
+   digits, maroon hover / press, grey − while the panel key is disabled. Phones / tablets with a coarse pointer
+   (the expanded review panel, purchase-layout 44px targets): 44px tall, 44px keys, 16px digits.
+   :not(#sst-never) = id-level specificity, so these !important values beat the theme's critical (0,3,2) and
+   purchase-layout's (0,5,2) !important rules at every width. Meaning / handlers untouched (data-vid / data-q).
+   Width: the theme lays the row's meta out as a grid ("title title" / "price controls", columns minmax(0,1fr) auto)
+   in which the PRICE column shrinks first, so the wider box would cut "¥25,117" to "¥25,…" in a 280px panel
+   (<= ~1200px viewports) and ¥1,000,000+ prices everywhere. The meta is a wrapping flex row instead: badge / title
+   on their own lines, then price (never shrinks) + stepper (keys slim from 36px to 26px first; if the price still
+   does not fit beside it, the stepper drops to the next line, right-aligned). Same look as before for every
+   normal price. A grid with minmax(max-content,1fr) was tried first: the clamped title's one-line max-content
+   blew the price column up to 318px (grid spanning-item sizing), which is why it is flex.
+   Flex line breaking uses the hypothetical size (flex-basis), not the minimum, so the stepper's basis is its
+   min-content (76px: 26+22+26+2; 76px literal first as the fallback) and it GROWS back to max-content (96px) when
+   the line has room: measured 2026-10-21, a 280px panel (1082px viewport) wrapped a 96px box under "¥25,117"
+   although 92px were free. */
+/* the "Not accepting orders" badge (qo-psabo-grid.css: inline-block, margin-left:6px, meant to follow text) sits on its own line above the title here: flush left */
+/* sst-nav-language-20261020: language list inside the left menu drawer (site.js) on <= 900px; header switcher hidden there */
+/* sst-nav-qo-help-20261020: on <= 900px the Quick Order mode bar is gone; How to Order / NO SHRINK / FAQ are in the menu drawer (site.js) */
+/* sst-nav-drawer-unify-20261020: one style for everything in the left menu drawer (<= 900px): same font, size, weight,
+   row height, side padding, separators and maroon hover / current state for the menu links, the Quick Order help
+   entries, the language list, the social links and the Dark mode button. */
+@media (max-width:900px){
+  /* sections: same padding and hairline between them */
+}
+/* sst-nav-drawer-unify-20261020b: help entries flush left like the menu links; social links with their logos */
+/* sst-nav-faq-20261020: FAQ lives in the header / menu drawer (site.js); no FAQ button in the Quick Order bar */
+/* sst-qo-modebar-off-20261020: the Quick Order mode bar (Quick Order / How to Order / What is NO SHRINK? / FAQ) is hidden
+   at every screen size (only hidden; the markup and its handlers stay). On <= 900px the help links are in the menu drawer. */
+/* sst-qo-back-20261020: back-to-products button (site.js) at every size: the mode bar is hidden everywhere, and the NO SHRINK info marks on the cards still open that guide */
+/* sst-qo-top-gap-20261020: with the mode bar hidden the Quick Order head row is empty: drop it and the top padding,
+   so the TOP / COUPONS / POKEMON tabs start right at the top of the block */
+
+/* sst-home-chars-off-20261020 (preview of the removal): the "Browse by character" band is gone from every page.
+   The real deploy removes the template-part include instead of hiding it. */
+
+/* https://samuraiswordtokyo.com/wp-content/mu-plugins/sst-site-font/site-font.c7b96a3928.css */
+/* sst-site-font-20261021: ONE font for the whole site.
+   Canonical family = the theme token --sst-font (style.css :root, "Figtree" stack). The header, footer, menus, cart
+   drawer, cart / checkout / account pages, policy pages and the product page body text already use it; this file makes
+   every place that named its own family follow the same token:
+     product pages    Fraunces serif on the title, "Description" / "Additional information" / "Reviews" headings and the
+                      "Related products" heading (mu-plugins/sst-product-arc-accents.php, printed in wp_footer)
+     blog posts       Fraunces on the article h1 / h2 / h3 (same plugin)
+     card list pages  Helvetica Now + Fraunces skin (sst-cardlist-dark-skin.php, sst-cardlist-other-sets.php) - this
+                      replaces cardlist-font.css (which put those pages on Inter)
+     rankings         /pages/best-*-cards (sst-card-rankings.php: Helvetica Neue + Fraunces numbers)
+     collections      sibling chips / top 5 block (sst-collection-seo-blocks.php: system stack + Fraunces numbers)
+     Quick Order      Inter on .sst-qo, its modals, the PSA10 sidebar / back order cards / price bar / sort box, and the
+                      NO SHRINK guide; Archivo + IBM Plex Mono on the TOP tab (top-tab.css)
+     product insights "Quick Order" eyebrow (IBM Plex Mono); FAQ page (its own Inter rule); checkout variant B token
+   Font family only (plus the theme's own heading weights where the serif pass had thinned them to 400). No markup,
+   text, colour, size or layout change. Machine codes keep monospace on purpose: tracking numbers (.sst-opt-tracking),
+   address-change / claim codes.
+   Whole site on Inter instead? Change the ONE :root line below (the Inter alternative is in the comment under it). */
+:root{--sst-font:"Figtree",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+/* :root{--sst-font:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif} */
+/* the referral UI css reads --sst-font-body (falls back to Arial where it is undefined): same token */
+:root{--sst-font-body:var(--sst-font);--sst-font-display:var(--sst-font)}
+html body{font-family:var(--sst-font)!important}
+/* form controls do not inherit the page font by default (Chrome draws them in Arial): the Quick Order -/+ steppers,
+   "Clear cart", the cart drawer "x", card list chips, blog filter buttons, newsletter "Subscribe", sort / filter boxes */
+button,input,select,textarea,optgroup,option{font-family:inherit!important}
+
+/* --- product pages (every /products/ page) --- */
+/* the description text itself, whatever markup a product's text carries (pasted styles included) */
+
+/* --- blog posts --- */
+
+/* --- card list pages (hub, *-card-list, best-*-cards); same selectors as cardlist-font.css, token instead of Inter --- */
+html body .sst-page-content{font-family:var(--sst-font)!important}
+
+/* --- rankings + collection pages --- */
+
+/* --- FAQ page (inline rule in the page content prefers Inter) --- */
+
+/* --- Quick Order: the block itself and its overlays (quick-order*.css hardcode Inter) --- */
+/* every descendant too: several Quick Order pieces set the family through the `font:` shorthand (back order badges
+   "Out of stock (Back order)", Add / Show more buttons, loading line, toast, lightbox counter, modal nav) */
+/* PSA10 sidebar, stock boxes, back order cards + cart box, price bar (sst-qo-psa-sidebar css) */
+/* home slider countdown box (inc/sst-op-magazine2-banner.php: Arial) */
+/* the sort box rule in that css is !important itself: id-level specificity so this one wins whatever the load order */
+/* NO SHRINK guide (qo-noshrink.css: Inter kickers / chips / buttons, Georgia "i" mark) */
+/* TOP tab: Archivo display + IBM Plex Mono eyebrows, prices, badges, stock lines, notify bell (top-tab.css) */
+/* COUPONS tab + coupon wallet (sst-qo-coupon-tab: own --sst-qct-font token = Inter; wallet rank overlay in Impact) and the
+   favorites tab / panel (sst-qo-favorites: --sst-qof-font = Inter): point the tokens at the site font */
+
+/* --- set-code / date chips drawn in monospace (home guide + set list bands, release calendar): same font as the
+       words around them. Real machine identifiers stay monospace: tracking numbers, address-change / claim codes,
+       the TCG Index data ids and version strings, points codes. --- */
+/* the release calendar page keeps its chip font in a --sst-mono variable (.sst-cal .sst-code / .sst-datechip /
+   .sst-today-label / .cal-log b): point the variable at the site font, above the page's own inline definition */
+
+/* --- checkout variant B defines its own type token (literal Figtree): follow the site token --- */
+
+/* https://samuraiswordtokyo.com/wp-content/mu-plugins/sst-site-search/site-search.ac9751f413.css */
+/* sst-site-search-20261023: header search icon + search bar + results page (site-search.js) */
+/* owner 10/23: no purple circle on hover — the theme's button hover/active fill is cancelled, the icon only dims a little */
+
+/* the bar: a row under the header, in the page flow (the header may be sticky) */   /* the bar has its own × */
+
+/* results page */
+
+/* type-ahead list under the header bar and the results-page box (owner 10/23: "Pika" -> choices) */
+
+/* https://samuraiswordtokyo.com/wp-content/mu-plugins/sst-cart-extras/cart-extras.1204457305.css */
+/* sst-coupon-bar-20261023: owner 10/23 — JPY 30,000 coupon progress bar (coupon-bar.js) + no "Your order" panel on any
+   Quick Order tab. Same look as the 10/22 home-boost "cartbar" preview it comes from. */
+
+/* no "Your order" panel on desktop, every tab: the main column takes the full width (phones keep the theme's cart dock) */
+
+/* bar */
+@property --sst-cb-p{syntax:'<number>'; inherits:true; initial-value:0}
+/* the fill is always full width and grows with transform:scaleX (set by coupon-bar.js, smooth on the GPU); its colour goes
+   from a light site pink to the site maroon with --sst-cb-p (0..100); at the goal a rainbow layer slides through it */
+
+/* header copy: desktop next to Cart, short one-line wording; in the header row from 1560px (narrower the menu would
+   wrap) -> 750–1559px it hangs under Cart */
+/* phone: fixed at the bottom of the screen on the TOP tab (Add to cart photos fly into it, fly-cart.js); other tabs keep
+   the theme's mobile cart dock, so no bar there */
+
+/* sst-cart-drawer-no-updating-20261023: owner 10/23 — header cart drawer: no green "Updating..." under a line while − /
+   Remove is sent (theme cart-drawer.js writes it as a .is-success item status); errors and notices still show */
+
+/* the theme's green "Coupons and discounts are available from JPY 30,000" note takes the same light pink (light + dark).
+   The theme sets the green in quick-order.css, qo-mobile-dock.css (!important, 5 classes) and dark-mode(-qo).css
+   (!important), so the :is(#…) gives this rule id weight; the id itself never exists */
+
+/* https://samuraiswordtokyo.com/wp-content/mu-plugins/sst-site-extras/site-extras.139caf0368.css */
+/* sst-site-extras-20261023: preview additions on top of the live box-toolbar.css (sst-qo-extras) */
+
+/* sst-qo-list-offer-row-20261021: List view (desktop, >=750px): the offer cell's label / stock / price sit on ONE line and
+   are bigger (theme stacks them in 8 / 9 / 11px). The price wraps onto a second line only when the column is too narrow.
+   Colours stay the theme's (light + dark). Mobile (<750px) keeps the theme's own list layout. */
+@media (min-width:750px){
+  /* user 2026-10-21: "N in stock" / "Out of stock" the same size as the price */
+  /* review 2026-10-21 (states not in today's data, but produced by the theme at runtime):
+     - no price (priceState != priced): the theme keeps an &nbsp; placeholder -> would be a blank 15px line; hide it
+     - campaign sale: inc/quick-order-sale.php renders <span.sst-qo__sale-prices><del.sst-qo__sale-regular>..</del> price</span>,
+       critical.css stacks + centres them -> lay them out as one row, struck regular price smaller
+     - live standing feature (sst-psa-standing) inserts <a.sst-qo__offer-standing> after the stock text -> keep it last
+     - quote ("not sold") / coming-soon (release gate) cells carry a text block instead of the 76px stepper: put that
+       block under the info row so the nowrap label / stock are never squeezed against it */
+}
+/* laptop viewports (<= 1535px: the two offer columns are too narrow for the one-line offer, which needs ~255px + the
+   76px stepper + 6px gap): the price takes its own second line in EVERY two-column cell, instead of wrapping only in
+   the rows whose stock text happens to be longer. Single-offer rows (colspan 2, "ITEM") always have room for one line. */
+/* the product column had spare room (theme 54 / 23 / 23). 901-1535px: 36 / 32 / 32 so label + stock fit on the first
+   line (needs ~190px) beside the stepper; 1536-1699px: 34 / 33 / 33 so the whole offer is one line (table width is
+   about viewport - 394px cart column); from 1700px: 40 / 30 / 30 (one line with room to spare).
+   PSA10 / back order groups are left at the theme's widths: every row there is a single colspan-2 offer that always
+   fits one line, their table is already 260px narrower (series sidebar) and the card names need the room. */
+/* sst-qo-list-notify-row-20261021: List view (desktop, >=750px), SOLD-OUT offer: the restock "Notify" bell sits beside
+   the label / stock / price, right-aligned and vertically centred, exactly where the - 0 + stepper sits in an in-stock
+   cell. Why it dropped under the price: the theme's desktop list cell is a 2-column grid with NO named areas
+   (quick-order-deferred.css @min-width:750px: minmax(0,1fr) auto), while restock-notify.css places the bell with
+   grid-area:qty -> no such area -> implicit column + implicit second row (measured: columns 222 | 0 | 0 | 61.5, bell on
+   row 2). Give the sold-out cell the "info qty" areas: the column is at least as wide as the 76px stepper so the bells
+   line up with the steppers of the rows around them, and grows for a longer translated label (bell max 120px, the
+   plugin's own label ellipsis handles the rest). Mobile (<750px) keeps purchase-layout.css's 44px row. */
+@media (min-width:750px){
+  /* the empty placeholder the theme renders before the plugin swaps in the bell: same slot, no layout jump */
+}
+
+/* sst-qo-oos-center-20261022: owner 10/22 — grid cards: a sold-out offer (e.g. "NO SHRINK / Out of stock / ¥14,495") sat
+   flush left while the in-stock offer next to it is centred; centre label, stock and price the same way */
+
+/* sst-qo-damaged-note-20261022: owner 10/22 "make this area look good" (Damaged Box tab condition note, no photos):
+   the three lines become three tiles with a line icon each; the last one (sold as-is) in the site maroon as the warning */
+
+/* sst-qo-watchlist-tab-off-20261022: owner 10/22 18:45 — no "★ Watchlist" tab in the Quick Order tab strip (added by
+   mu-plugin sst-qo-favorites, favorites.*.js .sst-qof-tab + its .sst-qof-panel). The ★ on the rows stays; the saved list
+   lives on the /watchlist page (header Watchlist link). */
+
+/* calendar additions on top of the live calendar-colors.css */
+
+/* 10/22 owner: every event mark is a round dot like the green release one (coupon / sale / campaign were 11x7 pills) */
+
+/* sst-cal-span-lines-20261022: owner 10/22 — a multi-day event is one horizontal line across its days, not a dot on
+   every day (calendar-legend.js moves the .is-span marks into .sst-cal__lines). Each spanning type has a slot
+   (--sst-ln-slot) in its week row; a line reaches the cell edge where the event goes on (.sst-ln-l / .sst-ln-r). */
+/* ended: a thin grey line (the hollow ring of a dot does not read on a 3px line) */
+
+/* sst-damaged-video-right-20261022: damaged-box product pages, "Condition videos (samples)" on the right-hand side.
+   Preview copy (injected by proxy.ps1, together with damaged-video-right.js). Edit here + F5; the deploy PHP is
+   regenerated from these files before upload. */
+
+/* the tabs area becomes a size container only when it holds the video block */
+
+/* the card */
+
+/* the video frame: rounded, first frame shown (js), big play icon until it plays */
+
+/* medium (tabs area >= 700px): card floated right inside the description column, text wraps on the left */
+
+/* wide (tabs area >= 1300px): card in the empty space right of the 980px description column, top aligned with the
+   "Description" heading */
+
+/* sst-pdp-chart-left-20261022: chart moved under the gallery by pdp-chart-left.js */
+
+/* sst-pdp-qocta-band-off-20261022: product page "QUICK ORDER — Browse the full catalog…" band hidden
+   (the compact View All / Quick Order buttons beside Add to cart stay) */
+
+/* sst-pdp-cardlist-up-20261022: spacing once the card list link sits above the discounted notice */
+
+/* sst-watchlist-page-20261022: /watchlist page + header ★ icon (watchlist-page.js) */
+/* owner 10/22: no count tag on the header icon */
+
+/* sst-watchlist-header-off-20261022: owner 10/22 18:3x "I don't need watchlist in here" -> no ★ Watchlist link in the
+   header (the /watchlist page itself and the ★ buttons on the cards stay) */
+
+/* https://samuraiswordtokyo.com/wp-content/mu-plugins/sst-psa-search-side/psa-search-side.d8973bcc28.css */
+/* sst-qo-psa-search-side-20261023: PSA10 "Search by name" at the top of the left sidebar (psa-search-side.js, >= 901px) */
+@media (min-width:901px){
+  /* the theme's suggestion list: as wide as the sidebar, over the list below */
+}
+
+/* sst-qo-psa-filters-side-20261023: the whole toolbar (stock, price, rarity, sort) in the sidebar under the search box,
+   one control per line in the sidebar's 240px column. The sidebar is sticky and scrolls by itself: search + filters stay
+   on top, the series list below scrolls. */
+@media (min-width:901px){
+  /* In stock / Out of stock: one per line */
+}
+
+/* https://samuraiswordtokyo.com/wp-content/themes/samurai-sword/assets/purchase-layout.9a3b7cf9f54f.css */
+/* The owner of mobile purchase geometry. Keep purchase state in Woo/QO.
+ * Acceptance: 320px reflow, short viewport/keyboard, 44px primary targets,
+ * one active modal, content scroll independent of its checkout action.
+ */
+:root {
+  --sst-purchase-dock-h: 0px;
+  --sst-purchase-vh: 100dvh;
+  --sst-purchase-vtop: 0px;
+}
+@media (max-width:1024px) {
+  html { scroll-padding-bottom:calc(var(--sst-purchase-dock-h) + 16px); }
+  body:not(.sst-app) :is(.sst-qo__btn-checkout,.sst-purchase-review-checkout,.sst-purchase-review-toggle,.sst-cart-drawer__close,.sst-qo__mobile-cart-close,.sst-cart-drawer__qty-step,.sst-cart-drawer__qty-input,.sst-cart-mobile-checkout__button,.sst-sticky-cart__btn) {
+    box-sizing:border-box; min-height:44px!important; height:auto!important; min-width:44px!important; touch-action:manipulation;
+  }
+  body:not(.sst-app) :is(.woocommerce,.sst-qo__side,.sst-cart-drawer) :is(input:not([type=checkbox]):not([type=radio]),select,textarea) { font-size:16px!important; }
+  body:not(.sst-app) :is(.sst-purchase-review-toggle,.sst-purchase-review-checkout) { font-weight:600; font-size:14px; line-height:1.35; font-family:inherit; padding:10px 12px; border:1px solid #9e2c5f; border-radius:6px; cursor:pointer; }
+  body:not(.sst-app) :is(.sst-purchase-review-toggle,.sst-purchase-review-checkout):focus-visible { outline:3px solid #1c5a92; outline-offset:2px; }
+
+  /* Collapsed QO: two explicit rows; optional detail never creates columns. */
+
+  /* Review panel: explicit header, one scroll region, fixed in-panel footer. */
+
+  /* The next consent/customs step takes ownership after review closes. */
+  html body:not(.sst-app) :is(.sst-qo__preorder-dialog,.sst-qo__details-gate-card) {
+    box-sizing:border-box!important; width:100%!important; max-width:100%!important;
+    max-height:100%!important; min-height:0!important; margin:0!important;
+    overflow:auto!important; overscroll-behavior:contain; padding:16px!important;
+  }
+  html body:not(.sst-app) :is(.sst-qo__preorder-actions,.sst-qo__details-gate-actions) { flex-wrap:wrap; }
+  html body:not(.sst-app) :is(.sst-qo__preorder-actions,.sst-qo__details-gate-actions) button { min-height:44px!important; white-space:normal!important; }
+
+  /* Global cart and product routes share the same usable viewport. */
+  html body:not(.sst-app) .sst-cart-drawer { top:var(--sst-purchase-vtop)!important; bottom:auto!important; height:var(--sst-purchase-vh)!important; max-height:var(--sst-purchase-vh)!important; max-width:100vw!important; width:min(440px,100vw)!important; display:flex!important; flex-flow:column nowrap!important; z-index:2147483001!important; box-sizing:border-box!important; }
+  html body:not(.sst-app) .sst-cart-drawer__head { flex:0 0 auto!important; }
+  html body:not(.sst-app) .sst-cart-drawer__body { flex:1 1 auto!important; min-height:0!important; overflow:auto!important; overscroll-behavior:contain; }
+  html body:not(.sst-app) .sst-cart-drawer__foot { flex:0 0 auto!important; padding-bottom:calc(12px + env(safe-area-inset-bottom))!important; }
+  html body:not(.sst-app) .sst-cart-drawer__foot .button { min-height:44px!important; white-space:normal!important; }
+  html body:not(.sst-app) .sst-cart-drawer-overlay { z-index:2147483000!important; }
+  html body:not(.sst-app) .sst-cart-drawer__qty-control { display:inline-grid; grid-template-columns:44px 48px 44px; max-width:100%; }
+  html body:not(.sst-app) :is(.sst-cart-drawer__name,.sst-sticky-cart__name) { overflow-wrap:anywhere; }
+
+  /* Supporting widgets live in normal page flow, never over merchandise. */
+  html body:not(.sst-app):is(.sst-qo-panel-open,.sst-cart-open,.sst-purchase-gate-open) :is(.sst-order-help-chat,.sst-preorder-pop,#google-merchantwidget-iframe-wrapper,.sstt-toasts) { visibility:hidden!important; pointer-events:none!important; }
+  html body:not(.sst-app):is(.sst-qo-panel-open,.sst-cart-open,.sst-purchase-gate-open) :is(.sst-sticky-cart,.sst-cart-mobile-checkout,.sst-co-bar) { visibility:hidden!important; pointer-events:none!important; }
+}
+/* sst-qo-qty-mobile-20261007 begin
+ * Mobile Quick Order quantity control: grid mode, non-PSA groups, phones (<750px).
+ * Geometry owner: purchase-layout. Quantity meaning, limits and cart sync stay in
+ * quick-order.js; this block only lays out the existing DOM:
+ *   .sst-qo__offer-cell > .sst-qo__offer-info (label / stock / price)
+ *                       > .sst-qo__offer-action > .sst-qo__qty (button - , input, button +)
+ * Each purchasable offer becomes: [label ........ price] / [stock] / [ - | qty | + ] (44px).
+ * Unavailable offers keep the restock bell, resized to the same 44px row.
+ * Specificity (0,9,3)+ with !important wins over every quick-order-critical rule by
+ * specificity alone. Colours are repeated under html[data-sst-theme="dark"] so the dark
+ * bundle keeps every colour this block does not set.
+ */
+@media (max-width:749px) {
+  /* Offer cell: information above, one full-width control below. */
+  /* The action wrapper is a real block again (it is display:contents today), so the
+     quantity note / error that quick-order.js appends to it sits under the control
+     at full cell width instead of inside a 57-79px column. */
+
+  /* Stepper: 44px tall, - and + are 44px wide, the field takes the rest (65px at 390, 30px at 320). */
+  /* In the order (value > 0): the whole control takes the brand colour. */
+  /* Nothing ordered yet: the - key is quiet (it is not disabled; quick-order.js ignores it at 0). */
+
+  /* Sold out: the restock bell fills the same 44px row (it is 72x28 today). */
+
+  /* Narrow phones (<=340px, 148px cards): "NO SHRINK (i)" no longer fits beside the price,
+     so the price moves down next to the stock line instead of wrapping the label. */
+  @media (max-width:340px) {
+    /* 148px cards: give the digits the space (44+44 leaves 30px at 5px padding; 3 digits need 29px).
+       Keep 16px (iOS zoom threshold); 4-digit quantities still scroll inside the field here. */
+  }
+
+  /* Single-offer cards: the row template still names "sealed"/"nos", so the single
+     "offer" cell falls into an implicit track behind three empty 4px gaps. */
+
+  /* Dark theme colours (the dark bundle sets these at (0,5,3); this block is (0,10,4)). */
+}
+/* sst-qo-qty-mobile-20261007 end */
+/* sst-qo-qty-mobile-20261007 part 2 begin
+ * Quantity controls outside the grid cards, same 44px treatment.
+ * (a) Review order panel line items: quick-order-critical puts the −/+ in 30px tracks while
+ *     purchase-layout makes them 44px wide, so the number sat under the − button. */
+/* sst-qo-qty-mobile-20261007 part 2 end */
+/* sst-qo-qty-mobile-top-20261007 begin
+ * TOP tab stepper + Add (top-tab.js qtyEl / offer rows / PSA carousel), phones (<750px).
+ * Geometry owner: purchase-layout (loads after top-tab.css). Meaning is unchanged:
+ * the TOP stepper is an INCREMENT (how many to add); top-tab.js reads q.dataset.qty
+ * and writes current + n into the hidden Quick Order input. Nothing here touches that.
+ *   .sstt-offer-act > .sstt-qty[role=group] (button.sstt-qty-b[data-d=-1], input|span.sstt-qty-v, button.sstt-qty-b[data-d=1])
+ *                   + button.sstt-oadd
+ *   .sstt-cf-row    > .sstt-qty.sstt-fixed + button.sstt-cf-add   (PSA carousel, always 1)
+ * Layout: [ - | n | + ] and Add share one line while the Add label fits at its natural
+ * width; otherwise (long labels: de/es/fr/id/it, or narrow cards) Add wraps under a
+ * full-width stepper. The frame is on the group (1px), so - and + are 44x44 inside a
+ * 46px row and the disabled key keeps top-tab.css's opacity:.26 without fading the frame.
+ * Specificity (0,3,2)..(0,5,2) + !important beats top-tab.css (max (0,3,0) here, no
+ * !important) and style.min.css `button{min-height:40px}`.
+ */
+@media (max-width:749px) {
+  /* Offer controls take their own line (the 210px basis put them beside the price at >=412px). */
+  /* in an offer row: grows with Add (1:3) on one line, fills the line when Add wraps */
+  /* two-column box grid / wide single cards (521-749px): the stepper stops growing at 200px, Add takes the rest */
+  /* PSA carousel (centred row, the Add already takes its own line under 560px) */
+  /* touch "sticky hover" no longer fills the key black; press feedback as in the regular QO */
+  /* disabled keys: top-tab.css .sstt-qty-b:disabled{opacity:.26} is kept (not overridden here) */
+  /* single copy (span, both keys disabled): quiet number */
+  /* Add: same 46px row, 8px radius; keeps its natural width so the label is never clipped */
+
+  /* Dark theme (dark-mode-qo.css sets only the group background/hover border, at (0,2,1)). */
+}
+/* sst-qo-qty-mobile-top-20261007 end */
+/* sst-qo-qty-mobile-list-20261007 begin
+ * Mobile Quick Order quantity control: LIST mode (.sst-qo--list), phones (<750px), all groups
+ * (in List mode PSA10 / PSABO rows use the same "prod / offer" row and "info qty" cell as every
+ * other group, so they are not excluded here; the grid block excludes them only because their
+ * GRID layouts differ).
+ * Geometry owner: purchase-layout. Quantity meaning, limits and cart sync stay in quick-order.js.
+ * Each offer stays ONE line (List density): [label / stock | price][ - | qty | + ] (44px).
+ * The existing cell grid ("info qty", quick-order-deferred.css:1627-1700, (0,6,1)-(0,7,4)!important)
+ * is kept; only the qty column widens from 72px to 136-144px. Unavailable offers put the restock
+ * bell in the same 44px column. The action wrapper stays display:contents (the bell is a grid item
+ * of the cell); the quantity / min-qty note that quick-order.js appends to it spans the full cell
+ * width on its own line.
+ * Specificity (0,9,3)+ with !important beats every List rule in quick-order-deferred.min.css.
+ */
+@media (max-width:749px) {
+  /* label over stock on the left, price on the right next to the stepper (vertically centred) */
+  /* Notes appended by quick-order.js to .sst-qo__offer-action (display:contents) become grid items:
+     put them on their own full-width line under the info / stepper. Visibility stays with the
+     element's own display (none until quick-order.js shows it). */
+
+  /* Stepper: 44px tall, - and + 44x44, the field takes the rest (56px; 48px at <=360). */
+
+  /* Sold out: the restock bell fills the same 44px column (72x28 today); the empty ::after
+     placeholder that reserves that column (quick-order-deferred.css:1704) follows its size. */
+
+  /* <=360px: 136px stepper (48px field); <=340px: the price goes under the label so the
+     label keeps its width (info column is ~130px at 320). */
+
+  /* Dark theme colours (dark-mode-qo.css values, as in the grid block). */
+  /* Disabled controls (PSA back order rows until the server validates them; - at 0): must look disabled. */
+}
+/* sst-qo-qty-mobile-list-20261007 end */
+/* sst-qo-qty-mobile-psa-20261007 begin (PSA10 / PSA back order grid steppers, phones) */
+/* Option A: 3 columns kept. Stepper 44px tall; - and + as wide as the card allows (26-44px), the field keeps >= 27px (2 digits at 16px, 3 from 360px). */
+@media (max-width:749px) {
+  /* Control colours (light). The PSA grid only sets size; colours came from quick-order-critical. */
+  /* In the order (value > 0): brand colour, as in the main grid. */
+  /* Disabled (PSA back order: - at 0 until the server validates the row; all controls while unverified). Must stay visibly disabled. */
+  /* Dark theme (dark-mode-qo.css colours). */
+  /* Sold out: the restock bell takes the same full-width row as the stepper (75-112 x 28 today). */
+  /* Notes and errors (over max, minimum, back order "Please try again.") stay under the control at full cell width. */
+}
+/* sst-qo-qty-mobile-psa-20261007 end */
+
+/* https://samuraiswordtokyo.com/wp-content/themes/samurai-sword/assets/dark-mode.css */
+/*! sst-dark-mode dark-mode.css | 00-tokens.css 01-toggle.css 10-theme-a.css 11-theme-b.css 12-theme-assets.css 13-theme-fixes.css 30-theme-inline.css 42-widgets.css 43-plugin-pages.css */:where(html[data-sst-theme="dark"]) a:hover{color:var(--sst-accent-text)}
+
+/* https://samuraiswordtokyo.com/wp-content/themes/samurai-sword/assets/dark-mode-content.css */
+/*! sst-dark-mode dark-mode-content.css | 00-tokens.css 01-toggle.css 50-content-guides.css 51-content-campaigns.css 52-content-cardlists.css 53-content-pages.css 54-blog-cta-cards.css */
+
+/* \3c style> */
+
+/* \3c style id="sst-psa-standing-css"> */
+
+/* \3c style id="sst-qo-priority-featured"> */
+
+/* \3c style id="sst-rvp-css"> */
+.sst-rvp-page .sst-page{max-width:1240px}.sst-rvp-page .sst-page-content{max-width:none}.sst-rvp .woocommerce-Reviews{max-width:none}.sst-rvp{--rvp-accent:#9e2c5f;--rvp-gold:#f0a500;--rvp-line:#e3e1db;--rvp-bg:#fbfaf8;font-size:15px;line-height:1.55}.sst-rvp a{text-decoration:none;color:inherit}.sst-rvp .sst-rvp-h2{font-size:18px;margin:28px 0 12px}.sst-rvp-intro{color:#555;margin:0 0 16px}.sst-rs-stars{display:inline-flex;gap:2px;font-size:16px;line-height:1;vertical-align:middle}.sst-rs-star{position:relative;display:inline-block;width:1em;height:1em}.sst-rs-star::before{content:"\2605";color:#d8d8d8}.sst-rs-star::after{content:"\2605";color:var(--rvp-gold,#f0a500);position:absolute;left:0;top:0;width:var(--f,0%);overflow:hidden;white-space:nowrap}.sst-rvp-summary{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:16px 32px;align-items:center;padding:18px 20px;border:1px solid var(--rvp-line);border-radius:8px;background:var(--rvp-bg);margin:0 0 16px}.sst-rvp-summary__avg{display:flex;flex-direction:column;gap:6px}.sst-rvp-avg-num{font-size:40px;font-weight:700;line-height:1}.sst-rvp-count{color:#555;font-size:14px}.sst-rvp-bars{display:flex;flex-direction:column;gap:6px}.sst-rvp-bar-row{display:grid;grid-template-columns:64px minmax(0,1fr) 40px;gap:10px;align-items:center;font-size:13px;color:#444;border-radius:6px;padding:2px 4px}.sst-rvp-bar-row:hover{background:#fff;color:var(--rvp-accent)}.sst-rvp-bar{display:block;height:8px;border-radius:4px;background:#e9e7e2;overflow:hidden}.sst-rvp-bar__fill{display:block;height:100%;background:var(--rvp-gold)}.sst-rvp-bar__n{text-align:right;font-variant-numeric:tabular-nums}.sst-rvp-facts{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px 20px;list-style:none;margin:0;padding:0;font-size:13px;color:#555}.sst-rvp .sst-review-disclosure{margin:0 0 20px}.sst-rvp-products__rail{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}.sst-rvp-product-card{display:flex;flex-direction:column;gap:6px;padding:10px;border:1px solid var(--rvp-line);border-radius:8px;background:#fff;font-size:13px}.sst-rvp-product-card img{width:64px;height:64px;object-fit:contain;border-radius:6px;background:#f5f4f1}.sst-rvp-product-card__name{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.35}.sst-rvp-product-card__meta{display:flex;flex-wrap:wrap;align-items:center;gap:6px;color:#666;font-size:12px}.sst-rvp-product-card:hover{border-color:var(--rvp-accent)}.sst-rvp-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin:20px 0 14px}.sst-rvp-chips{display:flex;flex-wrap:wrap;gap:8px}.sst-rvp-chips--stars{flex-basis:100%}.sst-rvp-chip__star{color:inherit;font-weight:600}.sst-rvp .sst-tag-btn.sst-rvp-chip--star:not(.active) .sst-rvp-chip__star{color:#b8860b}.sst-rvp-bar-row{cursor:pointer}.sst-rvp .sst-tag-btn{min-height:0;padding:6px 12px;border:1px solid var(--rvp-line);border-radius:999px;background:#fff;font-size:13px;line-height:1.2;cursor:pointer}.sst-rvp .sst-tag-btn.active{background:var(--rvp-accent);border-color:var(--rvp-accent);color:#fff}.sst-rvp-chip__n{opacity:.75;font-size:12px}.sst-rvp-sort{display:flex;align-items:center;gap:8px;margin-left:auto;font-size:13px}.sst-rvp-sort select{padding:6px 10px;border:1px solid var(--rvp-line);border-radius:6px;background:#fff;font-size:13px}.sst-rvp-total{font-size:13px;color:#555}.sst-rvp-clear{font-size:13px;color:var(--rvp-accent);text-decoration:underline}.sst-rvp-list .commentlist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;list-style:none;margin:0;padding:0}.sst-rvp-list .commentlist>li.review,.sst-rvp-list .commentlist>li.review:first-child,.sst-rvp-list .commentlist>li.review:last-child{margin:0;padding:14px 16px;border:1px solid var(--rvp-line);border-radius:8px;background:#fff}.sst-rvp-list .comment_container{display:block}.sst-rvp-list .comment-text{margin:0;padding:0;border:0}.sst-rvp-list .commentlist ul.children,.sst-rvp-list .commentlist ol.children{list-style:none;margin:10px 0 0;padding:0}.sst-rvp-list .commentlist .children>li{border:0;padding:0;margin:10px 0 0}.sst-rvp-product{display:grid;grid-template-columns:40px minmax(0,1fr) auto;align-items:center;gap:8px;width:100%;max-width:100%;box-sizing:border-box;font-size:13px;margin:0 0 8px;color:#333}.sst-rvp-product img{width:40px;height:40px;object-fit:contain;border-radius:6px;background:#f5f4f1}.sst-rvp-product:not(:has(img)){grid-template-columns:minmax(0,1fr) auto}.sst-rvp-product__name{min-width:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.3}.sst-rvp-also{font-size:12px;color:#666;margin:-4px 0 8px}.sst-rvp-also a{color:var(--rvp-accent);text-decoration:underline}.sst-rvp-pager{margin:20px 0}.sst-rvp-pager ul{display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:0;padding:0;justify-content:center}@media(max-width:900px){.sst-rvp-list .commentlist{grid-template-columns:minmax(0,1fr)}.sst-rvp-summary{grid-template-columns:minmax(0,1fr)}.sst-rvp-sort{margin-left:0}}@media(max-width:720px){.sst-rvp-products__rail{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 0 8px;scrollbar-width:none}.sst-rvp-products__rail::-webkit-scrollbar{display:none}.sst-rvp-product-card{flex:0 0 150px;scroll-snap-align:start}.sst-rvp-avg-num{font-size:32px}}@media(prefers-reduced-motion:reduce){.sst-rvp *{scroll-behavior:auto}}
+
+/* \3c style> */
+
+/* \3c style id="sst-cal-nobox"> */
+
+/* \3c style id="sst-coming-soon-product-lock-css"> */
+	
+
+/* \3c style id="sst-header-fit"> */
+@media (min-width: 901px) and (max-width: 1599px) {.sst-actions .sst-icon-link > span:not([class]) { display: none; }}@media (min-width: 901px) and (max-width: 1279px) {.sst-header__main { grid-template-columns: auto minmax(0, 1fr) auto; grid-template-areas: "brand . actions" "links links links"; row-gap: 2px; }.sst-header__main > .sst-brand { grid-area: brand; }.sst-header__main > .sst-actions { grid-area: actions; justify-self: end; }}
+
+/* \3c style id="sst-hide-blocks"> */
+
+/* \3c style id="sst-ig-avatar-dark"> */
+
+/* \3c style id="sst-legacy-button-fix"> */
+
+/* \3c style id="sst-qo-tab-width"> */
+
+/* \3c style id="sst-ui-fixes"> */
+/* sst-ui-polish-20261027: small UI fixes from the 10/27 visual QA (one file, printed on every page).
+   Each block is tagged sst-ui-<topic>-20261027 with the reason. Colours come from the theme tokens
+   (--sst-paper / --sst-surface / --sst-line / --sst-accent ...), which dark-mode.css redefines under
+   html[data-sst-theme="dark"], so the rules work in both themes. */
+
+/* sst-ui-header-opaque-20261027 (1): phone header was rgba(255,255,255,.98) / dark rgba(16,16,18,.9) with no blur
+   (style.min.css drops backdrop-filter <=900px), so page text showed through behind the logo and icons. */
+@media (max-width: 900px) {
+  html body .sst-header, html[data-sst-theme] body .sst-header { background: var(--sst-paper, #fff); }
+}
+
+/* sst-ui-nav-closebar-20261027 (2): the phone menu drawer (#sst-primary-nav, overflow:auto) scrolls under the close
+   "x" (it is the header's menu toggle, drawn above the drawer). A sticky 72px bar (= the list's top padding) at the top
+   of the drawer gives the "x" its own solid strip; the list scrolls underneath it. */
+
+/* sst-ui-addl-info-20261027 (3): "Additional information" table: th was centred (UA default) and the
+   "Purchase unit" value is wrapped in a <p> with margins, so rows were indented / spaced differently. */
+
+/* sst-ui-dmg-video-gap-20261027 (4): damaged-box condition videos. Both <video>s sit in ONE <p> (wpautop), the live
+   site-extras js makes that <p> the frame, so the single big play icon was centred on the join of the two videos.
+   ui-polish.js gives each video its own .sst-dv-frame span (.sst-dv-one); here: 12px gap, one icon per video. */
+
+/* sst-ui-family-tabs-fit-20261027 (5): home category strip (TOP ... PSA10) is 1106px wide at 19px; at 901-1299px it
+   overflowed with only a faint 42px mask, so DAMAGED BOX was cut and PSA10 invisible. Scale type + padding with the
+   viewport so all tabs fit; the existing fade/scroll stays as a fallback. */
+
+/* sst-ui-subtabs-20261027 (6): Quick Order sub-tab bar (All / Boxes / Cartons ...) showed the native scrollbar.
+   Hide it (swipe still works) and fade the edge that has more tabs (classes set by ui-polish.js). */
+
+/* sst-ui-home-rows-20261027 (7, 8): home rows. Row 02 used scrollbar-width:thin (row 01 none) -> hide on all rows.
+   The < > side buttons sat at calc(50% - 30px), i.e. on the first/last card's title; centre them on the 150px
+   product image instead (image box starts 13px below the track top: 2px track padding + 11px card padding). */
+
+/* sst-ui-bulk-check-20261027 (9): "More from ..." / "Frequently Bought Together" cards: the bulk-select checkbox was an
+   empty white rounded square. Make it read as a checkbox (darker border + faint tick) and a white tick when checked.
+   ui-polish.js copies the existing screen-reader label ("Select for bulk add to cart", translated) into title=. */
+
+/* sst-ui-review-reply-20261027 (10): "Response from Samurai Sword Tokyo": product-insights.css resets every
+   .comment_container in the review cards to padding:0 / border:0, which also stripped the reply box. */
+
+/* sst-ui-cjk-bracket-20261027 (11): titles starting with a full-width bracket (【No Shrink】...) began with half an
+   em of blank. text-spacing-trim: trim-start removes it in Chrome/Edge/Android; Safari hangs it instead. */
+:is(h1.product_title, .woocommerce-loop-product__title, .sst-qo__pname, .hb-card__name, .sst-ss-card__name,
+    .sst-sticky-cart__name, .sst-cart-drawer__name) {
+  text-spacing-trim: trim-start;
+  hanging-punctuation: first;
+}
+
+/* sst-ui-psa-outonly-flow-20261027 (12): PSA10 tab, "Out of stock (Back order)" ticked: the plain sold-out PSA10 cards
+   live in the Quick Order table grid, the back-order cards in a second grid (.sst-psa-bo__grid) with its own columns
+   (phone 2+2 separate grids; 1440: 5 cols x 214px vs 6 cols x 176px), so a lone sold-out card left a half-empty row.
+   In that mode the wrappers become display:contents and all cards flow in ONE grid on the group. */
+
+/* sst-ui-footer-bottom-20261027 (13): on short pages the footer ended above the viewport bottom (white strip on
+   /watchlist, ~90px at 1440). Body becomes a flex column with main growing, so the footer sits at the bottom. */
+body:not(.sst-app):has(> footer.sst-footer) { display: flex; flex-direction: column; min-height: 100vh; min-height: 100dvh; }
+body:not(.sst-app):has(> footer.sst-footer) > main { flex: 1 0 auto; }
+/* Google's merchant-widget wrapper (0px tall, inline margin:12px auto !important, in the flow on phones) came after the
+   footer = a 24px white strip under it; keep it in the flow but before the footer. */
+/* empty cart (phone/tablet): variant-b reserves 150px under the page for its sticky checkout bar, which an empty cart
+   does not have -> 250px of footer gradient below the content. */
+@media (max-width: 1023px) {
+  /* site.css hangs a 32px footer-gradient ::after under the cart footer to cover that padding area; not needed then */
+}
+/* phone/tablet: purchase-layout puts "Order help" in the page flow on purpose (never over merchandise) but after the
+   footer, so it sat in its own white strip under the footer. Keep it in the flow, at the end of the content, above
+   the footer; the space for the purchase dock moves to the footer's bottom padding. */
+
+/* sst-ui-chat-under-drawer-20261027 (14): desktop: the floating "Order help" button covered the cart drawer's
+   currency-estimate footer. purchase-layout already hides it while the drawer is open <=1024px; do it at every width. */
+
+/* sst-ui-ig-follow-20261027 (15): "Follow on Instagram" was black (--sstt-ink) in light mode and pink only in dark
+   mode (top-tab.css), so it looked different between screenshots. Use the pink brand button in both themes. */
+
+/* sst-ui-m5-feature-20261027 (16): /pages/m5-card-list "Featured Official Photos": wpautop left an empty <p> as the
+   2nd grid item of each .m5-feature-card (96px | 1fr), so the text wrapped into the 96px image column. */
+
+/* sst-ui-card-caption-20261027 (17): card list captions "PRB02-001Koby": ui-polish.js wraps the leading card number in
+   .sst-cc-no; show it on its own small line above the name. */
+
+/* sst-qo-op-tab-nounderline-20261027: owner 10/27 "remove underline of One Piece" — the family tab's logo-style label
+   had a yellow text underline (#f2c230) under the wordmark; the pink active bar below stays. */
+
+/* sst-qo-hide-products-20261027
+ * Owner 10/27: "don't sell for now, hide them" - Starter Set ex Eevee ex (product 50813) and BLZD-Blazing Dominion
+ * Yu-Gi-Oh booster box (product 799) have stock (13 / 47) but no price, so Quick Order showed them IN STOCK with
+ * "This item is currently not sold on this site.". Their product pages already offer no purchase (no price, no cart
+ * form, Store API is_purchasable=false), so only the Quick Order rows (grid cards, search results) are hidden.
+ * No DB write. To show them again once they have a price, delete this block. */
+tr[data-qo-handle="starter-set-ex-eevee-ex"],
+tr[data-qo-handle="blzd-blazing-dominion-sealed-japanese-yu-gi-oh-booster-box"] {
+  display: none !important;
+}
+
+/* \3c style id="sstsm-promo-css"> */
+
+/* \3c style> */
+
+/*Button align start*/
+
+/* Button align end*/
+
+/* Redirect */
+
+/* Redirect END*/
+
+/* \3c style> */
+/* Notice fallback */
+
+/* \3c style> */
+/* SST header TikTok link 20260930: keep 3 social icons within the 1440px header row */
+
+/* \3c style> */
+
+            /* Points-popover-only styles. Everything shared (panel shell, head,
+               body, actions, badge, mobile breakpoints) reuses the
+               .sst-coupon-popover* rules from style.css — this block stays in
+               header.php so no cached static asset needs a rename. */
+            
+
+/* https://samuraiswordtokyo.com/wp-content/mu-plugins/sst-new1000-welcome/new1000.3b360cc79667.css */
+/* SST NEW1000 v2 (sst-new1000-welcome): corner pop-up, details modal, price row.
+   Contract: SPEC v2 section 4. Prefix sst-n1k-. Colours are the theme tokens (style.css :root,
+   dark-mode.css html[data-sst-theme="dark"]; the site ignores prefers-color-scheme on purpose,
+   theme-toggle.js "DESIGN D6"); the literals after each var() are the light values.
+
+   Where the pop-up sits (live theme, 2026-10-30):
+   - PC (>1024px): bottom-left. Bottom-right holds Order help (config "position":"bottom-right")
+     and the TOP toasts (top-tab.css:683 right/bottom 22px). Google's merchant badge is started
+     with position 'LEFT_BOTTOM' (home HTML, merchantwidget.start) = fixed left 20px / bottom
+     20px with an iframe-driven size, so new1000.js measures it and writes --sst-n1k-lift
+     (its top edge + 12px) on the pop-up; the pop-up stands on top of it.
+   - <=1024px: the only things fixed to the bottom edge are the purchase bars
+     (.sst-qo__side / .sst-cart-mobile-checkout / .sst-sticky-cart.is-visible / .sst-co-bar).
+     purchase-layout.81939980e625.js:214-225 measures the visible one and writes its height,
+     safe-area padding included, to --sst-purchase-dock-h on <html> (enqueued on every route:
+     functions.php:596-601; default 0px at purchase-layout.9a3b7cf9f54f.css:6). Order help,
+     the pre-order pill (purchase-layout.9a3b7cf9f54f.css:114,117) and the Google badge
+     (purchase-layout.81939980e625.js:157-172) are moved into page flow, so the bar is all
+     there is to clear. The collapsed QO bar is two 44px rows + 8px padding + 6px gap
+     (purchase-layout.9a3b7cf9f54f.css:25-37) = about 110px + safe area.
+     qo-mobile-dock.{js,css,observed.js} are not enqueued anywhere any more (no PHP reference;
+     functions.php:469 "Mobile purchase geometry is owned by purchase-layout on every route").
+   - Flutter app WebView (body.sst-app): purchase-layout does not run (js:8); the QO bar sits
+     at bottom: calc(76px + safe area) (quick-order-critical.css:7045); new1000.js measures it
+     into --sst-n1k-lift as well.
+   - z-index 55: above the sticky header (style.css:204, 20), below the header popovers
+     (style.css:448, 60), the sticky cart (:3754, 70), the cart drawer (:4597, 80) and the
+     QO bar (quick-order-critical.css:6914, 1000), which the pop-up never overlaps. */
+
+/* ---------- price row: ¥24,211 (red strike) → ¥23,211 ----------
+   The elements also carry .sst-qo__sale-prices / -regular / -current (QO's own SALE classes);
+   these rules give the same look where the QO stylesheets are not on the page, and the doubled
+   class outranks QO's single-class layout rules in any load order: the live
+   quick-order-critical.min.css sets .sst-qo__sale-prices{flex-direction:column;align-items:center;
+   gap:1px} (review R2-01: without flex-direction here the row stacked into three lines). */
+
+/* ---------- cart refuses coupons (state.cartBlocked): regular price alone + notice ----------
+   The plain row carries no QO SALE class, so no strike and no column layout can reach it. */
+
+/* Wraps instead of being cut off: the English line is about 330px wide at 12px, more than any
+   pop-up body (the pop-up widths are the owner's call, review R2-15). */
+
+/* ---------- pop-up ---------- */
+
+/* Artwork + price + countdown are one button that opens the details. The theme styles every
+   <button> as a pink pill (style.css:692-714), so each state is reset here. */
+
+/* Same place and shape as the price band, red instead of yellow. No badge here: the band says it,
+   and the badge's width costs a third line in the narrow pop-up body. */
+
+/* x: 36x36 hit area, a smaller solid disc so it reads on top of the busy artwork. */
+
+/* Confirmation that replaces the pop-up content in place. */
+
+/* No artwork configured: the text block alone, room for the x. */
+
+/* Compact: artwork as a thumbnail beside the text. Tablets, phones and short PC windows. */
+
+/* Tablets and phones: stand on top of whichever purchase bar is fixed to the bottom. The
+   measured height already contains the bar's safe-area padding, so the safe area is a floor
+   (no bar) rather than an addition. */
+
+@media (max-width: 749px) {
+
+  /* Only the first line shares its height with the x. */
+
+  /* The body has no right padding here and the notice runs full width: start it below the x disc
+     (button 32px at the corner, disc inset 6px). */
+}
+
+/* Step aside while another layer owns the screen: the mobile menu (its overlay is z 55 too,
+   style.css:286), the QO review panel / cart drawer / purchase gates and the on-screen
+   keyboard (purchase-layout.9a3b7cf9f54f.css:119-123 hides its own floaters on the same
+   classes), and the modals the pre-order pill steps aside for (functions.php:21688-21692). */
+
+/* ---------- modal ---------- */
+
+/* Google's badge wrapper is z 2147483647 (merchantwidget.js); purchase-layout hides it the
+   same way under its own modal states. */
+
+/* After the deadline the discount and the code are history; the links stay. */
+
+/* Footer: always visible under the scrolling details. */
+
+/* The primary action takes the whole first row; the two links share the second. */
+
+/* ---------- dark mode (html[data-sst-theme="dark"]; the --sst-* tokens flip, these are the rest) ---------- */
+
+/* ---------- forced colours, motion, print ---------- */
+
+/* https://samuraiswordtokyo.com/wp-content/mu-plugins/sst-site-polish/site.5e8154e860a9.css */
+/* SST Site Polish · fixes for pages outside Quick Order (2026-10-13 site audit, group A "looks broken").
+   Printed in wp_footer at priority 10, after theme and plugin CSS. */
+
+/* A1) 404 "Back to home" button: label was magenta on magenta (theme link colour wins over .sst-button). */
+
+/* A2) Blog "Browse the Back order tab →" CTA: .sst-article-content a{color:accent} beat .sst-bo-cta__btn{color:#fff}. */
+
+/* A3) Add-to-cart buttons that cannot be used (sold-out variation selected / nothing selected) looked fully active. */
+
+/* A4) Weekly ranking: wpautop left a <p> holding an empty <a class="rank-card"> before every real card, and <br>
+       between router links. Each took a grid cell, so the grids looked like a checkerboard. Hide only those leftovers. */
+
+/* A5) Closed cart drawer sat exactly at the right edge and its shadow bled ~20px into every page as a grey band. */
+#sst-cart-drawer[aria-hidden="true"] { box-shadow: none !important; }
+
+/* A6) pagination moved under the grid by site.js: give it room from the last card row and the SEO block below */
+
+/* ===== B1 batch (2026-10-14): overflow + colour fixes, each block names its audit finding id ===== */
+/* home-shell-03 (+S404-08): phone set-list / character-chip strips lost their 16px left gutter.
+   The lists have padding 0 16px at <=720px (the band's own breakpoint), but scroll-snap-type:x mandatory
+   with scroll-padding:auto snaps scrollLeft to 16 on load, hiding the padding. scroll-padding-inline keeps the gutter.
+   Breakpoint must match the bands' @media (max-width:720px); above that the lists are a padding:0 grid. */
+
+/* home-shell-08: footer logo white tile -> deliberate rounded badge; PC bottom row aligned left with the link rows */
+
+/* cart-03: phone cart row - .product-remove spanned the whole first row (theme grid-column:1/-1),
+   pushing the thumbnail (grid-row:span 4) into an extra row. Put each cell back in its named area. */
+
+/* acct-1: logged-out My Account - login/register cards used min-height:100% but start below the h2,
+   so they overflowed their column by the heading height (48px) and the Login card border ran through
+   the "Register" heading on phone. Let each column be a flex column and the card fill the rest. */
+
+/* blog-11: blog filter sidebar post counts were #a5a5a5 on white (2.46:1). Light theme only; dark already 7:1. */
+
+/* info-01: /pages/members rank table - fit all 4 columns (incl. Shipping) inside the phone width instead of a hidden sideways scroll */
+
+/* info-07: FAQ category chips (/pages/faq, /pages/contact) were cut mid-word in a hidden sideways scroll on phone (theme @media max-width:600px sets nowrap+overflow-x:auto). Wrap the 6 short chips onto lines so every filter is visible. */
+
+/* POL-02: customs page "Last updated" subtitle + estimates-only note too faint in light theme (#999/#aaa on white, 2.85:1 / 2.32:1). Light only; dark already overridden to rgb(163,163,168). */
+
+/* POL-07: customs page region headers. The stray <br> inside the flex row becomes a block flex item, which adds an empty line on every header and squeezes the US title and badge on phone. The red US highlight is deliberate and kept. */
+
+/* F8: /pages/card-list phone - rankings chip row (scroll cue + gutter + tap size), Card Game filter in one row, hero CTA tap height */
+
+/* S404-08: even out set card heights (44px vs 52px when a name wraps). */
+
+/* S404-09: phone header language label ("Deutsch", "Français", "Español", 中文) was cut with an
+   ellipsis by 2-5px (13px at <=360). Give the label room by trimming the pill's inner padding and
+   caret gap instead of widening it. At <=360 the header was also already over-full (the 69px logo
+   spilled under the language pill), so there the logo, icon slots and grid gap are tightened too. */
+@media (max-width:360px){
+  .sst-header__main{ gap:4px !important; }
+  .sst-actions{ gap:1px !important; }
+  .sst-brand img{ height:24px !important; }
+  .sst-actions .sst-icon-link{ width:32px !important; }
+}
+
+/* S404-10: phone home hero slider - full-width slides (no 8px dark gap / next-slide peek),
+   arrows kept (10/8 decision) but moved to the bottom corners and shrunk visually so they
+   no longer sit on the banner's baked-in "Learn More" CTA. Tap target stays 36x36. */
+
+/* DM-02: FAQ category chips stayed white in dark mode (/pages/faq) */
+
+/* DM-03: FAQ group headings + question count readable in dark mode (light mode untouched) */
+
+/* DM-04: Start Here / Members (dark): accent-pink text (#bd3d76) fails AA on #0f0f10 / #232326.
+   Use the site's dark accent-text token (#e58bb5) for pink TEXT only. Solid pink buttons keep the #bd3d76 fill with white text.
+   !important is needed because the theme sets color with !important on ghost/link/review-product. */
+
+/* DM-05: dark PDP - neutralize warm brown "paper" fills (rgb(46,42,36)) on review summary, QUICK ORDER band and VIEW ALL PRODUCTS; keep Quick Order as the dominant filled CTA (View All outlined), mirroring light mode */
+
+/* DM-08: dark-mode Related Articles titles were #8ab4f8 link blue (dark-mode.css uses var(--sst-info-text)). Match the neutral ink that light mode uses. */
+
+/* DM-10: Start Here / Members hero trust card. The `.sst-wlc ul{padding:0}` reset (0,1,1)
+   overrides `.sst-wlc__trust{padding:1rem 1.1rem}` (0,1,0), so the check marks sit on the
+   card border and the first one is clipped by the 14px corner. Restore the intended inner
+   padding with higher specificity. All viewports, both themes (same bug in light and dark). */
+
+/* ===== B2 batch (2026-10-14): remaining detail fixes, each block names its audit finding id ===== */
+/* home-shell-02: phone footer reserved the purchase-dock space twice (maroon .sst-footer__bottom padding + Order help margin).
+   Keep only the Order help spacer (it stays in flow); drop the footer's copy while that launcher is present and closed. */
+
+/* home-shell-05: PC "New set card lists" - 8 cards in the theme's auto-fill(180px) grid made 7 + 1 orphan
+   at 1440 (and 5 + 3 around 1000). When the list holds exactly 8 (or 10) sets, use an even 4 (or 5) column
+   grid so rows fill. Wider cards also let long names ("The World's Strongest Warriors") show in full; a
+   3-line clamp keeps the ellipsis only as a last resort at narrow tablet widths. Phone strip (<=720) untouched. */
+
+/* home-shell-06: home hero slider position dots. PC: were 22x4 translucent-white bars (invisible
+   over white banners, 4px click target). Now each bar sits on a dark pill (contrast on any banner)
+   and every dot button is 36px tall (bar drawn by ::after, so the theme's 999px button radius
+   cannot clip it into wedges). The bar + pill hug the bottom edge of the target so they stay clear
+   of the banners' baked-in CTAs; PC keeps the theme's bottom-right anchor (centring collided with
+   the Refer-a-Friend / Pay-by-Card "LEARN MORE").
+   Touch devices (html.sst-native = native scroll rail): the theme hides the dots and wires no
+   handlers to them, so they are shown only after the home-shell-06 JS syncs them to the rail
+   (.sst-home-slider--dots-sync); without that JS touch keeps today's hidden dots.
+   Arrows / swipe / autoplay untouched. */
+@media (max-width:749px){
+  /* phone: centred between the S404-10 bottom-corner arrows */
+}
+
+/* home-shell-09: phone footer policy links + copyright link were 14px-tall inline tap targets -> 36px-tall boxes; row gap and edge margins absorb the padding so text sits where it did */
+
+/* PB-05: product gallery thumbnails on phone — one swipeable row instead of a 4-column grid
+   (20 thumbs on the 9-type set were a 450px block pushing title/price ~1.4 screens down). */
+@media (max-width:749px){
+  /* fade the right edge only when there are more thumbs than fit (6+) */
+}
+
+/* PB-06: PDP review grid - stop cards stretching to the tallest card in their row (a portrait review video left ~560px of blank card beside it) and cap review video height; min-width keeps the player controls readable (letterboxed on black) */
+.commentlist{align-items:start}
+
+/* PB-08: hide sold-out tiles in Frequently Bought Together. Each card has WooCommerce's .outofstock class and no add-to-cart button.
+   The selector is specific enough to beat the theme rule ".woocommerce div.product .related.products ul.products li.product{display:flex}" without !important. */
+/* PB-08: if every FBT tile is sold out, hide the whole section so no empty heading is left */
+
+/* PB-09: product description spec table (e.g. PRODUCT: Condition / Release Date / Status) - labels were centered, giving a ragged left edge and a near-zero gap after long labels. Left-align them and give a steady gap before the value. */
+
+/* psa-02: stock-1 PSA pages render the qty input as type=hidden; the empty .quantity flex/grid item left a 12px (PC) / 96px (phone) hole before ADD TO CART. Remove it and let the button take the full row. */
+
+/* psa-06: PDP "More from <set>" (section.sst-fbt.sst-sameset) with exactly ONE card left 3/4 of the row empty and ~60px+ of dead space under the price
+   (the link's min-height:100% pushed .sst-product-card__actions below the li, where overflow:hidden clipped the Add to cart button).
+   A lone card becomes a compact horizontal card (image left, text + Add to cart right, max 560px). 2+ cards are untouched. */
+
+/* COL-05: product-card link had min-height:100% of the card, pushing .sst-product-card__actions below the
+   card's overflow:hidden edge (blank band, Add to cart never visible). Let the link fill only the leftover
+   space so the actions row sits inside the card, and show the button on PC instead of hover-only. */
+
+/* COL-07: Top 5 rank digits declared Fraunces (never loaded) -> fell back to Georgia old-style figures (3/4/5 drop below baseline). Use the UI sans stack, bold, lining tabular figures. Parent class added so it beats the theme's inline .sst-col-top5__no rule regardless of source order. */
+
+/* COL-08: collection Top 5 — drop the last row's hairline so it doesn't double up with the hero's bottom rule */
+
+/* COL-12: phone "Browse by character" chips on character/PSA collection pages (/collections/psa10, /collections/pikachu-cards ...)
+   were 28px-tall tap targets stacked 8px apart. Lift them to 40px with the label centred; widths, wrap and gap unchanged. */
+
+/* cart-02: PDP "added to your cart" notice had no padding/border/background; the only frame was the
+   browser focus ring (role=alert tabindex=-1 gets focused on load), text touched the ring and the
+   inline "View cart" button overflowed it. Card it, put the button at the end, drop the ring.
+   Scoped to the product page wrapper (cart page already styles its own notices). */
+
+/* cart-07: desktop empty cart - the cart's 2-column grid (696px | 520px) put the empty card and "Return to shop" in the left column only, leaving the right half blank. Span both columns and centre a 640px block on the content area. Only rendered when the cart is empty. */
+
+/* cart-08: short cart page left a bare body-colour band under the magenta footer
+   (PC: viewport area below the footer; phone/tablet: variant-b's 150px sticky-bar padding-bottom
+   plus the ~24px Google merchant-widget wrapper margin). Paint the canvas with the footer gradient,
+   clip the body background to its content box (selector beats variant-b.css
+   "body.sst-co-ab.sst-co-v-b{background:...}", which resets the clip), and bridge the widget-wrapper
+   gap with a footer-coloured strip. Layout, scroll height and the sticky-bar padding are unchanged. */
+html:has(> body.woocommerce-cart){background:linear-gradient(90deg,#9e2c5f,#0a0a0a);}
+
+/* cart-10: phone cart totals - "Calculate shipping" toggle was a 15px-tall inline text link
+   (checkout-ab variant-b forces display:inline); give it a 44px tap row without changing its look */
+
+/* cart-11: header Cart / Coupons count badges (theme: top:1px;left:18px, 16px+ wide) ended exactly where the
+   "Cart"/"Coupons" text label starts (0px gap) and a 2-digit count covered the first letter. Anchor the badge
+   by its RIGHT edge 4px before the label (link padding 4 + icon 24 + 2) and lift it onto the icon corner, so
+   wider counts grow left over the icon instead of into the text. Only where the label is shown (>=901px);
+   the icon-only header below that is untouched. */
+@media (min-width:901px){
+  .sst-icon-link.sst-cart-toggle > .sst-cart-count{
+    left:auto;
+    right:calc(100% - 30px);
+    top:-3px;
+  }
+}
+
+/* acct-2: /my-account?register=1 (logged out) - the JS below adds body.sst-register-first; on phone
+   show the Register card before the Login card so the "Create a free account" link lands on sign-up. */
+
+/* acct-4: /orders/ guest header card had 0 side padding (text flush on border); match lower cards */
+
+/* acct-7: My Account (login/register) and guest /orders/ buttons fell back to the UA default font (Arial)
+   while labels/headings use Figtree. The Google button's inner .nsl-button also had an explicit Arial rule
+   (.sst-google-button .nsl-button). Inherit the page font; size/weight/height unchanged. */
+
+/* acct-9: Register card privacy notice was 15px #111, louder than the 13px labels / 14px promo copy */
+
+/* blog-02: /blogs/news index cards printed a white title + dark gradient over the
+thumbnail, colliding with headlines baked into most featured images. Put the image
+on top (same 40:21 box) and the title/date in a plain body under it, like the
+Popular Articles strip. Scoped to .sst-grid-articles. */
+
+/* blog-04: in-content featured image that repeats the article hero (same attachment) - JS adds .sst-dup-hero */
+
+/* blog-10: /blogs/news 3-column grid - page 1 renders 10 posts, so the last row held one lone card with ~700px
+   of empty space beside it. When the last visible card starts a new row on its own, let it span the full row
+   as a wide card: thumbnail at the exact width of one column (same size as the cards above), title/date on the
+   card's own dark panel to its right. Matches only a lone last card, so 9/12/48-card pages and filtered
+   (client-rendered) results that fill their last row are untouched. Phone grid is 1 column, so >=750px only. */
+/* blog-10 dark: the #111 panel melts into the dark page; give the wide card the theme's raised surface + hairline. */
+
+/* info-03: FAQ (/pages/faq) and Contact (/pages/contact) blocks were set in Inter and inset 24px (PC) / 16px (phone) from the page H1, with a second H1-sized title (46/31px) stacked under it - read like an embedded widget. Use the site font (Figtree, inherited), align plain sections with the H1 (tinted --soft panels keep their inner padding), and drop the inner H2 to section-heading size so the page H1 leads. */
+
+/* info-04: Start Here / Members phone sticky "Create a free account" bar. It duplicated the hero CTA
+   on the first screen and covered the 4th trust tick. The bar now stays off-screen while the hero
+   .sst-wlc__actions is in view. Hidden only once JS has armed it (data-sst-sticky-armed), so if the
+   script never runs the bar stays visible as before (fail open). */
+
+/* info-06: /pages/members + /pages/start-here welcome-points stat - `.sst-wlc__card p` (0,1,1) was shrinking p.sst-wlc__big to 15px grey with a ~5px "pt"; restore the big figure (kept on one line in the narrow 4-up Start Here card) and a readable unit */
+
+/* info-08: /pages/contact — (1) PC: the 3 route cards (.sst-contact-v3__route has height:100% in a stretch grid) were all 644px tall, leaving 350-395px of blank white under Payment/Order. Size each card to its content. (2) The 3-cell policy strip items are grids with default align-content, so the 1-line titles were stretched to 16-54px and the bodies started at uneven y (739/729/701). Pack title+body to the top so every body starts at the same line. */
+
+/* info-10: Start Here - space CTA rows and step cards off the block above (was 0px) */
+
+/* info-11: Start Here step cards. In the 4-column step grid (>=880px, matching page.css) the 34px
+   badge column squeezes the H3/P to ~120px and the body wraps 5-9 lines; stack the badge above the
+   text so copy uses the full card width. The 2-column range (560-879px) keeps the row layout, which
+   already fits in 2-3 lines. Also balance section headings to drop the "from / us" orphan. */
+
+/* F4: /pages/card-list (PC) - .sst-page-content is capped at 900px with margin 0 inside the centered 1080px
+   article.sst-page, so the search hub, set grid, rankings router and commerce routers hug the left
+   (L180/R1080 on 1440, 360px empty gutter right) under a centered full-bleed hero. Center that column.
+   Scoped with :has() to the card-list hub page only. Phone is unaffected (column already full width there). */
+.sst-page > .sst-page-content:has(> .sst-card-search-hub){
+  margin-left:auto;
+  margin-right:auto;
+}
+
+/* F5: /pages/op16-card-list PC - card grid column (900px) and Journal (20px inset) now share the 1080px article edges with "Other One Piece card lists" */
+@media (min-width:750px){
+article.sst-page > .sst-page-content:has(> .sst-op16-list){max-width:none}
+}
+
+/* F7 card-list hub: 3-up game cards - give spare height to the body row so all eyebrows line up */
+/* F7 card-list hub: set tiles - spare height goes below the text, and NEW / LATEST SET badges sit in the image corner, so code+game rows align */
+/* F7 card-list hub: LATEST (double-width) tile image matches the square tiles' height (grid gap 26px, 16px at <=900px) */
+
+/* F11: /pages/weekly-ranking section headers ("Pokémon Top 20" etc.) — the design is an underline
+   (padding 0 0 10px + border-bottom), but a global html :where([style^="border-color"]) rule sets
+   border-style:solid on all sides, so the inline border-color draws a 3px box that the title and
+   "View All Sets" touch. Keep only the bottom rule. */
+/* F11: the auto-inserted <p> around "View All Sets" adds paragraph margins, leaving a ~40px gap above the underline. */
+
+/* S404-11: core search/archive pagination ("Previous 1 2 3 … 5 Next") was unstyled inline text
+   (digits 7-9x19px). Turn it into a wrapped row of 40px tap chips; current page filled, dots plain. */
+
+/* DM-07: Start Here "Members get more" — `.sst-wlc__card p` (0,1,1) beat `.sst-wlc__big` (0,1,0), so the 2,000pt figure rendered at 15px muted; restore the intended big number.
+   Also the theme's p margin reset zeroed `.sst-wlc__more` margin-top, so the CTA sat flush on the card row; restore the 1.5rem gap. */
+
+/* \3c style id="sst-qo-gate-style"> */
+
+    /* sst-qo-release-gate-v2/v3: プレオーダータイルの強調 */
+    
