@@ -12,18 +12,18 @@ export const PRICE_FACTOR = 0.62;
 
 export const CURRENCY_SYMBOL = "₩";
 
-/** Prices drop everything below this step (₩145,226 → ₩140,000). */
-export const ROUND_STEP = 10000;
+/** Prices are rounded to the nearest multiple of this step (₩147,600 → ₩150,000, ₩146,200 → ₩145,000). */
+export const ROUND_STEP = 5000;
 
 /**
  * Won amount shown for a source price in yen: converted, scaled by
- * PRICE_FACTOR, then rounded down to ROUND_STEP. Anything priced above zero
- * shows at least one step (₩10,000) instead of ₩0.
+ * PRICE_FACTOR, then rounded to the nearest ROUND_STEP. Anything priced above
+ * zero shows at least one step (₩5,000) instead of ₩0.
  */
 export function toWon(yen: number): number {
   const won = yen * JPY_TO_KRW * PRICE_FACTOR;
   if (won <= 0) return 0;
-  return Math.max(ROUND_STEP, Math.floor(won / ROUND_STEP) * ROUND_STEP);
+  return Math.max(ROUND_STEP, Math.round(won / ROUND_STEP) * ROUND_STEP);
 }
 
 /** Formats an amount that is already in won, e.g. ₩140,000. */
