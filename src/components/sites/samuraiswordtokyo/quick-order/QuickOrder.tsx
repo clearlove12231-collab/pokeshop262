@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState, type RefObject } from "react";
 import data from "../data/quick-order.json";
 import { LINK_TO_SOURCE, sourceHref, src } from "../paths";
-import { yen } from "../store";
+import { formatPrice } from "../price";
 import type { Product, ProductGroup } from "../types";
 import { ProductRow } from "./ProductRow";
 
@@ -162,15 +162,15 @@ function Toolbar({
         </div>
         <select className="sst-qo__quick-filter sst-qo__price-filter" value={filters.quick} onChange={(e) => set({ quick: e.target.value })}>
           <option value="all">가격: 전체</option>
-          <option value="under-10000">JPY 1만 미만</option>
-          <option value="10000-20000">JPY 1만-2만</option>
-          <option value="over-20000">JPY 2만 이상</option>
+          <option value="under-10000">{`${formatPrice(10000)} 미만`}</option>
+          <option value="10000-20000">{`${formatPrice(10000)}–${formatPrice(20000)}`}</option>
+          <option value="over-20000">{`${formatPrice(20000)} 이상`}</option>
         </select>
         <div className="sst-psa-price">
           <div className="sst-psa-price__head">
             <span className="sst-psa-price__label">Price</span>
             <span className="sst-psa-price__range">
-              {yen(lo)} – {yen(hi)}
+              {formatPrice(lo)} – {formatPrice(hi)}
             </span>
           </div>
           <div className="sst-psa-price__track">

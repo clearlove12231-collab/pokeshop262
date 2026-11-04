@@ -115,5 +115,3 @@ export function useStore(): StoreValue {
   if (!ctx) throw new Error("useStore must be used inside <StoreProvider>");
   return ctx;
 }
-
-export const yen = (n: number) => `¥${n.toLocaleString("en-US")}`;

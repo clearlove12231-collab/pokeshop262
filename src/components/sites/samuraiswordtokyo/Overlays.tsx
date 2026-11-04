@@ -2,7 +2,8 @@
 
 /* eslint-disable @next/next/no-img-element */
 import { useEffect, useState } from "react";
-import { useStore, yen } from "./store";
+import { formatPrice } from "./price";
+import { useStore } from "./store";
 import { sourceHref, src } from "./paths";
 
 export function CartDrawer() {
@@ -51,7 +52,7 @@ export function CartDrawer() {
                         +
                       </button>
                     </div>
-                    <span className="sst-cart-drawer__line-total">{yen(line.qty * line.priceYen)}</span>
+                    <span className="sst-cart-drawer__line-total">{formatPrice(line.qty * line.priceYen)}</span>
                     <button type="button" className="sst-cart-drawer__remove" onClick={() => removeLine(line.variantId)}>
                       삭제
                     </button>
@@ -65,7 +66,7 @@ export function CartDrawer() {
           {cart.length > 0 && (
             <div className="sst-cart-drawer__estimate-line">
               <span>상품 소계</span>
-              <strong>{yen(cartTotal)}</strong>
+              <strong>{formatPrice(cartTotal)}</strong>
             </div>
           )}
           {/* Checkout lives on the source store; this local cart is not transferred. */}

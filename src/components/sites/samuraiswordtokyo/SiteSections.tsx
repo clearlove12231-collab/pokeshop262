@@ -98,7 +98,7 @@ export function SiteFooter() {
           ))}
         </ul>
         <div className="sst-footer__locale" aria-label="스토어 통화">
-          <span className="sst-footer__locale-note">가격은 JPY로 표시됩니다.</span>
+          <span className="sst-footer__locale-note">가격은 원화(KRW)로 표시됩니다.</span>
         </div>
       </div>
       <div className="sst-footer__bottom">

@@ -3,6 +3,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { useState, type CSSProperties } from "react";
 import { sourceHref } from "../paths";
+import { CURRENCY_SYMBOL, formatAmount, yenFromText } from "../price";
 import { useStore } from "../store";
 import type { Offer, Product } from "../types";
 
@@ -14,14 +15,14 @@ function starFills(avg: number): string[] {
   });
 }
 
-function PriceAmount({ text, bdi }: { text: string; bdi?: boolean }) {
-  const amount = text.replace(/^¥/, "");
+/** Price in the source's WooCommerce markup, shown in KRW (see price.ts). */
+function PriceAmount({ yen, bdi }: { yen: number; bdi?: boolean }) {
   const inner = (
     <>
       <span className="woocommerce-Price-currencySymbol" translate="no" dir="auto">
-        ¥
+        {CURRENCY_SYMBOL}
       </span>
-      {amount}
+      {formatAmount(yen)}
     </>
   );
   return <span className="woocommerce-Price-amount amount">{bdi ? <bdi>{inner}</bdi> : inner}</span>;
@@ -153,15 +154,15 @@ function OfferCell({ product, offer }: { product: Product; offer: Offer }) {
             <span className="sst-qo__offer-price sst-qo__offer-price--sale">
               <span className="sst-qo__sale-prices">
                 <del className="sst-qo__sale-regular">
-                  <PriceAmount text={offer.saleRegular} bdi />
+                  <PriceAmount yen={yenFromText(offer.saleRegular)} bdi />
                 </del>
                 <ins className="sst-qo__sale-current">
-                  <PriceAmount text={offer.saleCurrent} bdi />
+                  <PriceAmount yen={yenFromText(offer.saleCurrent)} bdi />
                 </ins>
               </span>
             </span>
           ) : (
-            <span className="sst-qo__offer-price">{offer.price && <PriceAmount text={offer.price} />}</span>
+            <span className="sst-qo__offer-price">{offer.price && <PriceAmount yen={offer.priceYen} />}</span>
           )}
         </div>
         <div className="sst-qo__offer-action">{action}</div>

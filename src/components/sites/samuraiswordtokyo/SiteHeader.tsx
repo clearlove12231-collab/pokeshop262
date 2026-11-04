@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { formatPrice } from "./price";
 import { useStore } from "./store";
 import { sourceHref, src } from "./paths";
 
@@ -254,10 +255,10 @@ export function SiteHeader() {
           <div className="sst-cb sst-cb--header">
             <div className="sst-cb__txt">
               <span className="sst-cb-long">
-                Spend <b>¥30,000</b> to unlock a <b>¥2,000 off</b> coupon
+                Spend <b>{formatPrice(30000)}</b> to unlock a <b>{formatPrice(2000)} off</b> coupon
               </span>
               <span className="sst-cb-short">
-                <b>¥2,000 off</b> from ¥30,000
+                <b>{formatPrice(2000)} off</b> from {formatPrice(30000)}
               </span>
             </div>
             <div className="sst-cb__track">
