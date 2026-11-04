@@ -1,0 +1,80 @@
+/*
+ * Clone-only: the purchase-inquiry notice opened by the cart's "결제하기".
+ * Shared by both pages (imported by CartDrawer). Colours and radii follow the
+ * source theme tokens (--sst-accent, --sst-ink, --sst-line, --sst-radius).
+ * Sits above the cart drawer, which uses z-index 2147483001 on narrow screens.
+ */
+.sst-order-notice {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: #00000073;
+}
+
+.sst-order-notice__panel {
+  position: relative;
+  display: grid;
+  gap: 14px;
+  width: min(420px, 100%);
+  padding: 28px 24px 24px;
+  border-radius: 12px;
+  background: #fff;
+  color: var(--sst-ink, #121212);
+  box-shadow: 0 18px 48px #0000003d;
+  text-align: center;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.sst-order-notice__title {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.sst-order-notice__text {
+  margin: 0;
+  word-break: keep-all;
+}
+
+.sst-order-notice__url {
+  color: var(--sst-accent, #9e2c5f);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+  /* Wrap the URL as a whole when it fits on its own line; break inside it only if it must. */
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.sst-order-notice__go.button {
+  width: 100%;
+  min-height: 44px;
+  text-decoration: none;
+}
+
+/* The theme styles every <button> as a filled accent button; the close × is a plain icon. */
+.sst-order-notice__close,
+.sst-order-notice__close:hover {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  min-height: 0;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--sst-ink, #121212);
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.sst-order-notice__close:hover {
+  background: #f2f3f5;
+}

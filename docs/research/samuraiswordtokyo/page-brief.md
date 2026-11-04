@@ -76,8 +76,11 @@ headline (834 reviews, 245 with photos, 86 products) also counts ratings it neve
    price slider, sort, Popular Pokemon chips); card grid. "전체" shows every group with one toolbar and hides rows
    already in Preorder/HOT. Each group shows 24 rows and loads 24 more when its status line comes within 480px of
    the viewport ("Scroll to load more products (24 / 87 shown)."), like the source.
-4. Cart drawer (`body.sst-cart-open`): lines, quantity steppers, remove, subtotal. Checkout is not part of the clone;
-   the cart lives in localStorage (`sst-clone-cart-v2`) and is shared by both pages.
+4. Cart drawer (`body.sst-cart-open`): lines, quantity steppers, remove, subtotal and a filled "결제하기" button
+   (the source's `.button.alt`). No payment is taken: "결제하기" opens a notice (`CartDrawer.tsx`, `cart-notice.css`)
+   — "상세 패키지 구매문의는 https://www.tiktok.com/@pokeshopkr 으로 부탁드립니다." — with a
+   "TikTok으로 이동하기" button to `INQUIRY_URL` (`shop.ts`) in a new tab. Esc closes the notice, then the drawer.
+   The cart lives in localStorage (`sst-clone-cart-v3`) and is shared by both pages.
 
 ## Sections — reviews
 

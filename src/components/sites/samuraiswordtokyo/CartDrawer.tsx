@@ -1,24 +1,61 @@
 "use client";
 
 /* eslint-disable @next/next/no-img-element */
-import { useEffect } from "react";
+import "./cart-notice.css";
+import { useEffect, useRef, useState } from "react";
 import { formatWon } from "./price";
+import { INQUIRY_URL } from "./shop";
 import { useStore } from "./store";
 
 /**
- * Slide-in cart (body.sst-cart-open), same markup as the source drawer.
- * Checkout belongs to the source store and is not part of the clone, so the
- * footer shows the subtotal only.
+ * "결제하기" does not take payment: it opens this notice, which asks for
+ * package purchase inquiries on TikTok and links there (new tab, so the cart stays open).
  */
+function OrderNotice({ onClose }: { onClose: () => void }) {
+  const goRef = useRef<HTMLAnchorElement>(null);
+  useEffect(() => {
+    goRef.current?.focus();
+  }, []);
+  return (
+    <div className="sst-order-notice" onClick={(e) => e.target === e.currentTarget && onClose()}>
+      <div className="sst-order-notice__panel" role="dialog" aria-modal="true" aria-labelledby="sst-order-notice-title">
+        <button type="button" className="sst-order-notice__close" aria-label="닫기" onClick={onClose}>
+          ×
+        </button>
+        <strong id="sst-order-notice-title" className="sst-order-notice__title">
+          구매 문의 안내
+        </strong>
+        <p className="sst-order-notice__text">
+          상세 패키지 구매문의는{" "}
+          <a className="sst-order-notice__url" href={INQUIRY_URL} target="_blank" rel="noopener noreferrer">
+            {INQUIRY_URL}
+          </a>{" "}
+          으로 부탁드립니다.
+        </p>
+        <a ref={goRef} className="button sst-order-notice__go" href={INQUIRY_URL} target="_blank" rel="noopener noreferrer">
+          TikTok으로 이동하기
+        </a>
+      </div>
+    </div>
+  );
+}
+
+/** Slide-in cart (body.sst-cart-open), same markup as the source drawer. */
 export function CartDrawer() {
   const { cart, cartTotal, cartOpen, setCartOpen, setQty, removeLine } = useStore();
+  const [noticeOpen, setNoticeOpen] = useState(false);
 
   useEffect(() => {
-    if (!cartOpen) return;
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setCartOpen(false);
+    if (!cartOpen && !noticeOpen) return;
+    // Esc closes the top layer first: the notice, then the drawer.
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      if (noticeOpen) setNoticeOpen(false);
+      else setCartOpen(false);
+    };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [cartOpen, setCartOpen]);
+  }, [cartOpen, noticeOpen, setCartOpen]);
 
   return (
     <>
@@ -72,10 +109,15 @@ export function CartDrawer() {
               <span>상품 소계</span>
               <strong>{formatWon(cartTotal)}</strong>
             </div>
+            {/* The source's filled checkout button (`.button.alt`); here it opens the inquiry notice. */}
+            <button type="button" className="button checkout wc-forward alt" onClick={() => setNoticeOpen(true)}>
+              결제하기
+            </button>
           </div>
         )}
       </div>
       <div className="sst-cart-drawer-overlay" onClick={() => setCartOpen(false)} />
+      {noticeOpen && <OrderNotice onClose={() => setNoticeOpen(false)} />}
     </>
   );
 }
