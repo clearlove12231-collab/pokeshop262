@@ -12,7 +12,7 @@ import {
 import type { CartLine } from "./types";
 
 /** Bumped whenever shop prices or stock rules change, so carts saved with old prices start empty. */
-const CART_KEY = "sst-clone-cart-v3";
+const CART_KEY = "sst-clone-cart-v4";
 
 interface StoreValue {
   cart: CartLine[];

@@ -110,12 +110,14 @@ function sortRows(rows: Product[], sort: string): Product[] {
 }
 
 function Toolbar({
+  family,
   filters,
   setFilters,
   count,
   ceiling,
   popular,
 }: {
+  family: Family;
   filters: Filters;
   setFilters: (f: Filters) => void;
   count: string;
@@ -146,7 +148,7 @@ function Toolbar({
           <div className="sst-psa-price__head">
             <span className="sst-psa-price__label">Price</span>
             <span className="sst-psa-price__range">
-              {formatPrice(lo)} – {formatPrice(hi)}
+              {formatPrice(lo, family)} – {formatPrice(hi, family)}
             </span>
           </div>
           <div className="sst-psa-price__track">
@@ -326,7 +328,9 @@ export function QuickOrder() {
                   <p className="sst-qo__label" hidden={sub !== "all"}>
                     {g.label}
                   </p>
-                  {gi === 0 && <Toolbar filters={filters} setFilters={setFilters} count={count} ceiling={ceiling} popular={POPULAR[family]} />}
+                  {gi === 0 && (
+                    <Toolbar family={family} filters={filters} setFilters={setFilters} count={count} ceiling={ceiling} popular={POPULAR[family]} />
+                  )}
                   <div className="sst-qo__table-wrap">
                     <table className="sst-qo__table">
                       <thead>

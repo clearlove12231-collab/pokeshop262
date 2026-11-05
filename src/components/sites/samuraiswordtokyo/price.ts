@@ -5,8 +5,10 @@
  *   source yen × JPY_TO_KRW × PRICE_FACTOR, rounded to ROUND_STEP, + PRICE_MARKUP_WON
  *
  * and a "슈링크 없음" (no-shrink) offer costs NOSHRINK_DISCOUNT less than the
- * same product's sealed offer.
+ * same product's sealed offer. Products of a game tab listed in FAMILY_DISCOUNT
+ * cost that much less again.
  */
+import type { Family } from "./families";
 import type { Offer, Product } from "./types";
 
 /** JPY → KRW rate (open.er-api.com, updated 2026-11-04 00:02 UTC: 1 JPY = 8.488834 KRW). */
@@ -24,6 +26,12 @@ export const PRICE_MARKUP_WON = 50000;
 /** No-shrink offers cost this much less than the sealed offer of the same product. */
 export const NOSHRINK_DISCOUNT = 0.15;
 
+/**
+ * Extra discount per game tab (0.15 = 15% off), taken off the shop price
+ * (after the markup) and rounded to ROUND_STEP — e.g. One Piece ₩115,000 → ₩100,000.
+ */
+export const FAMILY_DISCOUNT: Partial<Record<Family, number>> = { onepiece: 0.15 };
+
 export const CURRENCY_SYMBOL = "₩";
 
 const roundWon = (won: number) => Math.round(won / ROUND_STEP) * ROUND_STEP;
@@ -39,6 +47,16 @@ export function toWon(yen: number): number {
 export function shopWon(yen: number): number {
   return yen > 0 ? toWon(yen) + PRICE_MARKUP_WON : 0;
 }
+
+/** Shop price on a game tab: shopWon() less that tab's FAMILY_DISCOUNT, rounded to ROUND_STEP. */
+export function familyWon(yen: number, family: Family): number {
+  const won = shopWon(yen);
+  const discount = FAMILY_DISCOUNT[family] ?? 0;
+  return won && discount ? Math.max(ROUND_STEP, roundWon(won * (1 - discount))) : won;
+}
+
+/** Game tab of a product, from its group id (e.g. "onepiece-box"). */
+const familyOf = (product: Product) => product.group.split("-")[0] as Family;
 
 export interface OfferPrice {
   /** What the customer pays (shown, and used by the cart). */
@@ -59,8 +77,9 @@ export function offerPrice(product: Product, offer: Offer): OfferPrice | null {
     const sealedPay = sealed ? offerPrice(product, sealed)?.pay : undefined;
     if (sealedPay) return { pay: Math.min(roundWon(sealedPay * (1 - NOSHRINK_DISCOUNT)), sealedPay - ROUND_STEP) };
   }
-  const pay = shopWon(offer.priceYen);
-  const regular = offer.saleRegularYen ? shopWon(offer.saleRegularYen) : 0;
+  const family = familyOf(product);
+  const pay = familyWon(offer.priceYen, family);
+  const regular = offer.saleRegularYen ? familyWon(offer.saleRegularYen, family) : 0;
   return regular && regular !== pay ? { pay, regular } : { pay };
 }
 
@@ -74,7 +93,7 @@ export function formatWon(won: number): string {
   return `${CURRENCY_SYMBOL}${formatAmount(won)}`;
 }
 
-/** Full label for a source price in yen at shop prices, e.g. ¥10,000 → ₩100,000. */
-export function formatPrice(yen: number): string {
-  return formatWon(shopWon(yen));
+/** Full label for a source price in yen at a game tab's shop prices, e.g. ¥10,000 → ₩100,000 (Pokemon). */
+export function formatPrice(yen: number, family: Family): string {
+  return formatWon(familyWon(yen, family));
 }

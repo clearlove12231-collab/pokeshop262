@@ -36,8 +36,10 @@ so each page loads only its own stylesheet. Both render `SiteChrome` (header + c
 - **Reviews: Pokemon and One Piece.** Other categories (PSA 10, 기타 상품) and the all-reviews page are not cloned;
   each reviews page shows 포켓몬 and 원피스 chips. All review numbers (home bar and reviews pages) are counted from
   the cloned reviews of that category.
-- **One Piece** uses the same price formula as Pokemon, and its stock is shown as the source has it (no sold-out
-  override). Carton offers are hidden like on the source (carton sales are paused there).
+- **One Piece** uses the same price formula as Pokemon, then 15% off (`FAMILY_DISCOUNT` in `price.ts`, taken off the
+  shop price and rounded to ₩5,000 — e.g. ¥13,200: ₩115,000 → ₩100,000; ¥3,500: ₩65,000 → ₩55,000; struck sale prices
+  and the price slider follow). Its stock is shown as the source has it (no sold-out override). Carton offers are
+  hidden like on the source (carton sales are paused there).
 - **Prices** (`price.ts`): 58% of the source price, converted to KRW and rounded to the nearest ₩5,000, plus ₩50,000:
   `round5000(yen × JPY_TO_KRW (8.4888) × PRICE_FACTOR (0.58)) + PRICE_MARKUP_WON (50,000)` — e.g. ¥10,000 → ₩100,000.
   A "슈링크 없음" offer costs `NOSHRINK_DISCOUNT` (15%) less than the same product's sealed offer (its paid price),
@@ -47,7 +49,7 @@ so each page loads only its own stylesheet. Both render `SiteChrome` (header + c
 - **Sold out** (`shop.ts`): every product of "포켓몬 스페셜" (`pokemon-other`) and "포켓몬 벌크" (`pokemon-bulk`),
   including their copies in "예약 주문 / HOT", is shown as 품절 (stock "품절", no quantity stepper, price kept), and
   the stock filters/sort treat them as out of stock. Applied when the page loads the catalog, so re-extracting the
-  data keeps the rule. The cart storage key is bumped (`sst-clone-cart-v3`) whenever prices/stock rules change.
+  data keeps the rule. The cart storage key is bumped (`sst-clone-cart-v4`) whenever prices/stock rules change.
 
 ## Catalog
 
@@ -108,7 +110,7 @@ photos / 27 products for the same reason as above.
    (the source's `.button.alt`). No payment is taken: "결제하기" opens a notice (`CartDrawer.tsx`, `cart-notice.css`)
    — "상세 패키지 구매문의는 https://www.tiktok.com/@pokeshopkr 으로 부탁드립니다." — with a
    "TikTok으로 이동하기" button to `INQUIRY_URL` (`shop.ts`) in a new tab. Esc closes the notice, then the drawer.
-   The cart lives in localStorage (`sst-clone-cart-v3`) and is shared by both pages.
+   The cart lives in localStorage (`sst-clone-cart-v4`) and is shared by both pages.
 
 ## Sections — reviews
 
