@@ -8,6 +8,9 @@ import type { Offer, Product, ProductGroup } from "./types";
 /** Where purchase inquiries go: the cart's "결제하기" shows a notice that links here. */
 export const INQUIRY_URL = "https://www.tiktok.com/@pokeshopkr";
 
+/** The notice's second destination, shown as its own button under the TikTok one. */
+export const INSTAGRAM_URL = "https://www.instagram.com/pokeparcelkr";
+
 /**
  * Groups whose products are shown as sold out ("포켓몬 스페셜", "포켓몬 벌크").
  * Matched on the product's own group, so their copies in "예약 주문 / HOT" are sold out too.

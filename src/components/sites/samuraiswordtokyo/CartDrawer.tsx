@@ -4,12 +4,13 @@
 import "./cart-notice.css";
 import { useEffect, useRef, useState } from "react";
 import { formatWon } from "./price";
-import { INQUIRY_URL } from "./shop";
+import { INQUIRY_URL, INSTAGRAM_URL } from "./shop";
 import { useStore } from "./store";
 
 /**
  * "결제하기" does not take payment: it opens this notice, which asks for
- * package purchase inquiries on TikTok and links there (new tab, so the cart stays open).
+ * package purchase inquiries on TikTok and links there, with a second button to
+ * Instagram (both in a new tab, so the cart stays open).
  */
 function OrderNotice({ onClose }: { onClose: () => void }) {
   const goRef = useRef<HTMLAnchorElement>(null);
@@ -34,6 +35,9 @@ function OrderNotice({ onClose }: { onClose: () => void }) {
         </p>
         <a ref={goRef} className="button sst-order-notice__go" href={INQUIRY_URL} target="_blank" rel="noopener noreferrer">
           TikTok으로 이동하기
+        </a>
+        <a className="button sst-order-notice__go" href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
+          Instagram으로 이동하기
         </a>
       </div>
     </div>
