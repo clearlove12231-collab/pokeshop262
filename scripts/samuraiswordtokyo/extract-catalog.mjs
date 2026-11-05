@@ -1,17 +1,18 @@
 #!/usr/bin/env node
 /**
- * Builds the Pokemon quick-order catalog for the clone from the live store:
- *   - page HTML of https://samuraiswordtokyo.com/ko/?qo_tab=pokemon
+ * Builds a quick-order catalog (one game tab) for the clone from the live store:
+ *   - page HTML of https://samuraiswordtokyo.com/ko/?qo_tab=<family>
  *     (preorder/HOT rows, group labels, review stars data, group cache keys)
  *   - the store's group endpoint (?samurai_qo_group=1&action=samurai_qo_group),
- *     which returns 24 rendered rows per request, for every other Pokemon group
+ *     which returns 24 rendered rows per request, for every other group of the tab
  *
  * Individual PSA graded cards are not sold on the clone: the PSA10 group is
  * skipped and any remaining row whose name mentions PSA is dropped.
  * Prices stay in JPY here; the page converts them (see price.ts).
  *
- * Output: src/components/sites/samuraiswordtokyo/data/quick-order.json
- * Usage:  node scripts/samuraiswordtokyo/extract-catalog.mjs
+ * Output: src/components/sites/samuraiswordtokyo/data/quick-order.json (pokemon)
+ *         src/components/sites/samuraiswordtokyo/data/quick-order-onepiece.json (onepiece)
+ * Usage:  node scripts/samuraiswordtokyo/extract-catalog.mjs [pokemon|onepiece]
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -22,15 +23,33 @@ import { createRequire } from "node:module";
 const { parse } = createRequire(import.meta.url)("next/dist/compiled/node-html-parser");
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
-const outFile = path.join(root, "src/components/sites/samuraiswordtokyo/data/quick-order.json");
+
+/** Game tabs the clone sells: groups in source order, PSA10 (individual graded cards) left out. */
+const FAMILIES = {
+  pokemon: {
+    file: "quick-order.json",
+    groups: ["pokemon-preorder", "pokemon-box", "pokemon-bulk", "pokemon-other", "pokemon-vintage"],
+  },
+  onepiece: {
+    file: "quick-order-onepiece.json",
+    groups: ["onepiece-preorder", "onepiece-box", "onepiece-other"],
+  },
+};
+const familyName = process.argv[2] ?? "pokemon";
+const family = FAMILIES[familyName];
+if (!family) {
+  console.error(`usage: extract-catalog.mjs [${Object.keys(FAMILIES).join("|")}]`);
+  process.exit(1);
+}
+const outFile = path.join(root, "src/components/sites/samuraiswordtokyo/data", family.file);
 
 const ORIGIN = "https://samuraiswordtokyo.com";
-const PAGE_URL = `${ORIGIN}/ko/?qo_tab=pokemon`;
+const PAGE_URL = `${ORIGIN}/ko/?qo_tab=${familyName}`;
 const UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36";
 const PAGE_SIZE = 24;
 
-/** Pokemon groups in source order; PSA10 (individual graded cards) is left out. */
-const GROUP_ORDER = ["pokemon-preorder", "pokemon-box", "pokemon-bulk", "pokemon-other", "pokemon-vintage"];
+const GROUP_ORDER = family.groups;
+const PREORDER_GROUP = GROUP_ORDER[0];
 const isPsaSingle = (name) => /\bPSA\s?\d/i.test(name);
 
 /** Group classes the source adds at runtime or for features this clone leaves out. */
@@ -78,7 +97,14 @@ function localSrcSet(srcset) {
  * returns English ones from the group endpoint; the clone uses the Korean
  * labels everywhere.
  */
-const LABELS_KO = { Item: "상품", Sealed: "밀봉", "No Shrink": "슈링크 없음" };
+const LABELS_KO = {
+  Item: "상품",
+  Sealed: "밀봉",
+  "No Shrink": "슈링크 없음",
+  Box: "박스",
+  "Card only (ungraded)": "카드만 (미등급)",
+  "Magazine + promo card": "잡지 + 프로모 카드",
+};
 const localLabel = (label) => LABELS_KO[label] ?? label;
 
 /** What the offer's action area shows on the source. */
@@ -185,7 +211,7 @@ async function main() {
     };
     let rows = rowsOf(el.querySelector("tbody")?.innerHTML ?? "").map((tr) => parseRow(tr, ratings));
     let total = rows.length;
-    if (id !== "pokemon-preorder") {
+    if (id !== PREORDER_GROUP) {
       rows = [];
       for (let offset = 0; ; offset += PAGE_SIZE) {
         const q = new URLSearchParams({

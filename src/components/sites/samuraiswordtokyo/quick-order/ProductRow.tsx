@@ -180,7 +180,7 @@ export function ProductRow({ product }: { product: Product }) {
       data-group={product.group}
       data-qo-row-key={product.key}
       data-qo-group={product.group}
-      data-qo-family="pokemon"
+      data-qo-family={product.group.split("-")[0]}
       data-qo-subgroup={product.subgroup}
       data-qo-offer-count={product.offers.length}
       data-qo-single-offer={product.offers.length === 1 ? 1 : 0}

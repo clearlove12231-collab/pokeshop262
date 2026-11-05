@@ -3,7 +3,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import { BASE_PATH, type ReviewSort } from "./constants";
+import { REVIEW_CATEGORIES, type ReviewCategory, type ReviewSort } from "./constants";
 
 const SORT_OPTIONS: [ReviewSort, string][] = [
   ["newest", "최신순"],
@@ -16,10 +16,21 @@ const SORT_OPTIONS: [ReviewSort, string][] = [
  * GET form like the source: choosing an option reloads the list with
  * ?rv_sort=…, keeping the current photo/star filters (hidden inputs).
  */
-export function ReviewSortForm({ sort, photos, stars }: { sort: ReviewSort; photos?: boolean; stars?: number }) {
+export function ReviewSortForm({
+  category,
+  sort,
+  photos,
+  stars,
+}: {
+  category: ReviewCategory;
+  sort: ReviewSort;
+  photos?: boolean;
+  stars?: number;
+}) {
+  const { path, group } = REVIEW_CATEGORIES[category];
   return (
-    <form className="sst-rvp-sort" method="get" action={BASE_PATH}>
-      <input type="hidden" name="rv_group" value="pokemon" />
+    <form className="sst-rvp-sort" method="get" action={path}>
+      <input type="hidden" name="rv_group" value={group} />
       {photos && <input type="hidden" name="rv_photos" value="1" />}
       {stars && <input type="hidden" name="rv_stars" value={stars} />}
       <label htmlFor="sst-rvp-sort">정렬</label>

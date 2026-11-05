@@ -1,19 +1,35 @@
+"use client";
+
 /* eslint-disable @next/next/no-img-element */
 import type { CSSProperties } from "react";
-import { BASE_PATH } from "./reviews/constants";
-import { STATS } from "./reviews/query";
+import type { Family } from "./families";
+import { useFamily } from "./family-context";
 import { starFills } from "./stars";
 
 const fmt = (n: number) => n.toLocaleString("en-US");
 
+/** What the bar shows for one game tab (counted from that game's cloned reviews). */
+export interface ReviewBarData {
+  href: string;
+  avg: number;
+  avgText: string;
+  total: number;
+  photos: number;
+  fiveStarShare: number;
+  recentPhotos: string[];
+}
+
 /**
- * Review summary bar. Numbers and photos come from the Pokemon reviews cloned
- * on /ko/pages/reviews-pokemon, and the bar links to that local page.
+ * Review summary bar. It follows the selected game tab: numbers and photos come
+ * from the reviews cloned on /ko/pages/reviews-pokemon or /ko/pages/reviews-one-piece,
+ * and the bar links to that local page.
  */
-export function ReviewBar() {
+export function ReviewBar({ bars }: { bars: Record<Family, ReviewBarData> }) {
+  const { family } = useFamily();
+  const STATS = bars[family];
   return (
     <section className="sst-hrb sst-hrb--glyph" aria-label="고객 리뷰">
-      <a className="sst-hrb__link" href={BASE_PATH}>
+      <a className="sst-hrb__link" href={STATS.href}>
         <span className="sst-hrb__label" aria-hidden="true">
           고객 리뷰
         </span>

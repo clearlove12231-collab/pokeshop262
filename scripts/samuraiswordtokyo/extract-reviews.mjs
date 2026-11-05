@@ -1,16 +1,17 @@
 #!/usr/bin/env node
 /**
- * Builds the Pokemon reviews data for the clone from the live store's
- * https://samuraiswordtokyo.com/ko/pages/reviews-pokemon (?rv_page=1..N, 24 per page).
+ * Builds one review category for the clone from the live store's
+ * https://samuraiswordtokyo.com/ko/pages/reviews-<category> (?rv_page=1..N, 24 per page).
  *
- * - Only the Pokemon category is cloned; reviews of individual PSA cards are
- *   dropped (same rule as the shop: product name mentions "PSA <grade>").
+ * - Only the Pokemon and One Piece categories are cloned; reviews of individual
+ *   PSA cards are dropped (same rule as the shop: product name mentions "PSA <grade>").
  * - No source URLs are kept: products are stored by name and image only.
  * - Images point at the local mirror (/sites/samuraiswordtokyo/...); run
  *   download-assets.mjs afterwards to fetch them.
  *
- * Output: src/components/sites/samuraiswordtokyo/data/reviews.json
- * Usage:  node --use-system-ca scripts/samuraiswordtokyo/extract-reviews.mjs
+ * Output: src/components/sites/samuraiswordtokyo/data/reviews.json (pokemon)
+ *         src/components/sites/samuraiswordtokyo/data/reviews-one-piece.json (one-piece)
+ * Usage:  node --use-system-ca scripts/samuraiswordtokyo/extract-reviews.mjs [pokemon|one-piece]
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -21,10 +22,18 @@ import { createRequire } from "node:module";
 const { parse } = createRequire(import.meta.url)("next/dist/compiled/node-html-parser");
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
-const outFile = path.join(root, "src/components/sites/samuraiswordtokyo/data/reviews.json");
+
+/** Source review pages (/ko/pages/reviews-<category>) and their output files. */
+const CATEGORIES = { pokemon: "reviews.json", "one-piece": "reviews-one-piece.json" };
+const category = process.argv[2] ?? "pokemon";
+if (!CATEGORIES[category]) {
+  console.error(`usage: extract-reviews.mjs [${Object.keys(CATEGORIES).join("|")}]`);
+  process.exit(1);
+}
+const outFile = path.join(root, "src/components/sites/samuraiswordtokyo/data", CATEGORIES[category]);
 
 const ORIGIN = "https://samuraiswordtokyo.com";
-const PAGE_URL = `${ORIGIN}/ko/pages/reviews-pokemon`;
+const PAGE_URL = `${ORIGIN}/ko/pages/reviews-${category}`;
 const UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36";
 const isPsaSingle = (name) => /\bPSA\s?\d/i.test(name);
 

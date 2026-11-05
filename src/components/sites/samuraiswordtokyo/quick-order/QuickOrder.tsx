@@ -1,33 +1,52 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import data from "../data/quick-order.json";
+import pokemonData from "../data/quick-order.json";
+import onePieceData from "../data/quick-order-onepiece.json";
+import { FAMILIES, type Family } from "../families";
+import { useFamily } from "../family-context";
 import { formatPrice } from "../price";
 import { applyShopRules } from "../shop";
 import type { Product, ProductGroup } from "../types";
 import { ProductRow } from "./ProductRow";
 
-/** Source catalog with the owner's rules (sold-out groups) applied; see shop.ts. */
-const GROUPS = applyShopRules((data as { groups: ProductGroup[] }).groups);
+/** Source catalogs per game tab with the owner's rules (sold-out groups) applied; see shop.ts. */
+const GROUPS: Record<Family, ProductGroup[]> = {
+  pokemon: applyShopRules((pokemonData as { groups: ProductGroup[] }).groups),
+  onepiece: applyShopRules((onePieceData as { groups: ProductGroup[] }).groups),
+};
+
+/** Family tab labels as the source writes them (the tab font uppercases them). */
+const FAMILY_LABEL: Record<Family, string> = { pokemon: "Pokemon", onepiece: "원피스" };
 
 /**
- * Sub-tabs of the Pokemon tab. PSA10 (individual graded cards) is not sold on
- * this clone, and the other game tabs (TOP, coupons, One Piece, Yu-Gi-Oh,
- * Dragon Ball, damaged boxes, PSA10) are removed.
+ * Sub-tabs of each game tab. PSA10 (individual graded cards) is not sold on
+ * this clone, and the other game tabs (TOP, coupons, Yu-Gi-Oh, Dragon Ball,
+ * damaged boxes, PSA10) are removed.
  */
 type SubTab = "all" | "box" | "bulk" | "other" | "vintage";
 
-const SUB_TABS: { key: SubTab; label: string; group?: string }[] = [
-  { key: "all", label: "전체" },
-  { key: "box", label: "박스", group: "pokemon-box" },
-  { key: "bulk", label: "벌크", group: "pokemon-bulk" },
-  { key: "other", label: "스페셜", group: "pokemon-other" },
-  { key: "vintage", label: "빈티지", group: "pokemon-vintage" },
-];
+const SUB_TABS: Record<Family, { key: SubTab; label: string; group?: string }[]> = {
+  pokemon: [
+    { key: "all", label: "전체" },
+    { key: "box", label: "박스", group: "pokemon-box" },
+    { key: "bulk", label: "벌크", group: "pokemon-bulk" },
+    { key: "other", label: "스페셜", group: "pokemon-other" },
+    { key: "vintage", label: "빈티지", group: "pokemon-vintage" },
+  ],
+  onepiece: [
+    { key: "all", label: "전체" },
+    { key: "box", label: "박스", group: "onepiece-box" },
+    { key: "other", label: "스페셜", group: "onepiece-other" },
+  ],
+};
 
 const LEGACY_GROUP: Record<string, string> = { bulk: "bulk", other: "other", vintage: "vintage" };
 
-const POPULAR = ["Pikachu", "Charizard", "Mewtwo", "Rayquaza", "Mew", "Umbreon", "Gengar", "Eevee", "Sylveon", "Dragonite", "Lucario", "Lugia", "Snorlax", "Blastoise", "Mimikyu", "Arceus", "Psyduck", "Charmander"];
+/** "Popular Pokemon" chips; the source's One Piece tab has none. */
+const POPULAR: Partial<Record<Family, string[]>> = {
+  pokemon: ["Pikachu", "Charizard", "Mewtwo", "Rayquaza", "Mew", "Umbreon", "Gengar", "Eevee", "Sylveon", "Dragonite", "Lucario", "Lugia", "Snorlax", "Blastoise", "Mimikyu", "Arceus", "Psyduck", "Charmander"],
+};
 
 const SORTS: [string, string][] = [
   ["default", "추천순"],
@@ -90,7 +109,19 @@ function sortRows(rows: Product[], sort: string): Product[] {
   }
 }
 
-function Toolbar({ filters, setFilters, count, ceiling }: { filters: Filters; setFilters: (f: Filters) => void; count: string; ceiling: number }) {
+function Toolbar({
+  filters,
+  setFilters,
+  count,
+  ceiling,
+  popular,
+}: {
+  filters: Filters;
+  setFilters: (f: Filters) => void;
+  count: string;
+  ceiling: number;
+  popular?: string[];
+}) {
   const set = (patch: Partial<Filters>) => setFilters({ ...filters, ...patch });
   const lo = toPrice(filters.min, ceiling);
   const hi = filters.max >= SLIDER_STEPS ? ceiling : toPrice(filters.max, ceiling);
@@ -149,22 +180,24 @@ function Toolbar({ filters, setFilters, count, ceiling }: { filters: Filters; se
           ))}
         </select>
       </div>
-      <div className="sst-box-pop" role="group" aria-label="Popular Pokemon">
-        <span className="sst-box-pop__label">Popular Pokemon</span>
-        <div className="sst-box-pop__chips">
-          {POPULAR.map((name) => (
-            <button
-              key={name}
-              className="sst-box-pop__chip"
-              type="button"
-              aria-current={filters.chip === name ? "true" : undefined}
-              onClick={() => set({ chip: filters.chip === name ? null : name })}
-            >
-              {name}
-            </button>
-          ))}
+      {popular && (
+        <div className="sst-box-pop" role="group" aria-label="Popular Pokemon">
+          <span className="sst-box-pop__label">Popular Pokemon</span>
+          <div className="sst-box-pop__chips">
+            {popular.map((name) => (
+              <button
+                key={name}
+                className="sst-box-pop__chip"
+                type="button"
+                aria-current={filters.chip === name ? "true" : undefined}
+                onClick={() => set({ chip: filters.chip === name ? null : name })}
+              >
+                {name}
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
@@ -193,6 +226,7 @@ function LazyStatus({ loaded, total, onMore }: { loaded: number; total: number; 
 }
 
 export function QuickOrder() {
+  const { family, setFamily } = useFamily();
   const [sub, setSub] = useState<SubTab>("all");
   const [filters, setFiltersState] = useState<Filters>(EMPTY);
   const [limits, setLimits] = useState<Record<string, number>>({});
@@ -202,8 +236,12 @@ export function QuickOrder() {
     setLimits({});
   };
 
-  const activeGroup = SUB_TABS.find((t) => t.key === sub)?.group;
-  const visibleGroups = useMemo(() => (activeGroup ? GROUPS.filter((g) => g.id === activeGroup) : GROUPS), [activeGroup]);
+  const subTabs = SUB_TABS[family];
+  const activeGroup = subTabs.find((t) => t.key === sub)?.group;
+  const visibleGroups = useMemo(
+    () => (activeGroup ? GROUPS[family].filter((g) => g.id === activeGroup) : GROUPS[family]),
+    [family, activeGroup],
+  );
   // Slider ceiling (JPY): the highest price in view, rounded up to ¥10,000 like the source.
   const ceiling = useMemo(() => {
     const top = Math.max(0, ...visibleGroups.flatMap((g) => g.rows.map((r) => r.priceYen)));
@@ -230,30 +268,38 @@ export function QuickOrder() {
     setFilters(EMPTY);
   };
 
+  const switchFamily = (f: Family) => {
+    setFamily(f);
+    switchSub("all");
+  };
+
   return (
-    <section id="quick-order" className="sst-qo sst-qo--pin-preorder" data-active-tab="pokemon" data-qo-mode="order" data-sst-qo-cart-context="normal">
+    <section id="quick-order" className="sst-qo sst-qo--pin-preorder" data-active-tab={family} data-qo-mode="order" data-sst-qo-cart-context="normal">
       <div className="sst-qo__inner">
         <div className="sst-qo__layout">
           <div className="sst-qo__main">
             <div className="sst-qo__tabs sst-qo__tabs--family" role="tablist" data-qo-family-tabs="" data-sst-fade="1">
-              <button
-                type="button"
-                className="sst-qo__tab sst-qo__tab--family"
-                data-tab="pokemon"
-                data-qo-family-tab="pokemon"
-                aria-pressed="true"
-                onClick={() => switchSub("all")}
-              >
-                Pokemon
-              </button>
+              {FAMILIES.map((f) => (
+                <button
+                  key={f}
+                  type="button"
+                  className="sst-qo__tab sst-qo__tab--family"
+                  data-tab={f}
+                  data-qo-family-tab={f}
+                  aria-pressed={family === f}
+                  onClick={() => switchFamily(f)}
+                >
+                  {FAMILY_LABEL[f]}
+                </button>
+              ))}
             </div>
             <div className="sst-qo__tabs sst-qo__tabs--subgroup" role="tablist" data-qo-subgroup-tabs="">
-              {SUB_TABS.map((t) => (
+              {subTabs.map((t) => (
                 <button
                   key={t.key}
                   type="button"
                   className="sst-qo__tab sst-qo__tab--subgroup"
-                  data-qo-family="pokemon"
+                  data-qo-family={family}
                   data-qo-subgroup-tab={t.key}
                   aria-pressed={sub === t.key}
                   onClick={() => switchSub(t.key)}
@@ -272,15 +318,15 @@ export function QuickOrder() {
                   key={g.id}
                   className={classes}
                   data-group={g.id}
-                  data-qo-family="pokemon"
+                  data-qo-family={family}
                   data-qo-subgroup={g.subgroup}
-                  data-qo-legacy-group={LEGACY_GROUP[g.subgroup] ?? "pokemon"}
+                  data-qo-legacy-group={LEGACY_GROUP[g.subgroup] ?? family}
                   data-qo-preorder-group={g.subgroup === "preorder" ? 1 : undefined}
                 >
                   <p className="sst-qo__label" hidden={sub !== "all"}>
                     {g.label}
                   </p>
-                  {gi === 0 && <Toolbar filters={filters} setFilters={setFilters} count={count} ceiling={ceiling} />}
+                  {gi === 0 && <Toolbar filters={filters} setFilters={setFilters} count={count} ceiling={ceiling} popular={POPULAR[family]} />}
                   <div className="sst-qo__table-wrap">
                     <table className="sst-qo__table">
                       <thead>
@@ -292,7 +338,8 @@ export function QuickOrder() {
                       </thead>
                       <tbody>
                         {rows.map((p) => (
-                          <ProductRow key={p.key} product={p} />
+                          // One product can be listed once per variant (e.g. card only / with magazine).
+                          <ProductRow key={`${p.key}:${p.offers.map((o) => o.variantId).join("-")}`} product={p} />
                         ))}
                       </tbody>
                     </table>
@@ -304,7 +351,7 @@ export function QuickOrder() {
                       Clear filters
                     </button>
                   </div>
-                  {g.id !== "pokemon-preorder" && (
+                  {g.subgroup !== "preorder" && (
                     <LazyStatus
                       loaded={loaded}
                       total={listLength}

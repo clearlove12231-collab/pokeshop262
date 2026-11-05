@@ -13,5 +13,5 @@ export default async function PokemonReviewsRoute({
 }: {
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
-  return <ReviewsPage query={parseQuery(await searchParams)} />;
+  return <ReviewsPage category="pokemon" query={parseQuery(await searchParams)} />;
 }

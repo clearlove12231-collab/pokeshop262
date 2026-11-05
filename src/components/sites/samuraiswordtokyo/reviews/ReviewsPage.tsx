@@ -4,7 +4,19 @@ import "./clone.css";
 import { Fragment } from "react";
 import { SiteChrome } from "../SiteChrome";
 import { RsStars } from "../stars";
-import { PER_PAGE, STATS, TOP_PRODUCTS, pageItems, reviewsHref, selectReviews, type Review, type ReviewQuery } from "./query";
+import { CATEGORY_ORDER } from "./constants";
+import {
+  PER_PAGE,
+  REVIEW_CATEGORIES,
+  STATS as ALL_STATS,
+  TOP_PRODUCTS as ALL_TOP_PRODUCTS,
+  pageItems,
+  reviewsHref as categoryHref,
+  selectReviews,
+  type Review,
+  type ReviewCategory,
+  type ReviewQuery,
+} from "./query";
 import { ReviewLightbox, ReviewSortForm } from "./ReviewsClient";
 
 const fmt = (n: number) => n.toLocaleString("en-US");
@@ -12,7 +24,9 @@ const fmt = (n: number) => n.toLocaleString("en-US");
 /** Filters that chips, bars and the pager carry over (the source keeps photos, stars and sort; not the page). */
 const keep = (q: ReviewQuery): Partial<ReviewQuery> => ({ photos: q.photos, stars: q.stars, sort: q.sort });
 
-function Summary({ q }: { q: ReviewQuery }) {
+function Summary({ q, category }: { q: ReviewQuery; category: ReviewCategory }) {
+  const STATS = ALL_STATS[category];
+  const reviewsHref = (p: Partial<ReviewQuery>) => categoryHref(category, p);
   return (
     <div className="sst-rvp-summary">
       <div className="sst-rvp-summary__avg">
@@ -40,12 +54,12 @@ function Summary({ q }: { q: ReviewQuery }) {
 }
 
 /** "리뷰가 많은 상품". Product pages are not part of the clone, so the cards are not links. */
-function TopProducts() {
+function TopProducts({ category }: { category: ReviewCategory }) {
   return (
     <section className="sst-rvp-products">
       <h2 className="sst-rvp-h2">리뷰가 많은 상품</h2>
       <div className="sst-rvp-products__rail">
-        {TOP_PRODUCTS.map((p) => (
+        {ALL_TOP_PRODUCTS[category].map((p) => (
           <div key={p.name} className="sst-rvp-product-card">
             <img src={p.img} width={64} height={64} alt="" loading="lazy" decoding="async" />
             <span className="sst-rvp-product-card__name">{p.name}</span>
@@ -60,14 +74,24 @@ function TopProducts() {
   );
 }
 
-function Toolbar({ q, total }: { q: ReviewQuery; total: number }) {
+function Toolbar({ q, total, category }: { q: ReviewQuery; total: number; category: ReviewCategory }) {
+  const STATS = ALL_STATS[category];
+  const reviewsHref = (p: Partial<ReviewQuery>) => categoryHref(category, p);
   return (
     <div className="sst-rvp-toolbar">
-      {/* Only the Pokemon category is cloned; the other category chips (전체, 원피스, PSA 10, 기타 상품) are removed. */}
+      {/* Only Pokemon and One Piece are cloned; the other category chips (전체, PSA 10, 기타 상품) are removed. */}
       <nav className="sst-rvp-chips" aria-label="리뷰">
-        <a className="sst-tag-btn active" aria-current="true" href={reviewsHref(keep(q))}>
-          포켓몬 <span className="sst-rvp-chip__n">({fmt(STATS.total)})</span>
-        </a>
+        {CATEGORY_ORDER.map((c) =>
+          c === category ? (
+            <a key={c} className="sst-tag-btn active" aria-current="true" href={reviewsHref(keep(q))}>
+              {REVIEW_CATEGORIES[c].chip} <span className="sst-rvp-chip__n">({fmt(ALL_STATS[c].total)})</span>
+            </a>
+          ) : (
+            <a key={c} className="sst-tag-btn" href={REVIEW_CATEGORIES[c].path}>
+              {REVIEW_CATEGORIES[c].chip} <span className="sst-rvp-chip__n">({fmt(ALL_STATS[c].total)})</span>
+            </a>
+          ),
+        )}
         <a
           className={`sst-tag-btn sst-rvp-chip--photos${q.photos ? " active" : ""}`}
           aria-current={q.photos || undefined}
@@ -97,7 +121,7 @@ function Toolbar({ q, total }: { q: ReviewQuery; total: number }) {
           </a>
         ))}
       </nav>
-      <ReviewSortForm sort={q.sort} photos={q.photos} stars={q.stars} />
+      <ReviewSortForm category={category} sort={q.sort} photos={q.photos} stars={q.stars} />
       <span className="sst-rvp-total woocommerce-result-count">리뷰 {fmt(total)}개</span>
       <a className="sst-rvp-clear" href={reviewsHref({})}>
         필터 초기화
@@ -160,9 +184,9 @@ function ReviewItem({ r, index }: { r: Review; index: number }) {
   );
 }
 
-function Pager({ q, pages }: { q: ReviewQuery; pages: number }) {
+function Pager({ q, pages, category }: { q: ReviewQuery; pages: number; category: ReviewCategory }) {
   if (pages <= 1) return null;
-  const at = (page: number) => reviewsHref({ ...keep(q), page });
+  const at = (page: number) => categoryHref(category, { ...keep(q), page });
   return (
     <nav className="woocommerce-pagination sst-rvp-pager" aria-label={`${q.page} / ${pages} 페이지`}>
       <ul className="page-numbers">
@@ -201,12 +225,13 @@ function Pager({ q, pages }: { q: ReviewQuery; pages: number }) {
 }
 
 /**
- * /ko/pages/reviews-pokemon — filters, sort and pages are driven by the URL like the source.
- * Removed (they lead to the source store): "← 전체 고객 리뷰 보기", the other category
- * chips, product links and the "카테고리별 쇼핑" buttons.
+ * /ko/pages/reviews-pokemon and /ko/pages/reviews-one-piece — filters, sort and pages are
+ * driven by the URL like the source. Removed (they lead to the source store): "← 전체 고객
+ * 리뷰 보기", the other category chips, product links and the "카테고리별 쇼핑" buttons.
  */
-export function ReviewsPage({ query }: { query: ReviewQuery }) {
-  const all = selectReviews(query);
+export function ReviewsPage({ category, query }: { category: ReviewCategory; query: ReviewQuery }) {
+  const info = REVIEW_CATEGORIES[category];
+  const all = selectReviews(category, query);
   const pages = Math.max(1, Math.ceil(all.length / PER_PAGE));
   const q = { ...query, page: Math.min(query.page, pages) };
   const shown = all.slice((q.page - 1) * PER_PAGE, q.page * PER_PAGE);
@@ -217,25 +242,25 @@ export function ReviewsPage({ query }: { query: ReviewQuery }) {
         <div className="sst-container">
           <article className="sst-page">
             <nav className="sst-page-breadcrumb" aria-label="브레드크럼">
-              <a href="/ko?qo_tab=pokemon">홈</a> <span aria-hidden="true">/</span> <span>포켓몬 카드 리뷰</span>
+              <a href={`/ko?qo_tab=${info.family}`}>홈</a> <span aria-hidden="true">/</span> <span>{info.title}</span>
             </nav>
             <header className="sst-page-header">
-              <h1>포켓몬 카드 리뷰</h1>
+              <h1>{info.title}</h1>
             </header>
             <div className="sst-page-content">
               <section className="sst-rvp" id="sst-rvp" data-sst-rvp="0.2.0">
                 <p className="sst-rvp-intro">
                   이 페이지의 리뷰는 Samurai Sword Tokyo에서 해당 상품을 구매한 고객이 작성했습니다. 개인정보 보호를 위해 이름은 줄여서 표시하며, 사진과 영상은 리뷰 작성자가 공유한 것입니다.
                 </p>
-                <Summary q={q} />
+                <Summary q={q} category={category} />
                 <div className="sst-review-disclosure">
                   <p className="sst-review-disclosure__main">
                     일부 리뷰는 이용 경험을 공유하고 10포인트(사진이나 동영상을 첨부한 경우 20포인트)를 받은 고객이 작성한 것입니다. 포인트는 별점에 관계없이 모든 리뷰에 동일하게 지급됩니다.
                   </p>
                   <p className="sst-review-disclosure__note">리뷰는 검토 후 게시됩니다.</p>
                 </div>
-                <TopProducts />
-                <Toolbar q={q} total={all.length} />
+                <TopProducts category={category} />
+                <Toolbar q={q} total={all.length} category={category} />
                 <div className="woocommerce-Reviews sst-rvp-list" id="reviews">
                   <ol className="commentlist">
                     {shown.map((r, i) => (
@@ -243,7 +268,7 @@ export function ReviewsPage({ query }: { query: ReviewQuery }) {
                     ))}
                   </ol>
                 </div>
-                <Pager q={q} pages={pages} />
+                <Pager q={q} pages={pages} category={category} />
               </section>
             </div>
           </article>

@@ -28,7 +28,17 @@ const SHARED = ["SiteChrome.tsx", "SiteHeader.tsx", "CartDrawer.tsx", "store.tsx
 const PAGES = {
   home: {
     css: "samuraiswordtokyo.css",
-    sources: [...SHARED, "SamuraiSwordHome.tsx", "ReviewBar.tsx", "quick-order", "data/quick-order.json", "../../../app/(home)/layout.tsx"],
+    sources: [
+      ...SHARED,
+      "SamuraiSwordHome.tsx",
+      "ReviewBar.tsx",
+      "families.ts",
+      "family-context.tsx",
+      "quick-order",
+      "data/quick-order.json",
+      "data/quick-order-onepiece.json",
+      "../../../app/(home)/layout.tsx",
+    ],
   },
   reviews: {
     // Review texts (data/reviews.json) hold no class names, so they are not scanned.

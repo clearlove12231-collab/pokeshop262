@@ -1,15 +1,20 @@
-# Samurai Sword Tokyo — Pokemon tab clone
+# Samurai Sword Tokyo — Pokemon and One Piece tab clone
 
-Sources (WordPress + WooCommerce, captured 2026-11-04):
-https://samuraiswordtokyo.com/ko/?qo_tab=pokemon and https://samuraiswordtokyo.com/ko/pages/reviews-pokemon
+Sources (WordPress + WooCommerce, captured 2026-11-04; One Piece 2026-11-05):
+https://samuraiswordtokyo.com/ko/?qo_tab=pokemon, https://samuraiswordtokyo.com/ko/?qo_tab=onepiece,
+https://samuraiswordtokyo.com/ko/pages/reviews-pokemon and https://samuraiswordtokyo.com/ko/pages/reviews-one-piece
 
 ## Route map
 
 | Source | Local | Files |
 | --- | --- | --- |
-| `/ko/?qo_tab=pokemon` | `/ko?qo_tab=pokemon` | `src/app/(home)/ko/page.tsx` → `SamuraiSwordHome.tsx` |
+| `/ko/?qo_tab=pokemon`, `/ko/?qo_tab=onepiece` | `/ko?qo_tab=pokemon`, `/ko?qo_tab=onepiece` | `src/app/(home)/ko/page.tsx` → `SamuraiSwordHome.tsx` |
 | `/` (template home) | redirects to `/ko?qo_tab=pokemon` | `src/app/(home)/page.tsx` |
 | `/ko/pages/reviews-pokemon` (+ `rv_photos`, `rv_stars`, `rv_sort`, `rv_page`) | same path and parameters | `src/app/(reviews)/ko/pages/reviews-pokemon/page.tsx` → `reviews/ReviewsPage.tsx` |
+| `/ko/pages/reviews-one-piece` (same parameters) | same path and parameters | `src/app/(reviews)/ko/pages/reviews-one-piece/page.tsx` → `reviews/ReviewsPage.tsx` |
+
+The game tab is read from `?qo_tab=` on load (`families.ts`) and kept in `family-context.tsx`; switching tabs
+updates the URL without a reload. The review bar follows the selected tab.
 
 Each route group has its own root layout because the two source pages use different `<body>` classes
 (`home …` vs `sst-rvp-page …`), which their stylesheets key on. Switching between them is a full page load,
@@ -17,8 +22,9 @@ so each page loads only its own stylesheet. Both render `SiteChrome` (header + c
 
 ## Scope (owner's requirements)
 
-- Only the **Pokemon** quick-order tab. The other game tabs (TOP, 쿠폰, 원피스, Yu-Gi-Oh, Dragon Ball,
-  손상 박스, PSA10) are removed.
+- Only the **Pokemon** and **원피스 (One Piece)** quick-order tabs. The other game tabs (TOP, 쿠폰, Yu-Gi-Oh,
+  Dragon Ball, 손상 박스, PSA10) are removed. One Piece sub-tabs: 전체/박스/스페셜 (its PSA10 group is not cloned);
+  it has no "Popular" chips, like the source.
 - **No individual PSA cards**: the PSA10 sub-tab/group is not cloned and the bulk row
   "Random PSA10 (AR or Higher) - 1 Card" is dropped (`isPsaSingle()` in the extractors).
 - Kept essentials only: header (logo + cart button), review bar, the Pokemon tab, cart drawer, and the
@@ -27,8 +33,11 @@ so each page loads only its own stylesheet. Both render `SiteChrome` (header + c
   watchlist stars, restock "Notify" buttons.
 - **Nothing leads to the source site**: no links, new tabs or click handlers point at samuraiswordtokyo.com
   (product blocks, ratings and review products are not links), and every image/font is served locally.
-- **Reviews: Pokemon only.** Other categories (원피스, PSA 10, 기타 상품) and the all-reviews page are not cloned.
-  All review numbers (home bar and reviews page) are counted from the cloned reviews.
+- **Reviews: Pokemon and One Piece.** Other categories (PSA 10, 기타 상품) and the all-reviews page are not cloned;
+  each reviews page shows 포켓몬 and 원피스 chips. All review numbers (home bar and reviews pages) are counted from
+  the cloned reviews of that category.
+- **One Piece** uses the same price formula as Pokemon, and its stock is shown as the source has it (no sold-out
+  override). Carton offers are hidden like on the source (carton sales are paused there).
 - **Prices** (`price.ts`): 58% of the source price, converted to KRW and rounded to the nearest ₩5,000, plus ₩50,000:
   `round5000(yen × JPY_TO_KRW (8.4888) × PRICE_FACTOR (0.58)) + PRICE_MARKUP_WON (50,000)` — e.g. ¥10,000 → ₩100,000.
   A "슈링크 없음" offer costs `NOSHRINK_DISCOUNT` (15%) less than the same product's sealed offer (its paid price),
@@ -57,6 +66,19 @@ from the page HTML (Preorder/HOT rows, review-star data) and the store's group e
 The group endpoint returns English offer labels (Item / Sealed / No Shrink) while the first group renders Korean
 ones; the extractor uses the Korean labels everywhere.
 
+`data/quick-order-onepiece.json` — 36 One Piece products, built by `… extract-catalog.mjs onepiece` (2026-11-05):
+
+| Group | Rows |
+| --- | --- |
+| 예약 주문 | 2 |
+| 원피스 박스 | 24 |
+| 원피스 스페셜 | 10 |
+
+The PSA10 group is skipped. Box rows also carry a "Carton" offer, hidden by CSS like on the source. Some products are
+listed once per variant (card only / with magazine), so rows are keyed by product + variant ids. Offer labels the
+source shows in Korean in the first group (박스, 카드만 (미등급), 잡지 + 프로모 카드) are used in every group; the
+others (Card, Promo only, with magazine) stay as the source shows them.
+
 ## Reviews
 
 `data/reviews.json` — every review the source lists on its Pokemon reviews page (24 pages × 24): 561 reviews,
@@ -67,13 +89,19 @@ Counted from these reviews (`STATS` / `TOP_PRODUCTS` in `reviews/query.ts`): 4.9
 5★ 528 · 4★ 16 · 3★ 6 · 2★ 2 · 1★ 9, 94% five-star, 185 with photos, 74 products. The source's own category
 headline (834 reviews, 245 with photos, 86 products) also counts ratings it never lists.
 
+`data/reviews-one-piece.json` — `… extract-reviews.mjs one-piece` (6 pages, 2026-11-05): 133 reviews, 38 with photos
+(44 photos), 4.9, 5★ 122 · 4★ 5 · 3★ 5 · 2★ 1 · 1★ 0, 20 products. The source headline says 193 reviews / 54 with
+photos / 27 products for the same reason as above.
+
 ## Sections — home (top → bottom)
 
 1. Sticky header (59px desktop, 53px mobile): logo, cart toggle with item count.
-2. Review bar → `/ko/pages/reviews-pokemon`: 4.9/5, "구매 인증 고객 561명의 평가", newest 4 review photos,
-   "사진 있는 리뷰 185개", "94%가 별 5개 평가" (≥1200px), "전체 고객 리뷰 보기 →".
-3. Quick order: Pokemon tab; sub-tabs 전체/박스/벌크/스페셜/빈티지; toolbar (search incl. JAN, In/Out of stock,
-   price slider, sort, Popular Pokemon chips); card grid. "전체" shows every group with one toolbar and hides rows
+2. Review bar for the selected tab → `/ko/pages/reviews-pokemon` (4.9/5, "구매 인증 고객 561명의 평가", "사진 있는
+   리뷰 185개", "94%가 별 5개 평가") or `/ko/pages/reviews-one-piece` (4.9/5, 133명, 38개, 91%); newest 4 review
+   photos and "전체 고객 리뷰 보기 →".
+3. Quick order: Pokemon and 원피스 family tabs (SST Tab Rounded / SST Tab Anton faces); Pokemon sub-tabs
+   전체/박스/벌크/스페셜/빈티지, One Piece 전체/박스/스페셜; toolbar (search incl. JAN, In/Out of stock,
+   price slider, sort, Popular Pokemon chips on the Pokemon tab only); card grid. "전체" shows every group with one toolbar and hides rows
    already in Preorder/HOT. Each group shows 24 rows and loads 24 more when its status line comes within 480px of
    the viewport ("Scroll to load more products (24 / 87 shown)."), like the source.
 4. Cart drawer (`body.sst-cart-open`): lines, quantity steppers, remove, subtotal and a filled "결제하기" button

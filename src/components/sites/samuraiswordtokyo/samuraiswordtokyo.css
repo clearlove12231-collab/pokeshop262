@@ -7175,6 +7175,14 @@ html
   font-style: normal;
   font-display: swap;
 }
+@font-face {
+  font-family: "SST Tab Anton";
+  src: url("/sites/samuraiswordtokyo/themes/samurai-sword/assets/fonts/tabs/anton-tabs.woff2")
+    format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
 
 .sst-qo [data-qo-family-tabs] > :is([data-qo-family-tab], [data-sst-qct-tab]) {
   --tt-font: "SST Tab Archivo Black", "Archivo Black", "Arial Black", var(--sst-font, sans-serif);
@@ -7215,6 +7223,29 @@ html
   --tt-shadow: 0 2px 4px rgba(42, 117, 187, 0.25);
   --tt-shadow-on: 0 3px 6px rgba(42, 117, 187, 0.45);
   --tt-bar: #1f5f9e;
+}
+
+.sst-qo [data-qo-family-tabs] > [data-qo-family-tab="onepiece"] {
+  --tt-font: "SST Tab Anton", "Bebas Neue", Impact, "Arial Narrow", var(--sst-font, sans-serif);
+  --tt-ls: 0.04em;
+  --tt-fill: #d1465a;
+  --tt-fill-on: #ffffff;
+  --tt-stroke-w: 3px;
+  --tt-stroke: #111111;
+  --tt-deco: underline 1.5px #f2c230;
+  --tt-bar: #c8102e;
+}
+
+/* Source: the One Piece tab drops the decorative underline (later rule in its cascade). */
+.sst-qo__tabs--family .sst-qo__tab--family[data-qo-family-tab="onepiece"] {
+  text-decoration: none !important;
+}
+
+/* Source: carton offers are paused, so carton cells and the One Piece 3rd column header are hidden. */
+.sst-qo td.sst-qo__offer--carton,
+.sst-qo [data-qo-offer-type="carton"],
+.sst-qo .sst-qo__group[data-qo-family="onepiece"] .sst-qo__table thead th:nth-child(3) {
+  display: none !important;
 }
 
 .sst-qo [data-qo-family-tabs] > :is([data-qo-family-tab], [data-sst-qct-tab]) {
@@ -7966,6 +7997,10 @@ html
 
 .sst-qo--pin-preorder:has(.sst-qo-priority-featured[data-qo-family="pokemon"])
   .sst-qo__group[data-qo-family="pokemon"]:not([data-qo-preorder-group="1"])
+  tbody
+  tr[data-qo-hot="1"],
+.sst-qo--pin-preorder:has(.sst-qo-priority-featured[data-qo-family="onepiece"])
+  .sst-qo__group[data-qo-family="onepiece"]:not([data-qo-preorder-group="1"])
   tbody
   tr[data-qo-hot="1"] {
   display: none !important;
