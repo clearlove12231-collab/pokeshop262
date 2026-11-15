@@ -56,6 +56,15 @@
   text-decoration: none;
 }
 
+/* Partner seller section: set apart from the store's own buttons by a divider. */
+.sst-order-notice__partner {
+  display: grid;
+  gap: 14px;
+  margin-top: 4px;
+  padding-top: 18px;
+  border-top: 1px solid var(--sst-line, #ececec);
+}
+
 /* The theme styles every <button> as a filled accent button; the close × is a plain icon. */
 .sst-order-notice__close,
 .sst-order-notice__close:hover {

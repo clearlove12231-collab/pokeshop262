@@ -11,6 +11,9 @@ export const INQUIRY_URL = "https://www.tiktok.com/@pokeshopkr";
 /** The notice's second destination, shown as its own button under the TikTok one. */
 export const INSTAGRAM_URL = "https://www.instagram.com/pokeparcelkr";
 
+/** Official partner seller popyaa (TikTok), shown in its own section of the notice with the 5% code offer. */
+export const PARTNER_URL = "https://www.tiktok.com/@popyaa3838";
+
 /**
  * Groups whose products are shown as sold out ("포켓몬 스페셜", "포켓몬 벌크").
  * Matched on the product's own group, so their copies in "예약 주문 / HOT" are sold out too.

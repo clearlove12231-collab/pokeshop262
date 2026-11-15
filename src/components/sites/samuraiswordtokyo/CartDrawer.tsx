@@ -4,13 +4,15 @@
 import "./cart-notice.css";
 import { useEffect, useRef, useState } from "react";
 import { formatWon } from "./price";
-import { INQUIRY_URL, INSTAGRAM_URL } from "./shop";
+import { INQUIRY_URL, INSTAGRAM_URL, PARTNER_URL } from "./shop";
 import { useStore } from "./store";
 
 /**
  * "결제하기" does not take payment: it opens this notice, which asks for
  * package purchase inquiries on TikTok and links there, with a second button to
- * Instagram (both in a new tab, so the cart stays open).
+ * Instagram. Below a divider, a partner section offers the official partner
+ * seller popyaa's TikTok and the 5% code for sending proof of purchase.
+ * Every link opens in a new tab, so the cart stays open.
  */
 function OrderNotice({ onClose }: { onClose: () => void }) {
   const goRef = useRef<HTMLAnchorElement>(null);
@@ -39,6 +41,15 @@ function OrderNotice({ onClose }: { onClose: () => void }) {
         <a className="button sst-order-notice__go" href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
           Instagram으로 이동하기
         </a>
+        <div className="sst-order-notice__partner">
+          <p className="sst-order-notice__text">
+            공식 제휴 판매자 <strong>popyaa</strong>에게 구매하신 후 pokeshop 공식 계정으로 구매 인증을 보내주시면{" "}
+            <strong>5% 할인코드</strong>를 드립니다.
+          </p>
+          <a className="button sst-order-notice__go" href={PARTNER_URL} target="_blank" rel="noopener noreferrer">
+            공식 제휴 판매자 popyaa로 이동하기
+          </a>
+        </div>
       </div>
     </div>
   );
