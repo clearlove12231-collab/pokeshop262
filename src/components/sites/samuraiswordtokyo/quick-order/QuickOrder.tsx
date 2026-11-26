@@ -9,6 +9,7 @@ import { formatPrice } from "../price";
 import { applyShopRules } from "../shop";
 import type { Product, ProductGroup } from "../types";
 import { ProductRow } from "./ProductRow";
+import { Spotlight } from "./Spotlight";
 
 /** Source catalogs per game tab with the owner's rules (sold-out groups) applied; see shop.ts. */
 const GROUPS: Record<Family, ProductGroup[]> = {
@@ -310,6 +311,8 @@ export function QuickOrder() {
                 </button>
               ))}
             </div>
+            {/* Owner's spotlight banner (shop.ts): Pokemon "전체" and "박스" only. */}
+            {family === "pokemon" && (sub === "all" || sub === "box") && <Spotlight />}
 
             {rendered.map(({ group: g, rows, loaded, listLength }, gi) => {
               const classes = ["sst-qo__group", ...(g.classes ?? "").split(" ").filter(Boolean), "sst-psa-price-on", "sst-psa-stock-on", "sst-box-tb", sub === "all" ? "sst-qo-in-all" : ""]

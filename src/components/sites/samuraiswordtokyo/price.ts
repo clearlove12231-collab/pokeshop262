@@ -48,6 +48,14 @@ export function shopWon(yen: number): number {
   return yen > 0 ? toWon(yen) + PRICE_MARKUP_WON : 0;
 }
 
+/**
+ * The source yen that shopWon() turns into `won` (no game-tab discount). Owner-added
+ * products keep a fixed priceWon; this gives them a priceYen for the price sort and filter.
+ */
+export function yenForWon(won: number): number {
+  return Math.round(Math.max(0, won - PRICE_MARKUP_WON) / (JPY_TO_KRW * PRICE_FACTOR));
+}
+
 /** Shop price on a game tab: shopWon() less that tab's FAMILY_DISCOUNT, rounded to ROUND_STEP. */
 export function familyWon(yen: number, family: Family): number {
   const won = shopWon(yen);
@@ -72,6 +80,8 @@ export interface OfferPrice {
  */
 export function offerPrice(product: Product, offer: Offer): OfferPrice | null {
   if (offer.priceState !== "priced") return null;
+  // Owner-added products are priced in won directly (no conversion, markup or tab discount).
+  if (offer.priceWon) return { pay: offer.priceWon };
   if (offer.type === "noshrink") {
     const sealed = product.offers.find((o) => o.type === "sealed" && o.priceState === "priced");
     const sealedPay = sealed ? offerPrice(product, sealed)?.pay : undefined;

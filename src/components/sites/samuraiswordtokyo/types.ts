@@ -21,6 +21,8 @@ export interface Offer {
   priceYen: number;
   saleRegularYen?: number;
   salePriceYen?: number;
+  /** Fixed shop price in KRW for products the owner adds (shop.ts), shown as is instead of converting priceYen. */
+  priceWon?: number;
   max: number;
   variantId: number;
   sku?: string;
@@ -56,6 +58,8 @@ export interface Product {
   releaseText?: string;
   /** Also listed in Preorder/HOT, so the "전체" view hides this copy. */
   dupOfFeatured?: boolean;
+  /** Owner's highlight badges shown before the stock badge, e.g. "역대 할인가". */
+  promoBadges?: string[];
   rating?: { avg: number; count: number };
   offers: Offer[];
 }

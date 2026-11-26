@@ -30,6 +30,11 @@ function Badges({ product, onSale }: { product: Product; onSale: boolean }) {
   const inStock = product.offers.some((o) => o.stockState === "in");
   return (
     <span className="sst-qo__badges">
+      {product.promoBadges?.map((badge) => (
+        <span key={badge} className="sst-qo__badge sst-qo__badge--promo">
+          {badge}
+        </span>
+      ))}
       {onSale && <span className="sst-qo__badge sst-qo__badge--sale">세일</span>}
       {product.hot && <span className="sst-qo__badge sst-qo__badge--hot">인기</span>}
       {inStock ? (

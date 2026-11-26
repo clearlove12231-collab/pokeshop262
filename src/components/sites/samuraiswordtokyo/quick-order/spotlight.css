@@ -1,0 +1,184 @@
+/*
+ * Owner's spotlight product (shop.ts): the banner above the Pokemon list
+ * (Spotlight.tsx) and its card in the list (tr.sst-qo__row--spotlight with
+ * .sst-qo__badge--promo badges). Gold and red, to stand out from the HOT cards.
+ */
+.sst-spot {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  align-items: center;
+  gap: 28px;
+  margin: 18px 0 22px;
+  padding: 20px 28px;
+  border: 3px solid #eab308;
+  border-radius: 16px;
+  background: linear-gradient(120deg, #fffbea 0%, #fef3c7 45%, #fde68a 100%);
+  box-shadow:
+    0 14px 34px rgba(202, 138, 4, 0.28),
+    0 0 0 6px rgba(250, 204, 21, 0.18);
+}
+
+.sst-spot__media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+}
+
+.sst-spot__body {
+  display: grid;
+  gap: 12px;
+  justify-items: start;
+  min-width: 0;
+}
+
+.sst-spot__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.sst-spot__badge {
+  padding: 5px 11px;
+  border: 1px solid #eab308;
+  border-radius: 999px;
+  background: #fff;
+  color: #854d0e;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.sst-spot__badge--best {
+  padding: 6px 14px;
+  border-color: #991b1b;
+  background: #dc2626;
+  color: #fff;
+  font-size: 15px;
+  animation: sst-spot-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes sst-spot-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.45);
+  }
+  50% {
+    transform: scale(1.06);
+    box-shadow: 0 0 0 8px rgba(220, 38, 38, 0);
+  }
+}
+
+.sst-spot__name {
+  margin: 0;
+  color: #1f2937;
+  font-size: 28px;
+  font-weight: 900;
+  line-height: 1.25;
+  word-break: keep-all;
+}
+
+.sst-spot__price {
+  margin: 0;
+  color: #b91c1c;
+  font-size: 44px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+/* The theme styles every <button> as a filled accent button; this one is larger and red. */
+button.sst-spot__add {
+  min-height: 52px;
+  padding: 0 32px;
+  border: 0;
+  border-radius: 10px;
+  background: #dc2626;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 800;
+}
+
+button.sst-spot__add:hover {
+  background: #b91c1c;
+}
+
+button.sst-spot__add:disabled {
+  background: #9ca3af;
+}
+
+@media (max-width: 749px) {
+  .sst-spot {
+    grid-template-columns: 108px minmax(0, 1fr);
+    gap: 14px;
+    margin: 12px 0 16px;
+    padding: 14px;
+    border-width: 2px;
+  }
+
+  .sst-spot__body {
+    gap: 8px;
+  }
+
+  .sst-spot__badge {
+    padding: 3px 8px;
+    font-size: 11px;
+  }
+
+  .sst-spot__badge--best {
+    padding: 4px 10px;
+    font-size: 12px;
+  }
+
+  .sst-spot__name {
+    font-size: 16px;
+  }
+
+  .sst-spot__price {
+    font-size: 30px;
+  }
+
+  button.sst-spot__add {
+    width: 100%;
+    min-height: 44px;
+    padding: 0 12px;
+    font-size: 15px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sst-spot__badge--best {
+    animation: none;
+  }
+}
+
+/* The spotlight product's card in the list: gold instead of the HOT cards' red. */
+.sst-qo .sst-qo__table tbody tr.sst-qo__row--spotlight {
+  outline: 3px solid #eab308;
+  outline-offset: -3px;
+  background: linear-gradient(135deg, #fffbea, #fde68a) !important;
+  box-shadow:
+    0 10px 26px rgba(202, 138, 4, 0.3),
+    0 0 0 5px rgba(250, 204, 21, 0.2);
+}
+
+.sst-qo__badge--promo {
+  border-color: #eab308;
+  background: #fff;
+  color: #854d0e;
+}
+
+.sst-qo__badge--promo:first-child {
+  border-color: #991b1b;
+  background: #dc2626;
+  color: #fff;
+}
+
+@media (forced-colors: active) {
+  .sst-spot,
+  .sst-qo .sst-qo__table tbody tr.sst-qo__row--spotlight {
+    outline: 2px solid CanvasText !important;
+  }
+}
